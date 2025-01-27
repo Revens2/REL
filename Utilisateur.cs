@@ -4,28 +4,36 @@ namespace REL
 {
     internal class Utilisateur
     {
+      
         private string name;
         private string prenom;
+        private string dateDeNaissance;   // Nullable car SQL peut permettre NULL
+        private string numero;      // Peut rester int, mais ajustable en string si besoin
         private string mail;
         private string password;
         private string adresse;
         private string zip;
         private string ville;
-        private string numero;
 
+        // Constructeur vide
         public Utilisateur() { }
 
-        public Utilisateur(string unName, string unPrenom, string unMail, string unPassword, string uneAdresse, string unZip, string uneVille, string unNumero)
+        // Constructeur complet
+        public Utilisateur(string name,string prenom, string dateDeNaissance, string numero,string mail, string password,string adresse,string zip,string ville)
         {
-            name = unName;
-            prenom = unPrenom;
-            mail = unMail;
-            password = unPassword;
-            adresse = uneAdresse;
-            zip = unZip;
-            ville = uneVille;
-            numero = unNumero;
+         
+            this.name = name;
+            this.prenom = prenom;
+            this.dateDeNaissance = dateDeNaissance;
+            this.numero = numero;
+            this.mail = mail;
+            this.password = password;
+            this.adresse = adresse;
+            this.zip = zip;
+            this.ville = ville;
         }
+
+        // Propriétés publiques (getters et setters)
 
         public string Name
         {
@@ -37,6 +45,18 @@ namespace REL
         {
             get { return prenom; }
             set { prenom = value; }
+        }
+
+        public string DateDeNaissance
+        {
+            get { return dateDeNaissance; }
+            set { dateDeNaissance = value; }
+        }
+
+        public string Numero
+        {
+            get { return numero; }
+            set { numero = value; }
         }
 
         public string Mail
@@ -69,15 +89,13 @@ namespace REL
             set { ville = value; }
         }
 
-        public string Numero
-        {
-            get { return numero; }
-            set { numero = value; }
-        }
-
         public string GetUserInfo()
         {
-            return $"{Name} {Prenom} - Email: {Mail} - Adresse: {Adresse}, {Ville}, {Zip} - Numéro: {Numero}";
+      
+
+            return $" Name: {Name}, Prénom: {Prenom}, " +
+                   $"Né(e) le: {DateDeNaissance}, Téléphone: {Numero}, " +
+                   $"Email: {Mail}, Adresse: {Adresse}, {Ville}, {Zip}";
         }
     }
 }

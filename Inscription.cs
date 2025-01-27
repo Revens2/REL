@@ -26,8 +26,9 @@ namespace REL
             string zip = tbzip.Text;
             string ville = tbville.Text;
             string numero = tbnumero.Text;
+            string dateDeNaissance = tbdate.Value.ToString("yyyy-MM-dd");
 
-            Utilisateur monUser = new Utilisateur(name, prenom, mail, password, adresse, zip, ville, numero);
+            Utilisateur monUser = new Utilisateur(name, prenom, dateDeNaissance, numero, mail, password, adresse, zip, ville);
 
             if (string.IsNullOrEmpty(monUser.GetUserInfo()))
             {
@@ -35,7 +36,7 @@ namespace REL
                 return;
             }
 
-            if (Bdd.Validregister(name, prenom, mail, password, adresse, zip, ville, numero) > 0)
+            if (Bdd.Validregister(name, prenom, dateDeNaissance, mail, password, adresse, zip, ville, numero) > 0)
             {
                 MessageBox.Show("bv t inscri");
                 this.Close();
@@ -43,7 +44,7 @@ namespace REL
                 Connexion page = new Connexion();
                 page.ShowDialog();
             }
-            
+
             else
             {
                 MessageBox.Show("nan tu pue");
@@ -60,6 +61,8 @@ namespace REL
         {
 
         }
+
+       
     }
 }
 
