@@ -1,10 +1,17 @@
 ﻿using System;
+using MySql.Data.MySqlClient;
 
 namespace REL
 {
     internal class Utilisateur
     {
-      
+        public static int user_id; // Variable statique privée
+
+        public static int User_id
+        {
+            get { return user_id; }
+            set { user_id = value; }
+        }
         private string name;
         private string prenom;
         private string dateDeNaissance;   // Nullable car SQL peut permettre NULL
@@ -97,5 +104,57 @@ namespace REL
                    $"Né(e) le: {DateDeNaissance}, Téléphone: {Numero}, " +
                    $"Email: {Mail}, Adresse: {Adresse}, {Ville}, {Zip}";
         }
+
+        public bool validLogin(string username, string password)
+        {
+            string query = $"SELECT Id_Utilisateur FROM utilisateur WHERE Email = '{username}' AND Mot_de_passe = '{password}'";
+
+            try
+            {
+                MySqlDataReader reader = Bdd.ExecuteSelect(query);
+
+                if (reader.HasRows)
+                {
+                    reader.Read();  // ✅ Lire la première ligne avant de fermer la connexion
+
+                    if (!reader.IsDBNull(0))
+                    {
+                        user_id = reader.GetInt32(0);  // ✅ Stocke l'ID utilisateur
+                    }
+                    else
+                    {
+                        user_id = -1;  // Aucun ID trouvé
+                    }
+
+                    reader.Close();
+                    return true;
+                }
+                else
+                {
+                    reader.Close();
+                    user_id = -1;
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erreur : {ex.Message}");
+                return false;
+            }
+        }
+
+        public static int Validregister(string unName, string unPrenom, string dateDeNaissance, string unMail, string unPassword, string uneAdresse, string unZip, string uneVille, string unNumero)
+        {
+            int isClientValue = 1;
+
+
+            string query = $"INSERT INTO utilisateur (Nom, Prenom, Date_de_naissance,  Adresse, Zip, Ville, Numero, IsClient, Email, Mot_de_passe) " +
+                           $"VALUES ('{unName}', '{unPrenom}', '{dateDeNaissance}','{uneAdresse}', '{unZip}', '{uneVille}', '{unNumero}', {isClientValue}, '{unMail}', '{unPassword}')";
+
+            int result = Bdd.ExecuteQuery(query);
+            return result;
+        }
+
+
     }
 }

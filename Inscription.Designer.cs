@@ -32,11 +32,11 @@
             lbville = new Label();
             lbnumber = new Label();
             tbadresse = new TextBox();
-            tbzip = new TextBox();
             tbville = new TextBox();
             tbnumero = new TextBox();
             labdate = new Label();
             tbdate = new DateTimePicker();
+            tbzip = new MaskedTextBox();
             SuspendLayout();
             // 
             // lbtitle
@@ -228,18 +228,6 @@
             tbadresse.Size = new Size(247, 34);
             tbadresse.TabIndex = 14;
             // 
-            // tbzip
-            // 
-            tbzip.BackColor = Color.White;
-            tbzip.BorderStyle = BorderStyle.FixedSingle;
-            tbzip.Font = new Font("Arial", 14F);
-            tbzip.ForeColor = Color.Black;
-            tbzip.Location = new Point(563, 181);
-            tbzip.Margin = new Padding(2);
-            tbzip.Name = "tbzip";
-            tbzip.Size = new Size(247, 34);
-            tbzip.TabIndex = 15;
-            // 
             // tbville
             // 
             tbville.BackColor = Color.White;
@@ -260,6 +248,7 @@
             tbnumero.ForeColor = Color.Black;
             tbnumero.Location = new Point(563, 424);
             tbnumero.Margin = new Padding(2);
+            tbnumero.MaxLength = 10;
             tbnumero.Name = "tbnumero";
             tbnumero.Size = new Size(247, 34);
             tbnumero.TabIndex = 17;
@@ -285,17 +274,25 @@
             tbdate.TabIndex = 22;
             tbdate.Value = new DateTime(2025, 1, 27, 0, 0, 0, 0);
             // 
+            // tbzip
+            // 
+            tbzip.Location = new Point(563, 185);
+            tbzip.Mask = "00000";
+            tbzip.Name = "tbzip";
+            tbzip.Size = new Size(247, 27);
+            tbzip.TabIndex = 23;
+            // 
             // tbuser
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(40, 40, 40);
             ClientSize = new Size(868, 659);
+            Controls.Add(tbzip);
             Controls.Add(tbdate);
             Controls.Add(labdate);
             Controls.Add(tbnumero);
             Controls.Add(tbville);
-            Controls.Add(tbzip);
             Controls.Add(tbadresse);
             Controls.Add(lbnumber);
             Controls.Add(lbville);
@@ -338,10 +335,10 @@
         private Label lbville;
         private Label lbnumber;
         private TextBox tbadresse;
-        private TextBox tbzip;
         private TextBox tbville;
         private TextBox tbnumero;
         private Label labdate;
         private DateTimePicker tbdate;
+        private MaskedTextBox tbzip;
     }
 }

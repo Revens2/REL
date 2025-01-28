@@ -1,11 +1,15 @@
 using System;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using MySql.Data.MySqlClient;
 
 namespace REL
 {
     public partial class Connexion : Form
     {
+        
+
+        
         public Connexion()
         {
             InitializeComponent();
@@ -19,12 +23,12 @@ namespace REL
            Utilisateur monUser = new Utilisateur();
        
 
-            if (Bdd.validLogin(username, password))
+            if (monUser.validLogin(username, password))
             {
                 MessageBox.Show("bv t co ");
 
                 this.Hide();
-                main page = new main();
+                Historique page = new Historique();
                 page.ShowDialog();
             }
             else
@@ -33,7 +37,6 @@ namespace REL
             }
         }
 
-        
         private void tbusername_TextChanged(object sender, EventArgs e)
         {
 

@@ -36,7 +36,7 @@ namespace REL
                 return;
             }
 
-            if (Bdd.Validregister(name, prenom, dateDeNaissance, mail, password, adresse, zip, ville, numero) > 0)
+            if (Utilisateur.Validregister(name, prenom, dateDeNaissance, mail, password, adresse, zip, ville, numero) > 0)
             {
                 MessageBox.Show("bv t inscri");
                 this.Close();

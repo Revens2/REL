@@ -66,46 +66,8 @@ namespace REL
             return cmd.ExecuteReader();
         }
         
-        public static bool validLogin(string username, string password)
-        {
-
-            string query = $"SELECT * FROM utilisateur WHERE Email = '{username}' AND Mot_de_passe = '{password}'";
-
-            try
-            {
-                MySqlDataReader reader = Bdd.ExecuteSelect(query);
-
-                if (reader.HasRows)
-                {
-                    reader.Close();
-                    return true;
-
-                }
-                else
-                {
-
-                    reader.Close();
-                    return false;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erreur : {ex.Message}");
-                return false;
-            }
-        }
-        public static int Validregister(string unName, string unPrenom, string dateDeNaissance,string unMail, string unPassword, string uneAdresse, string unZip, string uneVille, string unNumero)
-        {
-            int isClientValue =  1;
-
-
-            string query = $"INSERT INTO utilisateur (Nom, Prenom, Date_de_naissance,  Adresse, Zip, Ville, Numero, IsClient, Email, Mot_de_passe) " +
-                           $"VALUES ('{unName}', '{unPrenom}', '{dateDeNaissance}','{uneAdresse}', '{unZip}', '{uneVille}', '{unNumero}', {isClientValue}, '{unMail}', '{unPassword}')";
-
-            int result = Bdd.ExecuteQuery(query);
-            return result;
-        }
-
+       
+       
 
 
     }
