@@ -28,7 +28,7 @@ namespace REL
             string numero = tbnumero.Text;
             string dateDeNaissance = tbdate.Value.ToString("yyyy-MM-dd");
 
-            Utilisateur monUser = new Utilisateur(name, prenom, dateDeNaissance, numero, mail, password, adresse, zip, ville);
+            cUtilisateur monUser = new cUtilisateur(name, prenom, dateDeNaissance, numero, mail, password, adresse, zip, ville);
 
             if (string.IsNullOrEmpty(monUser.GetUserInfo()))
             {
@@ -36,7 +36,7 @@ namespace REL
                 return;
             }
 
-            if (Utilisateur.Validregister(name, prenom, dateDeNaissance, mail, password, adresse, zip, ville, numero) > 0)
+            if (cUtilisateur.Validregister(name, prenom, dateDeNaissance, mail, password, adresse, zip, ville, numero) > 0)
             {
                 MessageBox.Show("bv t inscri");
                 this.Close();

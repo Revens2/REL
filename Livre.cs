@@ -62,7 +62,7 @@ namespace Biblio
 
             string query = $"select * from Livre";
 
-            DataTable result = Bdd.ExecuteSelectToDataTable(query);
+            DataTable result = cBdd.ExecuteSelectToDataTable(query);
 
             return result;
         }
@@ -72,7 +72,7 @@ namespace Biblio
             string query = $"insert into livre (titre, Auteur, Annee_de_publication, Genre) " +
                            $"VALUES ('{unTitre}', '{unAuteur}', '{uneAnneeDePublication}', '{unGenre}')";
 
-            int oui = Bdd.ExecuteQuery(query);
+            int oui = cBdd.ExecuteQuery(query);
             bool result = false;
             if (oui != 0)
             {

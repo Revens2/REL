@@ -3,7 +3,7 @@ using MySql.Data.MySqlClient;
 
 namespace REL
 {
-    internal class Utilisateur
+    internal class cUtilisateur
     {
         public static int user_id; // Variable statique privée
 
@@ -23,10 +23,10 @@ namespace REL
         private string ville;
 
         // Constructeur vide
-        public Utilisateur() { }
+        public cUtilisateur() { }
 
         // Constructeur complet
-        public Utilisateur(string name,string prenom, string dateDeNaissance, string numero,string mail, string password,string adresse,string zip,string ville)
+        public cUtilisateur(string name,string prenom, string dateDeNaissance, string numero,string mail, string password,string adresse,string zip,string ville)
         {
          
             this.name = name;
@@ -111,7 +111,7 @@ namespace REL
 
             try
             {
-                MySqlDataReader reader = Bdd.ExecuteSelect(query);
+                MySqlDataReader reader = cBdd.ExecuteSelect(query);
 
                 if (reader.HasRows)
                 {
@@ -151,7 +151,7 @@ namespace REL
             string query = $"INSERT INTO utilisateur (Nom, Prenom, Date_de_naissance,  Adresse, Zip, Ville, Numero, IsClient, Email, Mot_de_passe) " +
                            $"VALUES ('{unName}', '{unPrenom}', '{dateDeNaissance}','{uneAdresse}', '{unZip}', '{uneVille}', '{unNumero}', {isClientValue}, '{unMail}', '{unPassword}')";
 
-            int result = Bdd.ExecuteQuery(query);
+            int result = cBdd.ExecuteQuery(query);
             return result;
         }
 

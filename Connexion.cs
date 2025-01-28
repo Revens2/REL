@@ -20,7 +20,7 @@ namespace REL
             string username = tbusername.Text;
             string password = tbmdp.Text;
 
-           Utilisateur monUser = new Utilisateur();
+           cUtilisateur monUser = new cUtilisateur();
        
 
             if (monUser.validLogin(username, password))
@@ -28,7 +28,7 @@ namespace REL
                 MessageBox.Show("bv t co ");
 
                 this.Hide();
-                Historique page = new Historique();
+                Demande page = new Demande();
                 page.ShowDialog();
             }
             else

@@ -57,7 +57,7 @@ namespace REL
 
                 string query = $"INSERT INTO contacts (nom_contact, prenom_contact, age) VALUES ('{nom}', '{prenom}', '{age}')";
 
-                int result = Bdd.ExecuteQuery(query);
+                int result = cBdd.ExecuteQuery(query);
                 return result;
             }
 
@@ -66,7 +66,7 @@ namespace REL
 
                 string query = $"update contacts set nom_contact= '{nom}' , prenom_contact = '{prenom}', age =  '{age}' where id = '{id}' ";
 
-                int result = Bdd.ExecuteQuery(query);
+                int result = cBdd.ExecuteQuery(query);
                 return result;
             }
             public static int delete(int id)
@@ -74,7 +74,7 @@ namespace REL
 
                 string query = $" delete from contacts where id = '{id}'";
 
-                int result = Bdd.ExecuteQuery(query);
+                int result = cBdd.ExecuteQuery(query);
                 return result;
             }
 
@@ -83,7 +83,7 @@ namespace REL
 
                 string query = $"select * from contacts";
 
-                DataTable result = Bdd.ExecuteSelectToDataTable(query);
+                DataTable result = cBdd.ExecuteSelectToDataTable(query);
                 return result;
         }
 

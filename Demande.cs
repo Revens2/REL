@@ -7,13 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Biblio;
 
 namespace REL
 {
-    public partial class Historique : Form
+    public partial class Demande : Form
     {
-        public Historique()
+        public Demande()
         {
             InitializeComponent();
             BindDataGridView();
@@ -21,20 +20,19 @@ namespace REL
         private void BindDataGridView()
         {
             cDemande dem = new cDemande();
-            int statut = 6;
-            if (cbstatut.Checked)
-            {
-                statut = 5;
-            }
-            gv_list.DataSource = dem.listHistorique(statut, cUtilisateur.user_id);
+            gv_list.DataSource = dem.listDemande(cUtilisateur.user_id);
 
         }
-
-        private void cbstatut_CheckedChanged(object sender, EventArgs e)
+        private void btadd_Click(object sender, EventArgs e)
         {
-            BindDataGridView();
+
         }
 
-
+        private void btHistorique_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Historique page = new Historique();
+            page.ShowDialog();
+        }
     }
 }

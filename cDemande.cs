@@ -11,17 +11,37 @@ namespace REL
     internal class cDemande
     {
 
+        private string Objet;
+        private string Commentaire;
+        private int Type;
+        private bool Prioritaire;
+        DateTime Duree_debut;
+        DateTime Duree_fin;
 
-        public DataTable listHistorique(bool cbstatut, int id_user)
+        public cDemande() {
 
+        }
+        public cDemande(string unObjet, string unCommetaire, int unType, bool unPrioritaire, DateTime uneDuree_debut, DateTime UneDuree_fin)
         {
-            int statut = 6;
-            if (cbstatut)
-            {
-                statut = 5;
-            }
+            this.Objet = unObjet;
+            this.Commentaire = unCommetaire;    
+            this.Type = unType; 
+            this.Prioritaire = unPrioritaire;
+            this.Duree_debut = uneDuree_debut;
+            this.Duree_fin = UneDuree_fin;
+
+        }
+        public DataTable listDemande(int id_user)
+        {
+            string query = $"select Objet_demande, Commentaire, type_demande, Prioritaire, Duree_debut, Duree_fin, statut from demande where Id_Utilisateur= '{id_user}' ;";
+            DataTable result = cBdd.ExecuteSelectToDataTable(query);
+            return result;
+        }
+        public DataTable listHistorique(int statut , int id_user)
+        {
+           
             string query = $"select Objet_demande, type_demande, duree_debut, duree_fin from demande where statut = '{statut}' and id_utilisateur= '{id_user}' ;";
-            DataTable result = Bdd.ExecuteSelectToDataTable(query);
+            DataTable result = cBdd.ExecuteSelectToDataTable(query);
             return result;
         }
 

@@ -8,7 +8,7 @@ using MySql.Data.MySqlClient;
 
 namespace REL
 {
-    public static class Bdd
+    public static class cBdd
     {
         private static string connectionString = "server=localhost;database=REL;uid=root;pwd=root;";
         private static MySqlConnection connection = null;
