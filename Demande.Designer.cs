@@ -31,6 +31,7 @@
             btadd = new Button();
             gv_list = new DataGridView();
             btHistorique = new Button();
+            btlogout = new Button();
             ((System.ComponentModel.ISupportInitialize)gv_list).BeginInit();
             SuspendLayout();
             // 
@@ -71,7 +72,7 @@
             btHistorique.FlatStyle = FlatStyle.Flat;
             btHistorique.Font = new Font("Arial", 14F, FontStyle.Bold);
             btHistorique.ForeColor = Color.White;
-            btHistorique.Location = new Point(801, 11);
+            btHistorique.Location = new Point(238, 11);
             btHistorique.Margin = new Padding(2);
             btHistorique.Name = "btHistorique";
             btHistorique.Size = new Size(146, 40);
@@ -80,11 +81,29 @@
             btHistorique.UseVisualStyleBackColor = false;
             btHistorique.Click += btHistorique_Click;
             // 
+            // btlogout
+            // 
+            btlogout.BackColor = Color.Silver;
+            btlogout.Cursor = Cursors.Hand;
+            btlogout.FlatAppearance.BorderSize = 0;
+            btlogout.FlatStyle = FlatStyle.Flat;
+            btlogout.Font = new Font("Arial", 14F, FontStyle.Bold);
+            btlogout.ForeColor = Color.White;
+            btlogout.Location = new Point(875, 11);
+            btlogout.Margin = new Padding(2);
+            btlogout.Name = "btlogout";
+            btlogout.Size = new Size(185, 31);
+            btlogout.TabIndex = 25;
+            btlogout.Text = "Deconnexion";
+            btlogout.UseVisualStyleBackColor = false;
+            btlogout.Click += btlogout_Click;
+            // 
             // Demande
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1071, 578);
+            Controls.Add(btlogout);
             Controls.Add(btHistorique);
             Controls.Add(gv_list);
             Controls.Add(btadd);
@@ -99,5 +118,6 @@
         private Button btadd;
         private DataGridView gv_list;
         private Button btHistorique;
+        private Button btlogout;
     }
 }

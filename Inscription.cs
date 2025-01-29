@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace REL
 {
-    public partial class tbuser : Form
+    public partial class Inscription : Form
     {
-        public tbuser()
+        public Inscription()
         {
             InitializeComponent();
         }
@@ -61,8 +61,15 @@ namespace REL
         {
 
         }
+  
 
-       
+        private void btreturn_Click_1(object sender, EventArgs e)
+        {
+            this.Hide();
+            Connexion conn = new Connexion();
+            conn.ShowDialog();
+
+        }
     }
 }
 

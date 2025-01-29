@@ -49,8 +49,8 @@ namespace REL
         private void btisncri_Click(object sender, EventArgs e)
         {
             this.Hide();
-            tbuser inscription = new tbuser();
-            inscription.ShowDialog();
+            Inscription inscri = new Inscription();
+            inscri.ShowDialog();
             
         }
     }

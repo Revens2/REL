@@ -1,6 +1,7 @@
 ﻿namespace REL
 {
-    partial class tbuser
+    partial class Inscription
+
     {
         private System.ComponentModel.IContainer components = null;
 
@@ -37,6 +38,7 @@
             labdate = new Label();
             tbdate = new DateTimePicker();
             tbzip = new MaskedTextBox();
+            btreturn = new Button();
             SuspendLayout();
             // 
             // lbtitle
@@ -282,12 +284,30 @@
             tbzip.Size = new Size(247, 27);
             tbzip.TabIndex = 23;
             // 
-            // tbuser
+            // btreturn
+            // 
+            btreturn.BackColor = Color.Silver;
+            btreturn.Cursor = Cursors.Hand;
+            btreturn.FlatAppearance.BorderSize = 0;
+            btreturn.FlatStyle = FlatStyle.Flat;
+            btreturn.Font = new Font("Arial", 14F, FontStyle.Bold);
+            btreturn.ForeColor = Color.White;
+            btreturn.Location = new Point(47, 617);
+            btreturn.Margin = new Padding(2);
+            btreturn.Name = "btreturn";
+            btreturn.Size = new Size(124, 31);
+            btreturn.TabIndex = 24;
+            btreturn.Text = "Retour";
+            btreturn.UseVisualStyleBackColor = false;
+            btreturn.Click += btreturn_Click_1;
+            // 
+            // Inscription
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(40, 40, 40);
             ClientSize = new Size(868, 659);
+            Controls.Add(btreturn);
             Controls.Add(tbzip);
             Controls.Add(tbdate);
             Controls.Add(labdate);
@@ -310,7 +330,7 @@
             Controls.Add(lnname);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Margin = new Padding(2);
-            Name = "tbuser";
+            Name = "Inscription";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Page d'inscription";
             Load += Inscription_Load;
@@ -340,5 +360,6 @@
         private Label labdate;
         private DateTimePicker tbdate;
         private MaskedTextBox tbzip;
+        private Button btreturn;
     }
 }

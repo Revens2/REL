@@ -35,6 +35,20 @@ namespace REL
             BindDataGridView();
         }
 
+        private void btlogout_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Connexion conn = new Connexion();
+            conn.ShowDialog();
+            cUtilisateur user = new cUtilisateur();
+            cUtilisateur.User_id = -1;
+        }
 
+        private void btdemande_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Demande dem = new Demande();
+            dem.ShowDialog();
+        }
     }
 }

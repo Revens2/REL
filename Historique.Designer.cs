@@ -30,6 +30,8 @@
         {
             gv_list = new DataGridView();
             cbstatut = new CheckBox();
+            btlogout = new Button();
+            btdemande = new Button();
             ((System.ComponentModel.ISupportInitialize)gv_list).BeginInit();
             SuspendLayout();
             // 
@@ -54,13 +56,49 @@
             cbstatut.TabIndex = 9;
             cbstatut.Text = "Afficher les Demandes Annulées ";
             cbstatut.UseVisualStyleBackColor = true;
-            cbstatut.CheckedChanged += this.cbstatut_CheckedChanged;
+            cbstatut.CheckedChanged += cbstatut_CheckedChanged;
+            // 
+            // btlogout
+            // 
+            btlogout.BackColor = Color.Silver;
+            btlogout.Cursor = Cursors.Hand;
+            btlogout.FlatAppearance.BorderSize = 0;
+            btlogout.FlatStyle = FlatStyle.Flat;
+            btlogout.Font = new Font("Arial", 14F, FontStyle.Bold);
+            btlogout.ForeColor = Color.White;
+            btlogout.Location = new Point(821, 11);
+            btlogout.Margin = new Padding(2);
+            btlogout.Name = "btlogout";
+            btlogout.Size = new Size(178, 31);
+            btlogout.TabIndex = 26;
+            btlogout.Text = "Deconnexion";
+            btlogout.UseVisualStyleBackColor = false;
+            btlogout.Click += btlogout_Click;
+            // 
+            // btdemande
+            // 
+            btdemande.BackColor = Color.FromArgb(70, 130, 180);
+            btdemande.Cursor = Cursors.Hand;
+            btdemande.FlatAppearance.BorderSize = 0;
+            btdemande.FlatStyle = FlatStyle.Flat;
+            btdemande.Font = new Font("Arial", 14F, FontStyle.Bold);
+            btdemande.ForeColor = Color.White;
+            btdemande.Location = new Point(186, 11);
+            btdemande.Margin = new Padding(2);
+            btdemande.Name = "btdemande";
+            btdemande.Size = new Size(129, 45);
+            btdemande.TabIndex = 27;
+            btdemande.Text = "Demande";
+            btdemande.UseVisualStyleBackColor = false;
+            btdemande.Click += btdemande_Click;
             // 
             // Historique
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1010, 535);
+            Controls.Add(btdemande);
+            Controls.Add(btlogout);
             Controls.Add(cbstatut);
             Controls.Add(gv_list);
             Name = "Historique";
@@ -74,5 +112,7 @@
 
         private DataGridView gv_list;
         private CheckBox cbstatut;
+        private Button btlogout;
+        private Button btdemande;
     }
 }

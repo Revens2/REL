@@ -34,5 +34,14 @@ namespace REL
             Historique page = new Historique();
             page.ShowDialog();
         }
+
+        private void btlogout_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Connexion conn = new Connexion();
+            conn.ShowDialog();
+            cUtilisateur user = new cUtilisateur();
+            cUtilisateur.User_id = -1;
+        }
     }
 }
