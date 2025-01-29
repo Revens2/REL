@@ -32,6 +32,7 @@
             cbstatut = new CheckBox();
             btlogout = new Button();
             btdemande = new Button();
+            btaccount = new Button();
             ((System.ComponentModel.ISupportInitialize)gv_list).BeginInit();
             SuspendLayout();
             // 
@@ -92,11 +93,29 @@
             btdemande.UseVisualStyleBackColor = false;
             btdemande.Click += btdemande_Click;
             // 
+            // btaccount
+            // 
+            btaccount.BackColor = Color.Firebrick;
+            btaccount.Cursor = Cursors.Hand;
+            btaccount.FlatAppearance.BorderSize = 0;
+            btaccount.FlatStyle = FlatStyle.Flat;
+            btaccount.Font = new Font("Arial", 14F, FontStyle.Bold);
+            btaccount.ForeColor = Color.White;
+            btaccount.Location = new Point(556, 7);
+            btaccount.Margin = new Padding(2);
+            btaccount.Name = "btaccount";
+            btaccount.Size = new Size(143, 52);
+            btaccount.TabIndex = 28;
+            btaccount.Text = "Compte";
+            btaccount.UseVisualStyleBackColor = false;
+            btaccount.Click += btaccount_Click;
+            // 
             // Historique
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1010, 535);
+            Controls.Add(btaccount);
             Controls.Add(btdemande);
             Controls.Add(btlogout);
             Controls.Add(cbstatut);
@@ -114,5 +133,6 @@
         private CheckBox cbstatut;
         private Button btlogout;
         private Button btdemande;
+        private Button btaccount;
     }
 }

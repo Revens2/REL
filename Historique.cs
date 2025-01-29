@@ -50,5 +50,12 @@ namespace REL
             Demande dem = new Demande();
             dem.ShowDialog();
         }
+
+        private void btaccount_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Account compte = new Account();
+            compte.ShowDialog();
+        }
     }
 }

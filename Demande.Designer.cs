@@ -32,6 +32,7 @@
             gv_list = new DataGridView();
             btHistorique = new Button();
             btlogout = new Button();
+            btaccount = new Button();
             ((System.ComponentModel.ISupportInitialize)gv_list).BeginInit();
             SuspendLayout();
             // 
@@ -98,11 +99,29 @@
             btlogout.UseVisualStyleBackColor = false;
             btlogout.Click += btlogout_Click;
             // 
+            // btaccount
+            // 
+            btaccount.BackColor = Color.Firebrick;
+            btaccount.Cursor = Cursors.Hand;
+            btaccount.FlatAppearance.BorderSize = 0;
+            btaccount.FlatStyle = FlatStyle.Flat;
+            btaccount.Font = new Font("Arial", 14F, FontStyle.Bold);
+            btaccount.ForeColor = Color.White;
+            btaccount.Location = new Point(481, 5);
+            btaccount.Margin = new Padding(2);
+            btaccount.Name = "btaccount";
+            btaccount.Size = new Size(143, 52);
+            btaccount.TabIndex = 29;
+            btaccount.Text = "Compte";
+            btaccount.UseVisualStyleBackColor = false;
+            btaccount.Click += btaccount_Click;
+            // 
             // Demande
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1071, 578);
+            Controls.Add(btaccount);
             Controls.Add(btlogout);
             Controls.Add(btHistorique);
             Controls.Add(gv_list);
@@ -119,5 +138,6 @@
         private DataGridView gv_list;
         private Button btHistorique;
         private Button btlogout;
+        private Button btaccount;
     }
 }

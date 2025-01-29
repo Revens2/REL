@@ -43,5 +43,13 @@ namespace REL
             cUtilisateur user = new cUtilisateur();
             cUtilisateur.User_id = -1;
         }
+
+        private void btaccount_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Account compte = new Account();
+            compte.ShowDialog();
+        }
     }
+    
 }
