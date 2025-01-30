@@ -31,9 +31,15 @@ namespace REL
             this.Duree_fin = UneDuree_fin;
 
         }
-        public DataTable listDemande(int id_user)
+        public DataTable listDemande(int id_user, bool cbprioritaire)
         {
-            string query = $"select Objet_demande, Commentaire, type_demande, Prioritaire, Duree_debut, Duree_fin, statut from demande where Id_Utilisateur= '{id_user}' ;";
+            int priorité = 1;
+            if (cbprioritaire)
+            {
+                priorité = 0;
+            }
+
+            string query = $"select Prioritaire, Objet_demande, Commentaire, type_demande, Duree_debut, Duree_fin, statut from demande where Id_Utilisateur= '{id_user}' and Prioritaire = '{priorité}';";
             DataTable result = cBdd.ExecuteSelectToDataTable(query);
             return result;
         }

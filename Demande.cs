@@ -15,12 +15,12 @@ namespace REL
         public Demande()
         {
             InitializeComponent();
-            BindDataGridView();
+            Bindlist();
         }
-        private void BindDataGridView()
+        private void Bindlist()
         {
             cDemande dem = new cDemande();
-            gv_list.DataSource = dem.listDemande(cUtilisateur.user_id);
+            gv_list.DataSource = dem.listDemande(cUtilisateur.user_id, cbprioritaire.Checked);
 
         }
         private void btadd_Click(object sender, EventArgs e)
@@ -50,6 +50,11 @@ namespace REL
             Account compte = new Account();
             compte.ShowDialog();
         }
+
+        private void cbprioritaire_CheckedChanged(object sender, EventArgs e)
+        {
+            Bindlist();
+        }
     }
-    
+
 }

@@ -33,6 +33,8 @@
             btHistorique = new Button();
             btlogout = new Button();
             btaccount = new Button();
+            cbprioritaire = new CheckBox();
+            lbdemande = new Label();
             ((System.ComponentModel.ISupportInitialize)gv_list).BeginInit();
             SuspendLayout();
             // 
@@ -44,7 +46,7 @@
             btadd.FlatStyle = FlatStyle.Flat;
             btadd.Font = new Font("Arial", 14F, FontStyle.Bold);
             btadd.ForeColor = Color.White;
-            btadd.Location = new Point(286, 127);
+            btadd.Location = new Point(267, 131);
             btadd.Margin = new Padding(2);
             btadd.Name = "btadd";
             btadd.Size = new Size(445, 45);
@@ -58,11 +60,11 @@
             gv_list.AllowUserToOrderColumns = true;
             gv_list.BackgroundColor = SystemColors.ActiveCaptionText;
             gv_list.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            gv_list.Location = new Point(153, 192);
+            gv_list.Location = new Point(267, 283);
             gv_list.Margin = new Padding(2);
             gv_list.Name = "gv_list";
             gv_list.RowHeadersWidth = 82;
-            gv_list.Size = new Size(677, 375);
+            gv_list.Size = new Size(866, 375);
             gv_list.TabIndex = 10;
             // 
             // btHistorique
@@ -73,10 +75,10 @@
             btHistorique.FlatStyle = FlatStyle.Flat;
             btHistorique.Font = new Font("Arial", 14F, FontStyle.Bold);
             btHistorique.ForeColor = Color.White;
-            btHistorique.Location = new Point(238, 11);
+            btHistorique.Location = new Point(648, 16);
             btHistorique.Margin = new Padding(2);
             btHistorique.Name = "btHistorique";
-            btHistorique.Size = new Size(146, 40);
+            btHistorique.Size = new Size(152, 52);
             btHistorique.TabIndex = 11;
             btHistorique.Text = "Historique";
             btHistorique.UseVisualStyleBackColor = false;
@@ -90,7 +92,7 @@
             btlogout.FlatStyle = FlatStyle.Flat;
             btlogout.Font = new Font("Arial", 14F, FontStyle.Bold);
             btlogout.ForeColor = Color.White;
-            btlogout.Location = new Point(875, 11);
+            btlogout.Location = new Point(1128, 16);
             btlogout.Margin = new Padding(2);
             btlogout.Name = "btlogout";
             btlogout.Size = new Size(185, 31);
@@ -107,7 +109,7 @@
             btaccount.FlatStyle = FlatStyle.Flat;
             btaccount.Font = new Font("Arial", 14F, FontStyle.Bold);
             btaccount.ForeColor = Color.White;
-            btaccount.Location = new Point(481, 5);
+            btaccount.Location = new Point(914, 16);
             btaccount.Margin = new Padding(2);
             btaccount.Name = "btaccount";
             btaccount.Size = new Size(143, 52);
@@ -116,11 +118,33 @@
             btaccount.UseVisualStyleBackColor = false;
             btaccount.Click += btaccount_Click;
             // 
+            // cbprioritaire
+            // 
+            cbprioritaire.AutoSize = true;
+            cbprioritaire.Location = new Point(272, 217);
+            cbprioritaire.Name = "cbprioritaire";
+            cbprioritaire.Size = new Size(277, 24);
+            cbprioritaire.TabIndex = 30;
+            cbprioritaire.Text = "Afficher les demandes non prioritaire";
+            cbprioritaire.UseVisualStyleBackColor = true;
+            cbprioritaire.CheckedChanged += cbprioritaire_CheckedChanged;
+            // 
+            // lbdemande
+            // 
+            lbdemande.AutoSize = true;
+            lbdemande.Location = new Point(284, 244);
+            lbdemande.Name = "lbdemande";
+            lbdemande.Size = new Size(170, 20);
+            lbdemande.TabIndex = 31;
+            lbdemande.Text = "Vos dernières demandes";
+            // 
             // Demande
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1071, 578);
+            ClientSize = new Size(1363, 669);
+            Controls.Add(lbdemande);
+            Controls.Add(cbprioritaire);
             Controls.Add(btaccount);
             Controls.Add(btlogout);
             Controls.Add(btHistorique);
@@ -130,6 +154,7 @@
             Text = "Demande";
             ((System.ComponentModel.ISupportInitialize)gv_list).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -139,5 +164,7 @@
         private Button btHistorique;
         private Button btlogout;
         private Button btaccount;
+        private CheckBox cbprioritaire;
+        private Label lbdemande;
     }
 }

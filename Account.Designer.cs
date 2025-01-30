@@ -22,11 +22,9 @@
             lbprenom = new Label();
             tbname = new TextBox();
             tbprenom = new TextBox();
-            btinscri = new Button();
+            btmaj = new Button();
             lbmail = new Label();
             tbmail = new TextBox();
-            label2 = new Label();
-            tbpass = new TextBox();
             lnname = new Label();
             lbadresse = new Label();
             lbZip = new Label();
@@ -49,9 +47,9 @@
             lbtitle.Location = new Point(258, 6);
             lbtitle.Margin = new Padding(2, 0, 2, 0);
             lbtitle.Name = "lbtitle";
-            lbtitle.Size = new Size(360, 46);
+            lbtitle.Size = new Size(338, 46);
             lbtitle.TabIndex = 0;
-            lbtitle.Text = "Page d'inscription";
+            lbtitle.Text = "Vos Informations";
             lbtitle.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lbprenom
@@ -90,22 +88,22 @@
             tbprenom.Size = new Size(247, 34);
             tbprenom.TabIndex = 4;
             // 
-            // btinscri
+            // btmaj
             // 
-            btinscri.BackColor = Color.FromArgb(60, 179, 113);
-            btinscri.Cursor = Cursors.Hand;
-            btinscri.FlatAppearance.BorderSize = 0;
-            btinscri.FlatStyle = FlatStyle.Flat;
-            btinscri.Font = new Font("Arial", 16F);
-            btinscri.ForeColor = Color.White;
-            btinscri.Location = new Point(563, 503);
-            btinscri.Margin = new Padding(2);
-            btinscri.Name = "btinscri";
-            btinscri.Size = new Size(247, 57);
-            btinscri.TabIndex = 5;
-            btinscri.Text = "Mettre à jour ";
-            btinscri.UseVisualStyleBackColor = false;
-            btinscri.Click += btinscri_Click;
+            btmaj.BackColor = Color.FromArgb(60, 179, 113);
+            btmaj.Cursor = Cursors.Hand;
+            btmaj.FlatAppearance.BorderSize = 0;
+            btmaj.FlatStyle = FlatStyle.Flat;
+            btmaj.Font = new Font("Arial", 16F);
+            btmaj.ForeColor = Color.White;
+            btmaj.Location = new Point(301, 521);
+            btmaj.Margin = new Padding(2);
+            btmaj.Name = "btmaj";
+            btmaj.Size = new Size(247, 57);
+            btmaj.TabIndex = 5;
+            btmaj.Text = "Mettre à jour ";
+            btmaj.UseVisualStyleBackColor = false;
+            btmaj.Click += btmaj_Click;
             // 
             // lbmail
             // 
@@ -131,32 +129,6 @@
             tbmail.Size = new Size(247, 34);
             tbmail.TabIndex = 7;
             // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Arial", 18F);
-            label2.ForeColor = Color.White;
-            label2.Location = new Point(51, 364);
-            label2.Margin = new Padding(2, 0, 2, 0);
-            label2.Name = "label2";
-            label2.Size = new Size(192, 35);
-            label2.TabIndex = 8;
-            label2.Text = "Mot de passe";
-            // 
-            // tbpass
-            // 
-            tbpass.BackColor = Color.White;
-            tbpass.BorderStyle = BorderStyle.FixedSingle;
-            tbpass.Font = new Font("Arial", 14F);
-            tbpass.ForeColor = Color.Black;
-            tbpass.Location = new Point(51, 424);
-            tbpass.Margin = new Padding(2);
-            tbpass.Name = "tbpass";
-            tbpass.PasswordChar = '*';
-            tbpass.Size = new Size(247, 34);
-            tbpass.TabIndex = 9;
-            tbpass.UseSystemPasswordChar = true;
-            // 
             // lnname
             // 
             lnname.AutoSize = true;
@@ -168,7 +140,6 @@
             lnname.Size = new Size(78, 35);
             lnname.TabIndex = 1;
             lnname.Text = "Nom";
-            lnname.Click += lbnewuser_Click;
             // 
             // lbadresse
             // 
@@ -260,7 +231,7 @@
             labdate.AutoSize = true;
             labdate.Font = new Font("Arial", 18F);
             labdate.ForeColor = Color.White;
-            labdate.Location = new Point(51, 471);
+            labdate.Location = new Point(47, 374);
             labdate.Margin = new Padding(2, 0, 2, 0);
             labdate.Name = "labdate";
             labdate.Size = new Size(265, 35);
@@ -270,7 +241,7 @@
             // tbdate
             // 
             tbdate.Format = DateTimePickerFormat.Short;
-            tbdate.Location = new Point(51, 533);
+            tbdate.Location = new Point(47, 436);
             tbdate.Name = "tbdate";
             tbdate.Size = new Size(250, 27);
             tbdate.TabIndex = 22;
@@ -318,12 +289,10 @@
             Controls.Add(lbville);
             Controls.Add(lbZip);
             Controls.Add(lbadresse);
-            Controls.Add(tbpass);
-            Controls.Add(label2);
             Controls.Add(tbmail);
             Controls.Add(lbmail);
             Controls.Add(lbtitle);
-            Controls.Add(btinscri);
+            Controls.Add(btmaj);
             Controls.Add(tbprenom);
             Controls.Add(lbprenom);
             Controls.Add(tbname);
@@ -333,7 +302,6 @@
             Name = "Account";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Page d'inscription";
-            Load += Inscription_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -344,11 +312,9 @@
         private Label lbprenom;
         private TextBox tbname;
         private TextBox tbprenom;
-        private Button btinscri;
+        private Button btmaj;
         private Label lbmail;
         private TextBox tbmail;
-        private Label label2;
-        private TextBox tbpass;
         private Label lnname;
         private Label lbadresse;
         private Label lbZip;

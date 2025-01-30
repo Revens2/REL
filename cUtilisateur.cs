@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using MySql.Data.MySqlClient;
 
 namespace REL
@@ -155,6 +156,13 @@ namespace REL
             return result;
         }
 
+        public DataTable getAccount(int id_user)
+        {
 
+            string query = $"select Nom, Prenom, date_de_naissance, Numero, Email, Adresse, Zip, Ville from Utilisateur where Id_Utilisateur = '{id_user}' ;";
+            return cBdd.ExecuteSelectToDataTable(query);
+        }
     }
+
+    
 }
