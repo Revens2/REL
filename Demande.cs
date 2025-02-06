@@ -20,7 +20,7 @@ namespace REL
         private void Bindlist()
         {
             cDemande dem = new cDemande();
-            gv_list.DataSource = dem.listDemande(cUtilisateur.user_id, cbprioritaire.Checked);
+            gv_list.DataSource = dem.listDemande(cUtilisateur.user_id, cBdd.CbConvert(cbprioritaire.Checked));
 
         }
         private void btadd_Click(object sender, EventArgs e)

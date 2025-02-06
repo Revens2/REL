@@ -39,9 +39,17 @@
             label2 = new Label();
             pnlReunion = new Panel();
             pnlVehicule = new Panel();
+            ddlvehicule = new ComboBox();
+            label1 = new Label();
             btsave = new Button();
+            lbdatedebut = new Label();
+            lbdateend = new Label();
+            tbdatedebut = new DateTimePicker();
+            tbdateend = new DateTimePicker();
+            tbcom = new TextBox();
+            lbcom = new Label();
             pnlService.SuspendLayout();
-            pnlReunion.SuspendLayout();
+            pnlVehicule.SuspendLayout();
             SuspendLayout();
             // 
             // lbojet
@@ -100,9 +108,9 @@
             // 
             pnlService.Controls.Add(dllservice);
             pnlService.Controls.Add(label2);
-            pnlService.Location = new Point(440, 28);
+            pnlService.Location = new Point(393, 3);
             pnlService.Name = "pnlService";
-            pnlService.Size = new Size(492, 374);
+            pnlService.Size = new Size(539, 416);
             pnlService.TabIndex = 7;
             // 
             // dllservice
@@ -124,18 +132,36 @@
             // 
             // pnlReunion
             // 
-            pnlReunion.Controls.Add(pnlVehicule);
-            pnlReunion.Location = new Point(295, 298);
+            pnlReunion.Location = new Point(617, 408);
             pnlReunion.Name = "pnlReunion";
             pnlReunion.Size = new Size(250, 125);
             pnlReunion.TabIndex = 8;
             // 
             // pnlVehicule
             // 
-            pnlVehicule.Location = new Point(8, 8);
+            pnlVehicule.Controls.Add(ddlvehicule);
+            pnlVehicule.Controls.Add(label1);
+            pnlVehicule.Location = new Point(393, 3);
             pnlVehicule.Name = "pnlVehicule";
-            pnlVehicule.Size = new Size(250, 125);
+            pnlVehicule.Size = new Size(492, 399);
             pnlVehicule.TabIndex = 9;
+            // 
+            // ddlvehicule
+            // 
+            ddlvehicule.FormattingEnabled = true;
+            ddlvehicule.Location = new Point(3, 42);
+            ddlvehicule.Name = "ddlvehicule";
+            ddlvehicule.Size = new Size(262, 28);
+            ddlvehicule.TabIndex = 8;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(3, 3);
+            label1.Name = "label1";
+            label1.Size = new Size(291, 20);
+            label1.TabIndex = 7;
+            label1.Text = "Vous voulez utilisé quelle type de véhicule ";
             // 
             // btsave
             // 
@@ -145,7 +171,7 @@
             btsave.FlatStyle = FlatStyle.Flat;
             btsave.Font = new Font("Arial", 16F);
             btsave.ForeColor = Color.White;
-            btsave.Location = new Point(43, 374);
+            btsave.Location = new Point(83, 465);
             btsave.Margin = new Padding(2);
             btsave.Name = "btsave";
             btsave.Size = new Size(247, 57);
@@ -154,14 +180,74 @@
             btsave.UseVisualStyleBackColor = false;
             btsave.Click += btsave_Click;
             // 
+            // lbdatedebut
+            // 
+            lbdatedebut.AutoSize = true;
+            lbdatedebut.Location = new Point(68, 275);
+            lbdatedebut.Name = "lbdatedebut";
+            lbdatedebut.Size = new Size(198, 20);
+            lbdatedebut.TabIndex = 10;
+            lbdatedebut.Text = "Votre demande debutera le :";
+            // 
+            // lbdateend
+            // 
+            lbdateend.AutoSize = true;
+            lbdateend.Location = new Point(68, 366);
+            lbdateend.Name = "lbdateend";
+            lbdateend.Size = new Size(172, 20);
+            lbdateend.TabIndex = 12;
+            lbdateend.Text = "Votre demande finira le :";
+            // 
+            // tbdatedebut
+            // 
+            tbdatedebut.Format = DateTimePickerFormat.Short;
+            tbdatedebut.Location = new Point(68, 319);
+            tbdatedebut.Name = "tbdatedebut";
+            tbdatedebut.Size = new Size(250, 27);
+            tbdatedebut.TabIndex = 23;
+            tbdatedebut.Value = new DateTime(2025, 1, 27, 0, 0, 0, 0);
+            // 
+            // tbdateend
+            // 
+            tbdateend.Format = DateTimePickerFormat.Short;
+            tbdateend.Location = new Point(68, 408);
+            tbdateend.Name = "tbdateend";
+            tbdateend.Size = new Size(250, 27);
+            tbdateend.TabIndex = 24;
+            tbdateend.Value = new DateTime(2025, 1, 27, 0, 0, 0, 0);
+            // 
+            // tbcom
+            // 
+            tbcom.Location = new Point(396, 455);
+            tbcom.Multiline = true;
+            tbcom.Name = "tbcom";
+            tbcom.Size = new Size(370, 78);
+            tbcom.TabIndex = 26;
+            // 
+            // lbcom
+            // 
+            lbcom.AutoSize = true;
+            lbcom.Location = new Point(396, 415);
+            lbcom.Name = "lbcom";
+            lbcom.Size = new Size(370, 20);
+            lbcom.TabIndex = 25;
+            lbcom.Text = "Avez-vous des informations supplémentaire a fournir ?";
+            // 
             // popupdemande
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(962, 552);
+            Controls.Add(tbcom);
+            Controls.Add(lbcom);
+            Controls.Add(pnlService);
+            Controls.Add(tbdateend);
+            Controls.Add(tbdatedebut);
+            Controls.Add(lbdateend);
+            Controls.Add(lbdatedebut);
+            Controls.Add(pnlVehicule);
             Controls.Add(btsave);
             Controls.Add(pnlReunion);
-            Controls.Add(pnlService);
             Controls.Add(ddltype);
             Controls.Add(lbtype);
             Controls.Add(cbprioritaire);
@@ -172,7 +258,8 @@
             Text = "popupdemande";
             pnlService.ResumeLayout(false);
             pnlService.PerformLayout();
-            pnlReunion.ResumeLayout(false);
+            pnlVehicule.ResumeLayout(false);
+            pnlVehicule.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -191,5 +278,13 @@
         private Panel pnlReunion;
         private Panel pnlVehicule;
         private Button btsave;
+        private ComboBox ddlvehicule;
+        private Label label1;
+        private Label lbdatedebut;
+        private Label lbdateend;
+        private DateTimePicker tbdatedebut;
+        private DateTimePicker tbdateend;
+        private TextBox tbcom;
+        private Label lbcom;
     }
 }

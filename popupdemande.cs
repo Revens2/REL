@@ -15,9 +15,11 @@ namespace REL
         public popupdemande()
         {
             InitializeComponent();
+            tbdatedebut.Value = DateTime.Now;
+            tbdateend.Value = DateTime.Now;
 
             ddltype.Items.Add("Sélectionnez une option");
-            ddltype.Items.Add("Un Dervice");
+            ddltype.Items.Add("Un Service");
             ddltype.Items.Add("Une Réunion");
             ddltype.Items.Add("Un Véhicule");
 
@@ -54,7 +56,23 @@ namespace REL
 
         private void btsave_Click(object sender, EventArgs e)
         {
+      
+           
+            cDemande.Demandesave(tbobjet.Text, tbcom.Text, cBdd.CbConvert(cbprioritaire.Checked), cBdd.DateConvert(tbdatedebut.Value), cBdd.DateConvert(tbdateend.Value), cUtilisateur.user_id);
+            switch (ddltype.SelectedIndex)
+            {
+                case 1:
+                    cDemande.Demandeservicesave(dllservice.SelectedIndex);
+                    break;
 
+                case 2:
+                    pnlReunion.Visible = true;
+                    break;
+
+                case 3:
+                    pnlVehicule.Visible = true;
+                    break;
+            }
         }
     }
 }

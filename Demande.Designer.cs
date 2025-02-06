@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             btadd = new Button();
             gv_list = new DataGridView();
             btHistorique = new Button();
@@ -35,7 +36,13 @@
             btaccount = new Button();
             cbprioritaire = new CheckBox();
             lbdemande = new Label();
+            menuStrip1 = new MenuStrip();
+            contextMenuStrip1 = new ContextMenuStrip(components);
+            demandeToolStripMenuItem = new ToolStripMenuItem();
+            ajouterDemandeToolStripMenuItem = new ToolStripMenuItem();
+            modifierToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)gv_list).BeginInit();
+            menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // btadd
@@ -138,6 +145,41 @@
             lbdemande.TabIndex = 31;
             lbdemande.Text = "Vos dernières demandes";
             // 
+            // menuStrip1
+            // 
+            menuStrip1.ImageScalingSize = new Size(20, 20);
+            menuStrip1.Items.AddRange(new ToolStripItem[] { demandeToolStripMenuItem });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(1363, 28);
+            menuStrip1.TabIndex = 32;
+            menuStrip1.Text = "menuStrip1";
+            // 
+            // contextMenuStrip1
+            // 
+            contextMenuStrip1.ImageScalingSize = new Size(20, 20);
+            contextMenuStrip1.Name = "contextMenuStrip1";
+            contextMenuStrip1.Size = new Size(61, 4);
+            // 
+            // demandeToolStripMenuItem
+            // 
+            demandeToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { ajouterDemandeToolStripMenuItem, modifierToolStripMenuItem });
+            demandeToolStripMenuItem.Name = "demandeToolStripMenuItem";
+            demandeToolStripMenuItem.Size = new Size(88, 24);
+            demandeToolStripMenuItem.Text = "Demande";
+            // 
+            // ajouterDemandeToolStripMenuItem
+            // 
+            ajouterDemandeToolStripMenuItem.Name = "ajouterDemandeToolStripMenuItem";
+            ajouterDemandeToolStripMenuItem.Size = new Size(224, 26);
+            ajouterDemandeToolStripMenuItem.Text = "Ajouter demande";
+            // 
+            // modifierToolStripMenuItem
+            // 
+            modifierToolStripMenuItem.Name = "modifierToolStripMenuItem";
+            modifierToolStripMenuItem.Size = new Size(224, 26);
+            modifierToolStripMenuItem.Text = "Modifier";
+            // 
             // Demande
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -150,9 +192,13 @@
             Controls.Add(btHistorique);
             Controls.Add(gv_list);
             Controls.Add(btadd);
+            Controls.Add(menuStrip1);
+            MainMenuStrip = menuStrip1;
             Name = "Demande";
             Text = "Demande";
             ((System.ComponentModel.ISupportInitialize)gv_list).EndInit();
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -166,5 +212,10 @@
         private Button btaccount;
         private CheckBox cbprioritaire;
         private Label lbdemande;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem demandeToolStripMenuItem;
+        private ToolStripMenuItem ajouterDemandeToolStripMenuItem;
+        private ToolStripMenuItem modifierToolStripMenuItem;
+        private ContextMenuStrip contextMenuStrip1;
     }
 }

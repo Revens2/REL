@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
+using MySqlX.XDevAPI.Common;
 
 namespace REL
 {
@@ -65,10 +66,21 @@ namespace REL
             MySqlCommand cmd = new MySqlCommand(query, connection);
             return cmd.ExecuteReader();
         }
-        
-       
-       
 
+        public static int CbConvert(bool cb)
+        {
+            int result = 1;
+            if (cb)
+            {
+                result = 0;
+            }
+            return result;
+        }
+
+        public static string DateConvert(DateTime date)
+        {
+            return date.ToString("yyyy-MM-dd HH:mm:ss");
+        }
 
     }
 }
