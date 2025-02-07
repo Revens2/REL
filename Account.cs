@@ -13,12 +13,18 @@ namespace REL
 {
     public partial class Account : Form
     {
+        private menucs menu;
         public Account()
         {
             InitializeComponent();
             BindList();
-           
+            InitializeComponent();
+            menu = new menucs();
+            menu.Dock = DockStyle.Top;
+            this.Controls.Add(menu);
         }
+           
+        
         private void btmaj_Click(object sender, EventArgs e)
         {
             string name = tbname.Text;

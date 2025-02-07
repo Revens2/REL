@@ -13,10 +13,14 @@ namespace REL
 {
     public partial class Historique : Form
     {
+        private menucs menu;
         public Historique()
         {
             InitializeComponent();
             BindDataGridView();
+            menu = new menucs();
+            menu.Dock = DockStyle.Top;
+            this.Controls.Add(menu);
         }
         private void BindDataGridView()
         {

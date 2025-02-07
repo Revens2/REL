@@ -12,19 +12,19 @@ namespace REL
 {
     public partial class Demande : Form
     {
+        private menucs menu;
         public Demande()
         {
             InitializeComponent();
             Bindlist();
-            if (cUtilisateur.isAdmin || cUtilisateur.isRh || cUtilisateur.isInfo || cUtilisateur.isPaie || cUtilisateur.isReunion || cUtilisateur.isVehicule)
-            {
-                btrequete.Visible = true;
-            }
-            else
-            {
-                btrequete.Visible = false;
-            }
-        }
+
+            menu = new menucs();
+            menu.Dock = DockStyle.Top;  
+            this.Controls.Add(menu);    
+
+            
+               }
+        
         private void Bindlist()
         {
             cDemande dem = new cDemande();
@@ -40,40 +40,14 @@ namespace REL
 
         }
 
-        private void btHistorique_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            Historique page = new Historique();
-            page.ShowDialog();
-        }
-
-        private void btlogout_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            Connexion conn = new Connexion();
-            conn.ShowDialog();
-            cUtilisateur user = new cUtilisateur();
-            cUtilisateur.User_id = -1;
-        }
-
-        private void btaccount_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            Account compte = new Account();
-            compte.ShowDialog();
-        }
+        
 
         private void cbprioritaire_CheckedChanged(object sender, EventArgs e)
         {
             Bindlist();
         }
 
-        private void btrequete_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            Requete request = new Requete();
-            request.ShowDialog();
-        }
+   
     }
 
 }

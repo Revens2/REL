@@ -44,7 +44,7 @@
             lbtitle.AutoSize = true;
             lbtitle.Font = new Font("Arial", 24F, FontStyle.Bold);
             lbtitle.ForeColor = Color.White;
-            lbtitle.Location = new Point(258, 6);
+            lbtitle.Location = new Point(264, 100);
             lbtitle.Margin = new Padding(2, 0, 2, 0);
             lbtitle.Name = "lbtitle";
             lbtitle.Size = new Size(338, 46);
@@ -57,7 +57,7 @@
             lbprenom.AutoSize = true;
             lbprenom.Font = new Font("Arial", 18F);
             lbprenom.ForeColor = Color.White;
-            lbprenom.Location = new Point(51, 134);
+            lbprenom.Location = new Point(57, 228);
             lbprenom.Margin = new Padding(2, 0, 2, 0);
             lbprenom.Name = "lbprenom";
             lbprenom.Size = new Size(120, 35);
@@ -70,7 +70,7 @@
             tbname.BorderStyle = BorderStyle.FixedSingle;
             tbname.Font = new Font("Arial", 14F);
             tbname.ForeColor = Color.Black;
-            tbname.Location = new Point(51, 90);
+            tbname.Location = new Point(57, 184);
             tbname.Margin = new Padding(2);
             tbname.Name = "tbname";
             tbname.Size = new Size(247, 34);
@@ -82,7 +82,7 @@
             tbprenom.BorderStyle = BorderStyle.FixedSingle;
             tbprenom.Font = new Font("Arial", 14F);
             tbprenom.ForeColor = Color.Black;
-            tbprenom.Location = new Point(51, 181);
+            tbprenom.Location = new Point(57, 275);
             tbprenom.Margin = new Padding(2);
             tbprenom.Name = "tbprenom";
             tbprenom.Size = new Size(247, 34);
@@ -96,7 +96,7 @@
             btmaj.FlatStyle = FlatStyle.Flat;
             btmaj.Font = new Font("Arial", 16F);
             btmaj.ForeColor = Color.White;
-            btmaj.Location = new Point(301, 521);
+            btmaj.Location = new Point(307, 615);
             btmaj.Margin = new Padding(2);
             btmaj.Name = "btmaj";
             btmaj.Size = new Size(247, 57);
@@ -110,7 +110,7 @@
             lbmail.AutoSize = true;
             lbmail.Font = new Font("Arial", 18F);
             lbmail.ForeColor = Color.White;
-            lbmail.Location = new Point(51, 230);
+            lbmail.Location = new Point(57, 324);
             lbmail.Margin = new Padding(2, 0, 2, 0);
             lbmail.Name = "lbmail";
             lbmail.Size = new Size(70, 35);
@@ -123,7 +123,7 @@
             tbmail.BorderStyle = BorderStyle.FixedSingle;
             tbmail.Font = new Font("Arial", 14F);
             tbmail.ForeColor = Color.Black;
-            tbmail.Location = new Point(51, 294);
+            tbmail.Location = new Point(57, 388);
             tbmail.Margin = new Padding(2);
             tbmail.Name = "tbmail";
             tbmail.Size = new Size(247, 34);
@@ -134,7 +134,7 @@
             lnname.AutoSize = true;
             lnname.Font = new Font("Arial", 18F);
             lnname.ForeColor = Color.White;
-            lnname.Location = new Point(51, 46);
+            lnname.Location = new Point(57, 140);
             lnname.Margin = new Padding(2, 0, 2, 0);
             lnname.Name = "lnname";
             lnname.Size = new Size(78, 35);
@@ -146,7 +146,7 @@
             lbadresse.AutoSize = true;
             lbadresse.Font = new Font("Arial", 18F);
             lbadresse.ForeColor = Color.White;
-            lbadresse.Location = new Point(563, 46);
+            lbadresse.Location = new Point(569, 140);
             lbadresse.Margin = new Padding(2, 0, 2, 0);
             lbadresse.Name = "lbadresse";
             lbadresse.Size = new Size(123, 35);
@@ -158,7 +158,7 @@
             lbZip.AutoSize = true;
             lbZip.Font = new Font("Arial", 18F);
             lbZip.ForeColor = Color.White;
-            lbZip.Location = new Point(563, 134);
+            lbZip.Location = new Point(569, 228);
             lbZip.Margin = new Padding(2, 0, 2, 0);
             lbZip.Name = "lbZip";
             lbZip.Size = new Size(189, 35);
@@ -170,7 +170,7 @@
             lbville.AutoSize = true;
             lbville.Font = new Font("Arial", 18F);
             lbville.ForeColor = Color.White;
-            lbville.Location = new Point(563, 230);
+            lbville.Location = new Point(569, 324);
             lbville.Margin = new Padding(2, 0, 2, 0);
             lbville.Name = "lbville";
             lbville.Size = new Size(70, 35);
@@ -182,7 +182,7 @@
             lbnumber.AutoSize = true;
             lbnumber.Font = new Font("Arial", 18F);
             lbnumber.ForeColor = Color.White;
-            lbnumber.Location = new Point(563, 364);
+            lbnumber.Location = new Point(569, 458);
             lbnumber.Margin = new Padding(2, 0, 2, 0);
             lbnumber.Name = "lbnumber";
             lbnumber.Size = new Size(122, 35);
@@ -195,7 +195,7 @@
             tbadresse.BorderStyle = BorderStyle.FixedSingle;
             tbadresse.Font = new Font("Arial", 14F);
             tbadresse.ForeColor = Color.Black;
-            tbadresse.Location = new Point(563, 90);
+            tbadresse.Location = new Point(569, 184);
             tbadresse.Margin = new Padding(2);
             tbadresse.Name = "tbadresse";
             tbadresse.Size = new Size(247, 34);
@@ -207,7 +207,7 @@
             tbville.BorderStyle = BorderStyle.FixedSingle;
             tbville.Font = new Font("Arial", 14F);
             tbville.ForeColor = Color.Black;
-            tbville.Location = new Point(563, 294);
+            tbville.Location = new Point(569, 388);
             tbville.Margin = new Padding(2);
             tbville.Name = "tbville";
             tbville.Size = new Size(247, 34);
@@ -219,7 +219,7 @@
             tbnumero.BorderStyle = BorderStyle.FixedSingle;
             tbnumero.Font = new Font("Arial", 14F);
             tbnumero.ForeColor = Color.Black;
-            tbnumero.Location = new Point(563, 424);
+            tbnumero.Location = new Point(569, 518);
             tbnumero.Margin = new Padding(2);
             tbnumero.MaxLength = 10;
             tbnumero.Name = "tbnumero";
@@ -231,7 +231,7 @@
             labdate.AutoSize = true;
             labdate.Font = new Font("Arial", 18F);
             labdate.ForeColor = Color.White;
-            labdate.Location = new Point(47, 374);
+            labdate.Location = new Point(53, 468);
             labdate.Margin = new Padding(2, 0, 2, 0);
             labdate.Name = "labdate";
             labdate.Size = new Size(265, 35);
@@ -241,7 +241,7 @@
             // tbdate
             // 
             tbdate.Format = DateTimePickerFormat.Short;
-            tbdate.Location = new Point(47, 436);
+            tbdate.Location = new Point(53, 530);
             tbdate.Name = "tbdate";
             tbdate.Size = new Size(250, 27);
             tbdate.TabIndex = 22;
@@ -249,7 +249,7 @@
             // 
             // tbzip
             // 
-            tbzip.Location = new Point(563, 185);
+            tbzip.Location = new Point(569, 279);
             tbzip.Mask = "00000";
             tbzip.Name = "tbzip";
             tbzip.Size = new Size(247, 27);
@@ -263,7 +263,7 @@
             btreturn.FlatStyle = FlatStyle.Flat;
             btreturn.Font = new Font("Arial", 14F, FontStyle.Bold);
             btreturn.ForeColor = Color.White;
-            btreturn.Location = new Point(47, 617);
+            btreturn.Location = new Point(53, 711);
             btreturn.Margin = new Padding(2);
             btreturn.Name = "btreturn";
             btreturn.Size = new Size(124, 31);
@@ -277,7 +277,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(40, 40, 40);
-            ClientSize = new Size(868, 659);
+            ClientSize = new Size(868, 773);
             Controls.Add(btreturn);
             Controls.Add(tbzip);
             Controls.Add(tbdate);

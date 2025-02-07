@@ -31,9 +31,6 @@
             components = new System.ComponentModel.Container();
             btadd = new Button();
             gv_list = new DataGridView();
-            btHistorique = new Button();
-            btlogout = new Button();
-            btaccount = new Button();
             cbprioritaire = new CheckBox();
             lbdemande = new Label();
             menuStrip1 = new MenuStrip();
@@ -41,7 +38,6 @@
             ajouterDemandeToolStripMenuItem = new ToolStripMenuItem();
             modifierToolStripMenuItem = new ToolStripMenuItem();
             contextMenuStrip1 = new ContextMenuStrip(components);
-            btrequete = new Button();
             ((System.ComponentModel.ISupportInitialize)gv_list).BeginInit();
             menuStrip1.SuspendLayout();
             SuspendLayout();
@@ -74,57 +70,6 @@
             gv_list.RowHeadersWidth = 82;
             gv_list.Size = new Size(866, 375);
             gv_list.TabIndex = 10;
-            // 
-            // btHistorique
-            // 
-            btHistorique.BackColor = Color.FromArgb(255, 165, 0);
-            btHistorique.Cursor = Cursors.Hand;
-            btHistorique.FlatAppearance.BorderSize = 0;
-            btHistorique.FlatStyle = FlatStyle.Flat;
-            btHistorique.Font = new Font("Arial", 14F, FontStyle.Bold);
-            btHistorique.ForeColor = Color.White;
-            btHistorique.Location = new Point(648, 16);
-            btHistorique.Margin = new Padding(2);
-            btHistorique.Name = "btHistorique";
-            btHistorique.Size = new Size(152, 52);
-            btHistorique.TabIndex = 11;
-            btHistorique.Text = "Historique";
-            btHistorique.UseVisualStyleBackColor = false;
-            btHistorique.Click += btHistorique_Click;
-            // 
-            // btlogout
-            // 
-            btlogout.BackColor = Color.Silver;
-            btlogout.Cursor = Cursors.Hand;
-            btlogout.FlatAppearance.BorderSize = 0;
-            btlogout.FlatStyle = FlatStyle.Flat;
-            btlogout.Font = new Font("Arial", 14F, FontStyle.Bold);
-            btlogout.ForeColor = Color.White;
-            btlogout.Location = new Point(1128, 16);
-            btlogout.Margin = new Padding(2);
-            btlogout.Name = "btlogout";
-            btlogout.Size = new Size(185, 31);
-            btlogout.TabIndex = 25;
-            btlogout.Text = "Deconnexion";
-            btlogout.UseVisualStyleBackColor = false;
-            btlogout.Click += btlogout_Click;
-            // 
-            // btaccount
-            // 
-            btaccount.BackColor = Color.Firebrick;
-            btaccount.Cursor = Cursors.Hand;
-            btaccount.FlatAppearance.BorderSize = 0;
-            btaccount.FlatStyle = FlatStyle.Flat;
-            btaccount.Font = new Font("Arial", 14F, FontStyle.Bold);
-            btaccount.ForeColor = Color.White;
-            btaccount.Location = new Point(914, 16);
-            btaccount.Margin = new Padding(2);
-            btaccount.Name = "btaccount";
-            btaccount.Size = new Size(143, 52);
-            btaccount.TabIndex = 29;
-            btaccount.Text = "Compte";
-            btaccount.UseVisualStyleBackColor = false;
-            btaccount.Click += btaccount_Click;
             // 
             // cbprioritaire
             // 
@@ -181,34 +126,13 @@
             contextMenuStrip1.Name = "contextMenuStrip1";
             contextMenuStrip1.Size = new Size(61, 4);
             // 
-            // btrequete
-            // 
-            btrequete.BackColor = Color.Olive;
-            btrequete.Cursor = Cursors.Hand;
-            btrequete.FlatAppearance.BorderSize = 0;
-            btrequete.FlatStyle = FlatStyle.Flat;
-            btrequete.Font = new Font("Arial", 14F, FontStyle.Bold);
-            btrequete.ForeColor = Color.White;
-            btrequete.Location = new Point(454, 16);
-            btrequete.Margin = new Padding(2);
-            btrequete.Name = "btrequete";
-            btrequete.Size = new Size(152, 52);
-            btrequete.TabIndex = 33;
-            btrequete.Text = "Requête";
-            btrequete.UseVisualStyleBackColor = false;
-            btrequete.Click += btrequete_Click;
-            // 
             // Demande
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1363, 669);
-            Controls.Add(btrequete);
             Controls.Add(lbdemande);
             Controls.Add(cbprioritaire);
-            Controls.Add(btaccount);
-            Controls.Add(btlogout);
-            Controls.Add(btHistorique);
             Controls.Add(gv_list);
             Controls.Add(btadd);
             Controls.Add(menuStrip1);
@@ -226,9 +150,6 @@
 
         private Button btadd;
         private DataGridView gv_list;
-        private Button btHistorique;
-        private Button btlogout;
-        private Button btaccount;
         private CheckBox cbprioritaire;
         private Label lbdemande;
         private MenuStrip menuStrip1;
@@ -236,6 +157,5 @@
         private ToolStripMenuItem ajouterDemandeToolStripMenuItem;
         private ToolStripMenuItem modifierToolStripMenuItem;
         private ContextMenuStrip contextMenuStrip1;
-        private Button btrequete;
     }
 }
