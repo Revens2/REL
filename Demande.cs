@@ -16,9 +16,13 @@ namespace REL
         {
             InitializeComponent();
             Bindlist();
-            if (cUtilisateur.User_id)
+            if (cUtilisateur.isAdmin || cUtilisateur.isRh || cUtilisateur.isInfo || cUtilisateur.isPaie || cUtilisateur.isReunion || cUtilisateur.isVehicule)
             {
-
+                btrequete.Visible = true;
+            }
+            else
+            {
+                btrequete.Visible = false;
             }
         }
         private void Bindlist()

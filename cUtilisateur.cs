@@ -22,6 +22,14 @@ namespace REL
         private string adresse;
         private string zip;
         private string ville;
+        public static bool isAdmin { get; private set; }
+        public static bool isRh { get; private set; }
+        public static bool isInfo { get; private set; }
+        public static bool isPaie { get; private set; }
+        public static bool isReunion { get; private set; }
+        public static bool isVehicule { get; private set; }
+
+
 
         // Constructeur vide
         public cUtilisateur() { }
@@ -39,6 +47,7 @@ namespace REL
             this.adresse = adresse;
             this.zip = zip;
             this.ville = ville;
+
         }
 
         // Propriétés publiques (getters et setters)
@@ -128,6 +137,7 @@ namespace REL
                     }
 
                     reader.Close();
+                    cUtilisateur.LoadUserRoles(cUtilisateur.user_id);
                     return true;
                 }
                 else
@@ -152,7 +162,12 @@ namespace REL
             string query = $"INSERT INTO utilisateur (Nom, Prenom, Date_de_naissance,  Adresse, Zip, Ville, Numero, IsClient, Email, Mot_de_passe) " +
                            $"VALUES ('{unName}', '{unPrenom}', '{dateDeNaissance}','{uneAdresse}', '{unZip}', '{uneVille}', '{unNumero}', {isClientValue}, '{unMail}', '{unPassword}')";
 
+
             int result = cBdd.ExecuteQuery(query);
+
+            string query2 = $"INSERT INTO Role (Id_utilisateur, IsUser) " +
+                           $"VALUES (SELECT LAST_INSERT_ID();, '{cUtilisateur.user_id}')";
+       cBdd.ExecuteQuery(query2);
             return result;
         }
 
@@ -163,14 +178,29 @@ namespace REL
             return cBdd.ExecuteSelectToDataTable(query);
         }
 
-        public bool getRole(int id_user)
+        public static DataTable getRole(int id_user)
         {
-            string query = $"select * from Role where Id_utilisateur ='{id_user}' ;";
-
-
-             cBdd.ExecuteSelect(query);
+            string query = $"SELECT isAdmin, isRh, IsInfo, IsPaie, IsReunion, IsVehicule FROM Role WHERE Id_Utilisateur = {id_user};";
+            return cBdd.ExecuteSelectToDataTable(query); // Récupère les rôles sous forme de DataTable
         }
+        public static void LoadUserRoles(int id_user)
+        {
+            DataTable dt = getRole(id_user);
+
+            if (dt.Rows.Count > 0) // Vérifie si l'utilisateur a des rôles
+            {
+                DataRow row = dt.Rows[0]; // Prend la première ligne (car un utilisateur n'a qu'une seule ligne de rôle)
+
+                isAdmin = Convert.ToBoolean(row["isAdmin"]);
+                isRh = Convert.ToBoolean(row["isRh"]);
+                isInfo = Convert.ToBoolean(row["IsInfo"]);
+                isPaie = Convert.ToBoolean(row["IsPaie"]);
+                isReunion = Convert.ToBoolean(row["IsReunion"]);
+                isVehicule = Convert.ToBoolean(row["IsVehicule"]);
+            }
+        }
+
     }
 
-    
+
 }
