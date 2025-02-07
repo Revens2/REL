@@ -16,6 +16,10 @@ namespace REL
         {
             InitializeComponent();
             Bindlist();
+            if (cUtilisateur.User_id)
+            {
+
+            }
         }
         private void Bindlist()
         {
@@ -25,7 +29,7 @@ namespace REL
         }
         private void btadd_Click(object sender, EventArgs e)
         {
-           
+
             popupdemande popup = new popupdemande();
             popup.StartPosition = FormStartPosition.CenterParent;
             popup.Show();
@@ -58,6 +62,13 @@ namespace REL
         private void cbprioritaire_CheckedChanged(object sender, EventArgs e)
         {
             Bindlist();
+        }
+
+        private void btrequete_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Requete request = new Requete();
+            request.ShowDialog();
         }
     }
 

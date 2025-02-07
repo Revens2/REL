@@ -37,10 +37,11 @@
             cbprioritaire = new CheckBox();
             lbdemande = new Label();
             menuStrip1 = new MenuStrip();
-            contextMenuStrip1 = new ContextMenuStrip(components);
             demandeToolStripMenuItem = new ToolStripMenuItem();
             ajouterDemandeToolStripMenuItem = new ToolStripMenuItem();
             modifierToolStripMenuItem = new ToolStripMenuItem();
+            contextMenuStrip1 = new ContextMenuStrip(components);
+            btrequete = new Button();
             ((System.ComponentModel.ISupportInitialize)gv_list).BeginInit();
             menuStrip1.SuspendLayout();
             SuspendLayout();
@@ -155,12 +156,6 @@
             menuStrip1.TabIndex = 32;
             menuStrip1.Text = "menuStrip1";
             // 
-            // contextMenuStrip1
-            // 
-            contextMenuStrip1.ImageScalingSize = new Size(20, 20);
-            contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(61, 4);
-            // 
             // demandeToolStripMenuItem
             // 
             demandeToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { ajouterDemandeToolStripMenuItem, modifierToolStripMenuItem });
@@ -171,20 +166,44 @@
             // ajouterDemandeToolStripMenuItem
             // 
             ajouterDemandeToolStripMenuItem.Name = "ajouterDemandeToolStripMenuItem";
-            ajouterDemandeToolStripMenuItem.Size = new Size(224, 26);
+            ajouterDemandeToolStripMenuItem.Size = new Size(208, 26);
             ajouterDemandeToolStripMenuItem.Text = "Ajouter demande";
             // 
             // modifierToolStripMenuItem
             // 
             modifierToolStripMenuItem.Name = "modifierToolStripMenuItem";
-            modifierToolStripMenuItem.Size = new Size(224, 26);
+            modifierToolStripMenuItem.Size = new Size(208, 26);
             modifierToolStripMenuItem.Text = "Modifier";
+            // 
+            // contextMenuStrip1
+            // 
+            contextMenuStrip1.ImageScalingSize = new Size(20, 20);
+            contextMenuStrip1.Name = "contextMenuStrip1";
+            contextMenuStrip1.Size = new Size(61, 4);
+            // 
+            // btrequete
+            // 
+            btrequete.BackColor = Color.Olive;
+            btrequete.Cursor = Cursors.Hand;
+            btrequete.FlatAppearance.BorderSize = 0;
+            btrequete.FlatStyle = FlatStyle.Flat;
+            btrequete.Font = new Font("Arial", 14F, FontStyle.Bold);
+            btrequete.ForeColor = Color.White;
+            btrequete.Location = new Point(454, 16);
+            btrequete.Margin = new Padding(2);
+            btrequete.Name = "btrequete";
+            btrequete.Size = new Size(152, 52);
+            btrequete.TabIndex = 33;
+            btrequete.Text = "Requête";
+            btrequete.UseVisualStyleBackColor = false;
+            btrequete.Click += btrequete_Click;
             // 
             // Demande
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1363, 669);
+            Controls.Add(btrequete);
             Controls.Add(lbdemande);
             Controls.Add(cbprioritaire);
             Controls.Add(btaccount);
@@ -217,5 +236,6 @@
         private ToolStripMenuItem ajouterDemandeToolStripMenuItem;
         private ToolStripMenuItem modifierToolStripMenuItem;
         private ContextMenuStrip contextMenuStrip1;
+        private Button btrequete;
     }
 }

@@ -162,6 +162,14 @@ namespace REL
             string query = $"select Nom, Prenom, date_de_naissance, Numero, Email, Adresse, Zip, Ville from Utilisateur where Id_Utilisateur = '{id_user}' ;";
             return cBdd.ExecuteSelectToDataTable(query);
         }
+
+        public bool getRole(int id_user)
+        {
+            string query = $"select * from Role where Id_utilisateur ='{id_user}' ;";
+
+
+             cBdd.ExecuteSelect(query);
+        }
     }
 
     
