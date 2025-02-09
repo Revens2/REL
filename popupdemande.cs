@@ -17,7 +17,7 @@ namespace REL
             InitializeComponent();
             tbdatedebut.Value = DateTime.Now;
             tbdateend.Value = DateTime.Now;
-
+            DataTable dt = new DataTable();
             ddltype.Items.Add("Sélectionnez une option");
             ddltype.Items.Add("Un Service");
             ddltype.Items.Add("Une Réunion");
@@ -25,10 +25,14 @@ namespace REL
 
             ddltype.SelectedIndex = 0;
 
-            dllservice.Items.Add("Sélectionnez un Service");
-            dllservice.Items.Add("RH");
-            dllservice.Items.Add("Paie");
-            dllservice.Items.Add("Informatique");
+            dt = cDemande.listbackservice();
+            dllservice.Items.Add("Sélectionnez une option");
+            foreach (DataRow dr in dt.Rows)
+            {
+                dllservice.Items.Add(dr["name_service"].ToString());
+              
+            }
+       
             dllservice.SelectedIndex = 0;
         }
 
@@ -58,7 +62,7 @@ namespace REL
         {
       
            
-            cDemande.Demandesave(tbobjet.Text, tbcom.Text, cBdd.CbConvert(cbprioritaire.Checked), cBdd.DateConvert(tbdatedebut.Value), cBdd.DateConvert(tbdateend.Value), cUtilisateur.user_id);
+            cDemande.Demandesave(dllservice.SelectedIndex,tbobjet.Text, tbcom.Text, cBdd.CbConvert(cbprioritaire.Checked), cBdd.DateConvert(tbdatedebut.Value), cBdd.DateConvert(tbdateend.Value), cUtilisateur.user_id);
             switch (ddltype.SelectedIndex)
             {
                 case 1:
@@ -66,11 +70,11 @@ namespace REL
                     break;
 
                 case 2:
-                    pnlReunion.Visible = true;
+                    cDemande.Demandereunionsave(dllservice.SelectedIndex);
                     break;
 
                 case 3:
-                    pnlVehicule.Visible = true;
+                    cDemande.Demandevehiculesave(dllservice.SelectedIndex);
                     break;
             }
         }

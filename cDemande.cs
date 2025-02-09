@@ -58,59 +58,76 @@ namespace REL
         }
         
 
-        public static void Demandesave(string unObjet, string unCommetaire, int unPrioritaire, string uneDuree_debut, string UneDuree_fin, int id_user)
+        public static void Demandesave(int untype_demande,string unObjet, string unCommetaire, int unPrioritaire, string uneDuree_debut, string UneDuree_fin, int id_user)
         {
             int statut = 1;
 
 
-            string query = $"INSERT INTO demande (Objet_demande , Commentaire, Prioritaire,  Duree_debut, Duree_fin, statut, Id_Utilisateur) " +
-                           $"VALUES ('{unObjet}', '{unCommetaire}', '{unPrioritaire}','{uneDuree_debut}', '{UneDuree_fin}', '{statut}', '{id_user}');";
+            string query = $"INSERT INTO demande (type_demande , Objet_demande , Commentaire, Prioritaire,  Duree_debut, Duree_fin, statut, Id_Utilisateur) " +
+                           $"VALUES ('{untype_demande}', '{unObjet}', '{unCommetaire}', '{unPrioritaire}','{uneDuree_debut}', '{UneDuree_fin}', '{statut}', '{id_user}');";
 
+
+            cBdd.ExecuteQuery(query);
+            
+
+
+        }
+
+        public static void Demandeservicesave(int idserv)
+        {
+           
+
+
+            string query = $"insert into demande_services (id_service, Id_demande) " +
+                           $" values('{idserv}','{lastid()}');";
+
+            cBdd.ExecuteQuery(query);
+
+        }
+        public static void Demandereunionsave(int idreu)
+        {
+
+
+
+            string query = $"insert into demande_reunion (id_reunion, Id_demande) " +
+                         $" values('{idreu}','{lastid()}');";
 
             cBdd.ExecuteQuery(query);
 
 
         }
-
-        public static void Demandeservicesave(int typeserv)
+        public static void Demandevehiculesave(int idvehi)
         {
-           
 
 
-            string query = $"insert into Services (Type_service, Id_demande) " +
-                           $" values('{typeserv}','{lastid()}');";
+
+            string query = $"insert into demande_vehicule (id_vehicule, Id_demande) " +
+                         $" values('{idvehi}','{lastid()}');";
 
             cBdd.ExecuteQuery(query);
 
-        }
-        public static void Demandereunionsave(string unObjet, string unCommetaire, bool unPrioritaire, DateTime uneDuree_debut, DateTime UneDuree_fin)
-        {
-           
-
-
-            string query = $"INSERT INTO demande (Objet_demande , Commentaire, Prioritaire,  Duree_debut, Duree_fin, statut) " +
-                           $"VALUES ('{unObjet}', '{unCommetaire}', '{unPrioritaire}','{uneDuree_debut}', '{UneDuree_fin}')";
-
 
         }
-        public static void Demandevehiculesave(string unObjet, string unCommetaire, bool unPrioritaire, DateTime uneDuree_debut, DateTime UneDuree_fin)
-        {
-           
-
-
-            string query = $"INSERT INTO demande (Objet_demande , Commentaire, Prioritaire,  Duree_debut, Duree_fin, statut) " +
-                           $"VALUES ('{unObjet}', '{unCommetaire}', '{unPrioritaire}','{uneDuree_debut}', '{UneDuree_fin}')";
-
-
-        }
-
         public static int lastid()
         {
 
-            string query = "SELECT LAST_INSERT_ID() from demande;";
+            string query = "Select last_insert_id() from demande;";
 
-            id_demande = Convert.ToInt32(cBdd.ExecuteQuery(query));
+            DataTable dt = cBdd.ExecuteSelectToDataTable(query);
+            id_demande = dt.Rows.Count;
+
             return id_demande;
         }
+
+        public static DataTable listbackservice()
+        {
+
+            string query = "select id_service, name_service from services;";
+
+            DataTable result = cBdd.ExecuteSelectToDataTable(query);
+            return result;
+        }
+
+
     }
 }
