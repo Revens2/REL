@@ -48,8 +48,11 @@
             tbdateend = new DateTimePicker();
             tbcom = new TextBox();
             lbcom = new Label();
+            gvlistvehi = new DataGridView();
             pnlService.SuspendLayout();
+            pnlReunion.SuspendLayout();
             pnlVehicule.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)gvlistvehi).BeginInit();
             SuspendLayout();
             // 
             // lbojet
@@ -132,9 +135,10 @@
             // 
             // pnlReunion
             // 
-            pnlReunion.Location = new Point(617, 408);
+            pnlReunion.Controls.Add(gvlistvehi);
+            pnlReunion.Location = new Point(396, 3);
             pnlReunion.Name = "pnlReunion";
-            pnlReunion.Size = new Size(250, 125);
+            pnlReunion.Size = new Size(536, 416);
             pnlReunion.TabIndex = 8;
             // 
             // pnlVehicule
@@ -233,6 +237,15 @@
             lbcom.TabIndex = 25;
             lbcom.Text = "Avez-vous des informations supplémentaire a fournir ?";
             // 
+            // gvlistvehi
+            // 
+            gvlistvehi.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            gvlistvehi.Location = new Point(25, 50);
+            gvlistvehi.Name = "gvlistvehi";
+            gvlistvehi.RowHeadersWidth = 51;
+            gvlistvehi.Size = new Size(508, 242);
+            gvlistvehi.TabIndex = 0;
+            // 
             // popupdemande
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -240,6 +253,7 @@
             ClientSize = new Size(962, 552);
             Controls.Add(tbcom);
             Controls.Add(lbcom);
+            Controls.Add(pnlReunion);
             Controls.Add(pnlService);
             Controls.Add(tbdateend);
             Controls.Add(tbdatedebut);
@@ -247,7 +261,6 @@
             Controls.Add(lbdatedebut);
             Controls.Add(pnlVehicule);
             Controls.Add(btsave);
-            Controls.Add(pnlReunion);
             Controls.Add(ddltype);
             Controls.Add(lbtype);
             Controls.Add(cbprioritaire);
@@ -258,8 +271,10 @@
             Text = "popupdemande";
             pnlService.ResumeLayout(false);
             pnlService.PerformLayout();
+            pnlReunion.ResumeLayout(false);
             pnlVehicule.ResumeLayout(false);
             pnlVehicule.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)gvlistvehi).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -286,5 +301,6 @@
         private DateTimePicker tbdateend;
         private TextBox tbcom;
         private Label lbcom;
+        private DataGridView gvlistvehi;
     }
 }

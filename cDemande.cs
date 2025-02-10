@@ -128,6 +128,24 @@ namespace REL
             return result;
         }
 
+        public static DataTable listbackreunion()
+        {
+
+            string query = "select id_reunion, name_salle, name_service from reunion;";
+
+            DataTable result = cBdd.ExecuteSelectToDataTable(query);
+            return result;
+        }
+
+        public static DataTable listvehicule()
+        {
+
+            string query = "select id_vehicule, name_salle, name_service from vehicule;";
+
+            DataTable result = cBdd.ExecuteSelectToDataTable(query);
+            return result;
+        }
+
 
     }
 }
