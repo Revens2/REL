@@ -25,21 +25,9 @@ namespace REL
             ddltype.Items.Add("Une Réunion");
             ddltype.Items.Add("Un Véhicule");
             ddltype.SelectedIndex = 0;
+            
 
-            DataTable dt = cDemande.listbackservice();
-            dllservice.Items.Add("Sélectionnez une option");
-            foreach (DataRow dr in dt.Rows)
-            {
-                dllservice.Items.Add(dr["name_service"].ToString());
-            }
-            dllservice.SelectedIndex = 0;
-
-
-            gvlistreu.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            gvlistreu.MultiSelect = false;
-
-            gvvehi.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            gvvehi.MultiSelect = false;
+            
             
 
 
@@ -51,13 +39,20 @@ namespace REL
             switch (ddltype.SelectedIndex)
             {
                 case 1:
-                    pnlService.Visible = true;
+                    gvserv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                    gvserv.MultiSelect = false;
+                    DataTable dt = cDemande.listbackservice();
+                    gvserv.DataSource = dt;
                     break;
                 case 2:
+                    gvlistreu.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                    gvlistreu.MultiSelect = false;
                     DataTable dt2 = cDemande.listbackreunion();
                     gvlistreu.DataSource = dt2;
                     break;
                 case 3:
+                    gvvehi.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                    gvvehi.MultiSelect = false;
                     DataTable dt3 = cDemande.listvehicule();
                     gvvehi.DataSource = dt3;
                     break;
@@ -89,12 +84,22 @@ namespace REL
         private void btsave_Click(object sender, EventArgs e)
         {
 
-            cDemande.Demandesave(dllservice.SelectedIndex, tbobjet.Text, tbcom.Text, cBdd.CbConvert(cbprioritaire.Checked), cBdd.DateConvert(tbdatedebut.Value), cBdd.DateConvert(tbdateend.Value), cUtilisateur.user_id);
+            cDemande.Demandesave(ddltype.SelectedIndex, tbobjet.Text, tbcom.Text, cBdd.CbConvert(cbprioritaire.Checked), cBdd.DateConvert(tbdatedebut.Value), cBdd.DateConvert(tbdateend.Value), cUtilisateur.user_id);
 
             switch (ddltype.SelectedIndex)
             {
                 case 1:
-                    cDemande.Demandeservicesave(dllservice.SelectedIndex);
+                    if (gvlistreu.SelectedRows.Count == 1)
+                    {
+                        DataGridViewRow selectedRow = gvlistreu.SelectedRows[0];
+                        cDemande.Demandeservicesave(Convert.ToInt32(selectedRow.Cells["id_service"].Value));
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Veuillez sélectionner un service.");
+
+                    }
                     break;
 
                 case 2:

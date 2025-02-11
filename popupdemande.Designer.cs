@@ -35,7 +35,7 @@
             lbtype = new Label();
             ddltype = new ComboBox();
             pnlService = new Panel();
-            dllservice = new ComboBox();
+            gvserv = new DataGridView();
             label2 = new Label();
             pnlReunion = new Panel();
             gvlistreu = new DataGridView();
@@ -51,6 +51,7 @@
             tbcom = new TextBox();
             lbcom = new Label();
             pnlService.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)gvserv).BeginInit();
             pnlReunion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)gvlistreu).BeginInit();
             pnlVehicule.SuspendLayout();
@@ -114,22 +115,23 @@
             // 
             // pnlService
             // 
-            pnlService.Controls.Add(dllservice);
+            pnlService.Controls.Add(gvserv);
             pnlService.Controls.Add(label2);
-            pnlService.Location = new Point(344, 59);
+            pnlService.Location = new Point(358, 1);
             pnlService.Margin = new Padding(3, 2, 3, 2);
             pnlService.Name = "pnlService";
             pnlService.Size = new Size(472, 312);
             pnlService.TabIndex = 7;
             // 
-            // dllservice
+            // gvserv
             // 
-            dllservice.FormattingEnabled = true;
-            dllservice.Location = new Point(24, 46);
-            dllservice.Margin = new Padding(3, 2, 3, 2);
-            dllservice.Name = "dllservice";
-            dllservice.Size = new Size(230, 23);
-            dllservice.TabIndex = 8;
+            gvserv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            gvserv.Location = new Point(14, 65);
+            gvserv.Margin = new Padding(3, 2, 3, 2);
+            gvserv.Name = "gvserv";
+            gvserv.RowHeadersWidth = 51;
+            gvserv.Size = new Size(444, 182);
+            gvserv.TabIndex = 8;
             // 
             // label2
             // 
@@ -143,7 +145,7 @@
             // pnlReunion
             // 
             pnlReunion.Controls.Add(gvlistreu);
-            pnlReunion.Location = new Point(341, 91);
+            pnlReunion.Location = new Point(361, -3);
             pnlReunion.Margin = new Padding(3, 2, 3, 2);
             pnlReunion.Name = "pnlReunion";
             pnlReunion.Size = new Size(469, 312);
@@ -164,7 +166,7 @@
             pnlVehicule.Controls.Add(gvvehi);
             pnlVehicule.Controls.Add(ddlvehicule);
             pnlVehicule.Controls.Add(label1);
-            pnlVehicule.Location = new Point(60, 33);
+            pnlVehicule.Location = new Point(361, -1);
             pnlVehicule.Margin = new Padding(3, 2, 3, 2);
             pnlVehicule.Name = "pnlVehicule";
             pnlVehicule.Size = new Size(469, 312);
@@ -277,6 +279,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(842, 414);
             Controls.Add(tbcom);
+            Controls.Add(pnlVehicule);
             Controls.Add(lbcom);
             Controls.Add(pnlReunion);
             Controls.Add(pnlService);
@@ -284,7 +287,6 @@
             Controls.Add(tbdatedebut);
             Controls.Add(lbdateend);
             Controls.Add(lbdatedebut);
-            Controls.Add(pnlVehicule);
             Controls.Add(btsave);
             Controls.Add(ddltype);
             Controls.Add(lbtype);
@@ -297,6 +299,7 @@
             Text = "popupdemande";
             pnlService.ResumeLayout(false);
             pnlService.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)gvserv).EndInit();
             pnlReunion.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)gvlistreu).EndInit();
             pnlVehicule.ResumeLayout(false);
@@ -315,7 +318,6 @@
         private Label lbtype;
         private ComboBox ddltype;
         private Panel pnlService;
-        private ComboBox dllservice;
         private Label label2;
         private Panel pnlReunion;
         private Panel pnlVehicule;
@@ -330,5 +332,6 @@
         private Label lbcom;
         private DataGridView gvlistreu;
         private DataGridView gvvehi;
+        private DataGridView gvserv;
     }
 }
