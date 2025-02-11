@@ -131,7 +131,7 @@ namespace REL
         public static DataTable listbackreunion()
         {
 
-            string query = "select id_reunion, name_salle, name_service from reunion;";
+            string query = "select id_reunion, Nom_salle ,nb_place, numero from reunion;";
 
             DataTable result = cBdd.ExecuteSelectToDataTable(query);
             return result;
@@ -140,7 +140,7 @@ namespace REL
         public static DataTable listvehicule()
         {
 
-            string query = "select id_vehicule, name_salle, name_service from vehicule;";
+            string query = "select id_vehicule, marque, modele,nb_place from vehicule;";
 
             DataTable result = cBdd.ExecuteSelectToDataTable(query);
             return result;

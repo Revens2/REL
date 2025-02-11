@@ -38,6 +38,9 @@ namespace REL
             popup.StartPosition = FormStartPosition.CenterParent;
             popup.Show();
 
+
+
+
         }
 
         
