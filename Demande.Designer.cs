@@ -64,12 +64,13 @@
             gv_list.AllowUserToOrderColumns = true;
             gv_list.BackgroundColor = SystemColors.ActiveCaptionText;
             gv_list.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            gv_list.Location = new Point(267, 283);
+            gv_list.Location = new Point(11, 283);
             gv_list.Margin = new Padding(2);
             gv_list.Name = "gv_list";
             gv_list.RowHeadersWidth = 82;
-            gv_list.Size = new Size(866, 375);
+            gv_list.Size = new Size(1341, 375);
             gv_list.TabIndex = 10;
+            gv_list.CellContentClick += gv_list_CellContentClick;
             // 
             // cbprioritaire
             // 

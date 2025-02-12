@@ -127,16 +127,13 @@ namespace REL
 
                 if (reader.HasRows)
                 {
-                    reader.Read();  // ✅ Lire la première ligne avant de fermer la connexion
+                    reader.Read();
 
                     if (!reader.IsDBNull(0))
                     {
-                        user_id = reader.GetInt32(0);  // ✅ Stocke l'ID utilisateur
+                        user_id = reader.GetInt32(0);  
                     }
-                    else
-                    {
-                        user_id = -1;  // Aucun ID trouvé
-                    }
+                  
 
                     reader.Close();
                     cUtilisateur.LoadUserRoles(cUtilisateur.user_id);
@@ -145,7 +142,7 @@ namespace REL
                 else
                 {
                     reader.Close();
-                    user_id = -1;
+                    
                     return false;
                 }
             }
@@ -183,15 +180,15 @@ namespace REL
         public static DataTable getRole(int id_user)
         {
             string query = $"SELECT isAdmin, isService, isRh, IsInfo, IsPaie, IsReunion, IsVehicule FROM Role WHERE Id_Utilisateur = {id_user};";
-            return cBdd.ExecuteSelectToDataTable(query); // Récupère les rôles sous forme de DataTable
+            return cBdd.ExecuteSelectToDataTable(query); 
         }
         public static void LoadUserRoles(int id_user)
         {
             DataTable dt = getRole(id_user);
 
-            if (dt.Rows.Count > 0) // Vérifie si l'utilisateur a des rôles
+            if (dt.Rows.Count > 0) 
             {
-                DataRow row = dt.Rows[0]; // Prend la première ligne (car un utilisateur n'a qu'une seule ligne de rôle)
+                DataRow row = dt.Rows[0];
 
                 isAdmin = Convert.ToBoolean(row["isAdmin"]);
                 isRh = Convert.ToBoolean(row["isRh"]);

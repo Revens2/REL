@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Mysqlx.Crud;
 using MySqlX.XDevAPI.Common;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
@@ -45,7 +46,7 @@ namespace REL
    
         public DataTable listDemande(int id_user, int cbprioritaire)
         {
-            string query = $"select Prioritaire, Objet_demande, Commentaire, type_demande, Duree_debut, Duree_fin, statut from demande where Id_Utilisateur= '{id_user}' and Prioritaire = '{cbprioritaire}';";
+            string query = $"select id_demande, Prioritaire, Objet_demande, Commentaire, type_demande, Duree_debut, Duree_fin, statut from demande where Id_Utilisateur= '{id_user}' and Prioritaire = '{cbprioritaire}';";
             DataTable result = cBdd.ExecuteSelectToDataTable(query);
             return result;
         }
@@ -58,7 +59,7 @@ namespace REL
         }
         
 
-        public static void Demandesave(int untype_demande,string unObjet, string unCommetaire, int unPrioritaire, string uneDuree_debut, string UneDuree_fin, int id_user)
+        public static void Demandesave(int untype_demande,string unObjet, string unCommetaire, int unPrioritaire, string uneDuree_debut, string UneDuree_fin, int id_user,int super_id)
         {
             int statut = 1;
 
@@ -68,50 +69,34 @@ namespace REL
 
 
             cBdd.ExecuteQuery(query);
-            
 
+            switch (untype_demande)  {
+                case 1:
+                    string query2 = $"insert into demande_services (id_service, Id_demande) " +
+                           $" values('{super_id}','{lastid()}');";
 
-        }
+                    cBdd.ExecuteQuery(query2);
+                    break;
+                case 2:
+                    string query3 = $"insert into demande_reunion (id_reunion, Id_demande) " +
+                         $" values('{super_id}','{lastid()}');";
 
-        public static void Demandeservicesave(int idserv)
-        {
-           
+                    cBdd.ExecuteQuery(query3);
+                    break;
+                case 3:
+                    string query4 = $"insert into demande_vehicule (id_vehicule, Id_demande) " +
+                         $" values('{super_id}','{lastid()}');";
 
-
-            string query = $"insert into demande_services (id_service, Id_demande) " +
-                           $" values('{idserv}','{lastid()}');";
-
-            cBdd.ExecuteQuery(query);
-
-        }
-        public static void Demandereunionsave(int idreu)
-        {
-
-
-
-            string query = $"insert into demande_reunion (id_reunion, Id_demande) " +
-                         $" values('{idreu}','{lastid()}');";
-
-            cBdd.ExecuteQuery(query);
-
+                    cBdd.ExecuteQuery(query4);
+                    break;
+            }
 
         }
-        public static void Demandevehiculesave(int idvehi)
-        {
 
-
-
-            string query = $"insert into demande_vehicule (id_vehicule, Id_demande) " +
-                         $" values('{idvehi}','{lastid()}');";
-
-            cBdd.ExecuteQuery(query);
-
-
-        }
         public static int lastid()
         {
 
-            string query = "Select last_insert_id() from demande;";
+            string query = "select max(id_demande) from demande ;";
 
             DataTable dt = cBdd.ExecuteSelectToDataTable(query);
             id_demande = dt.Rows.Count;
@@ -119,7 +104,7 @@ namespace REL
             return id_demande;
         }
 
-        public static DataTable listbackservice()
+        public static DataTable listservice()
         {
 
             string query = "select id_service, name_service from services;";
@@ -128,7 +113,7 @@ namespace REL
             return result;
         }
 
-        public static DataTable listbackreunion()
+        public static DataTable listreunion()
         {
 
             string query = "select id_reunion, Nom_salle ,nb_place, numero from reunion;";
@@ -171,7 +156,7 @@ namespace REL
         }
 
 
-        public static void Demandesave(int id_demande, int untype_demande, string unObjet, string unCommetaire, int unPrioritaire, string uneDuree_debut, string UneDuree_fin, int id_user)
+        public static void updatedemande(int id_demande, int untype_demande, string unObjet, string unCommetaire, int unPrioritaire, string uneDuree_debut, string UneDuree_fin, int id_user)
         {
             int statut = 1;
 
@@ -185,6 +170,46 @@ namespace REL
         }
 
 
+        public static DataTable listbackdemande(int demande_id )
+        {
+
+            string query = $"select objet_demande, Commentaire, type_demande, prioritaire, duree_debut, duree_fin from demande where id_demande = '{demande_id}';";
+
+            DataTable result = cBdd.ExecuteSelectToDataTable(query);
+            return result;
+
+        }
+        public static void deletedemande(int demande_id)
+        {
+
+
+            string query = $"select type_demande from demande where id_demande = '{demande_id}';";
+
+
+            int type = cBdd.ExecuteQuery(query);
+
+            switch (type)
+            {
+                case 1:
+                    string query2 = $"delete from demande_services where id_demande ='{demande_id}';";
+
+                    cBdd.ExecuteQuery(query2);
+                    break;
+                case 2:
+                    string query3 = $"delete from demande_reunion where id_demande ='{demande_id}';";
+
+                    cBdd.ExecuteQuery(query3);
+                    break;
+                case 3:
+                    string query4 = $"delete from demande_vehicule where id_demande ='{demande_id}';";
+
+                    cBdd.ExecuteQuery(query4);
+                    break;
+            }
+            string query5 = $"delete from demande where id_demande ='{demande_id}';";
+
+            cBdd.ExecuteQuery(query5);
+        }
 
 
     }

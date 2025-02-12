@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace REL
 {
@@ -25,10 +26,10 @@ namespace REL
             ddltype.Items.Add("Une Réunion");
             ddltype.Items.Add("Un Véhicule");
             ddltype.SelectedIndex = 0;
-            
 
-            
-            
+
+
+
 
 
             Bindlist();
@@ -41,14 +42,14 @@ namespace REL
                 case 1:
                     gvserv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
                     gvserv.MultiSelect = false;
-                    DataTable dt = cDemande.listbackservice();
+                    DataTable dt = cDemande.listservice();
                     gvserv.DataSource = dt;
                     break;
                 case 2:
-                    gvlistreu.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-                    gvlistreu.MultiSelect = false;
-                    DataTable dt2 = cDemande.listbackreunion();
-                    gvlistreu.DataSource = dt2;
+                    gvreu.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                    gvreu.MultiSelect = false;
+                    DataTable dt2 = cDemande.listreunion();
+                    gvreu.DataSource = dt2;
                     break;
                 case 3:
                     gvvehi.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -57,7 +58,7 @@ namespace REL
                     gvvehi.DataSource = dt3;
                     break;
             }
-           
+
         }
 
         private void ddltype_SelectedIndexChanged(object sender, EventArgs e)
@@ -83,16 +84,16 @@ namespace REL
 
         private void btsave_Click(object sender, EventArgs e)
         {
-
-            cDemande.Demandesave(ddltype.SelectedIndex, tbobjet.Text, tbcom.Text, cBdd.CbConvert(cbprioritaire.Checked), cBdd.DateConvert(tbdatedebut.Value), cBdd.DateConvert(tbdateend.Value), cUtilisateur.user_id);
+            int super_id = 0;
 
             switch (ddltype.SelectedIndex)
             {
+
                 case 1:
-                    if (gvlistreu.SelectedRows.Count == 1)
+                    if (gvserv.SelectedRows.Count == 1)
                     {
-                        DataGridViewRow selectedRow = gvlistreu.SelectedRows[0];
-                        cDemande.Demandeservicesave(Convert.ToInt32(selectedRow.Cells["id_service"].Value));
+                        DataGridViewRow selectedRow = gvserv.SelectedRows[0];
+                        super_id = Convert.ToInt32(selectedRow.Cells["id_service"].Value);
 
                     }
                     else
@@ -103,16 +104,16 @@ namespace REL
                     break;
 
                 case 2:
-                    if (gvlistreu.SelectedRows.Count == 1)
+                    if (gvreu.SelectedRows.Count == 1)
                     {
-                        DataGridViewRow selectedRow = gvlistreu.SelectedRows[0];
-                        cDemande.Demandereunionsave(Convert.ToInt32(selectedRow.Cells["id_reunion"].Value));
+                        DataGridViewRow selectedRow = gvreu.SelectedRows[0];
+                        super_id = Convert.ToInt32(selectedRow.Cells["id_reunion"].Value);
 
                     }
                     else
                     {
                         MessageBox.Show("Veuillez sélectionner une réunion.");
-                        
+
                     }
                     break;
 
@@ -120,7 +121,7 @@ namespace REL
                     if (gvvehi.SelectedRows.Count == 1)
                     {
                         DataGridViewRow selectedRow = gvvehi.SelectedRows[0];
-                        cDemande.Demandevehiculesave(Convert.ToInt32(selectedRow.Cells["id_vehicule"].Value));
+                        super_id = Convert.ToInt32(selectedRow.Cells["id_vehicule"].Value);
                     }
                     else
                     {
@@ -128,10 +129,44 @@ namespace REL
                     }
                     break;
             }
-            popupdemande popup = new popupdemande();
-            popup.Close();
-        }
+            cDemande.Demandesave(ddltype.SelectedIndex, tbobjet.Text, tbcom.Text, cBdd.CbConvert(cbprioritaire.Checked), cBdd.DateConvert(tbdatedebut.Value), cBdd.DateConvert(tbdateend.Value), cUtilisateur.user_id, super_id);
 
-      
+            this.Close();
+        }
+        public popupdemande(int id)
+        {
+            InitializeComponent();
+
+            tbdatedebut.Value = DateTime.Now;
+            tbdateend.Value = DateTime.Now;
+
+
+            ddltype.Items.Add("Sélectionnez une option");
+            ddltype.Items.Add("Un Service");
+            ddltype.Items.Add("Une Réunion");
+            ddltype.Items.Add("Un Véhicule");
+            ddltype.SelectedIndex = 0;
+
+
+
+
+
+
+            Bindedit(id);
+        }
+        private void Bindedit(int id)
+        {
+            DataTable dt = cDemande.listbackdemande(id);
+            DataRow row = dt.Rows[0];
+            
+            ddltype.SelectedIndex = Convert.ToInt32(row["type_demande"]);
+            tbobjet.Text = row["objet_demande"].ToString();
+            cbprioritaire.Checked = Convert.ToBoolean(row["prioritaire"]);
+            tbcom.Text = row["Commentaire"].ToString();
+            tbdatedebut.Value = Convert.ToDateTime(row["duree_debut"].ToString());
+            tbdateend.Value = Convert.ToDateTime(row["duree_fin"].ToString());
+         
+
+        }
     }
 }
