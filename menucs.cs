@@ -15,7 +15,7 @@ namespace REL
         public menucs()
         {
             InitializeComponent();
-            btrequete.Visible = (cUtilisateur.isAdmin || cUtilisateur.isRh || cUtilisateur.isInfo || cUtilisateur.isPaie || cUtilisateur.isReunion || cUtilisateur.isVehicule);
+            btrequete.Visible = (cUtilisateur.isAdmin || cUtilisateur.istypeService || cUtilisateur.isRh || cUtilisateur.isInfo || cUtilisateur.isPaie || cUtilisateur.istypeReunion || cUtilisateur.istypeVehicule);
 
         }
 

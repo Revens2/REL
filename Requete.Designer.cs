@@ -28,18 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
+            gvrequest = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)gvrequest).BeginInit();
             SuspendLayout();
+            // 
+            // gvrequest
+            // 
+            gvrequest.AllowUserToOrderColumns = true;
+            gvrequest.BackgroundColor = SystemColors.ActiveCaptionText;
+            gvrequest.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            gvrequest.Location = new Point(113, 119);
+            gvrequest.Margin = new Padding(2);
+            gvrequest.Name = "gvrequest";
+            gvrequest.RowHeadersWidth = 82;
+            gvrequest.Size = new Size(758, 281);
+            gvrequest.TabIndex = 11;
             // 
             // Requete
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1126, 495);
+            ClientSize = new Size(985, 519);
+            Controls.Add(gvrequest);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "Requete";
             Text = "Requete";
+            ((System.ComponentModel.ISupportInitialize)gvrequest).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
+
+        private DataGridView gvrequest;
     }
 }

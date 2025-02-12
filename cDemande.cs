@@ -146,6 +146,46 @@ namespace REL
             return result;
         }
 
+        public static DataTable listrequete()
+        {
+            int type = 0; 
+            if (cUtilisateur.istypeService)
+            {
+                type  = 1;
+            
+            }
+             else if(cUtilisateur.istypeReunion){
+                type = 2;
+            }
+            else if (cUtilisateur.istypeVehicule)
+            {
+                type = 3;
+            }
+            string query =  $" select u.nom,u.prenom, d.statut, d.Objet_demande, d.duree_debut, d.duree_fin " +
+             $"from demande d "+
+             $"join utilisateur u on u.Id_Utilisateur = d.Id_Utilisateur "+
+             $"where d.type_demande = '{type}';";
+
+            DataTable result = cBdd.ExecuteSelectToDataTable(query);
+            return result;
+        }
+
+
+        public static void Demandesave(int id_demande, int untype_demande, string unObjet, string unCommetaire, int unPrioritaire, string uneDuree_debut, string UneDuree_fin, int id_user)
+        {
+            int statut = 1;
+
+
+            string query = $"update demande set type_demande = '{untype_demande}' , Objet_demande = '{unObjet}',, Commentaire=  '{unCommetaire}', Prioritaire= '{unPrioritaire}',  Duree_debut= '{uneDuree_debut}', Duree_fin = '{UneDuree_fin}', statut='{statut}', where id_demande = '{id_demande}';";
+
+            cBdd.ExecuteQuery(query);
+
+
+
+        }
+
+
+
 
     }
 }

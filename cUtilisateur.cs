@@ -26,8 +26,10 @@ namespace REL
         public static bool isRh { get; private set; }
         public static bool isInfo { get; private set; }
         public static bool isPaie { get; private set; }
-        public static bool isReunion { get; private set; }
-        public static bool isVehicule { get; private set; }
+
+        public static bool istypeService { get; private set; }
+        public static bool istypeReunion { get; private set; }
+        public static bool istypeVehicule { get; private set; }
 
 
 
@@ -180,7 +182,7 @@ namespace REL
 
         public static DataTable getRole(int id_user)
         {
-            string query = $"SELECT isAdmin, isRh, IsInfo, IsPaie, IsReunion, IsVehicule FROM Role WHERE Id_Utilisateur = {id_user};";
+            string query = $"SELECT isAdmin, isService, isRh, IsInfo, IsPaie, IsReunion, IsVehicule FROM Role WHERE Id_Utilisateur = {id_user};";
             return cBdd.ExecuteSelectToDataTable(query); // Récupère les rôles sous forme de DataTable
         }
         public static void LoadUserRoles(int id_user)
@@ -195,8 +197,9 @@ namespace REL
                 isRh = Convert.ToBoolean(row["isRh"]);
                 isInfo = Convert.ToBoolean(row["IsInfo"]);
                 isPaie = Convert.ToBoolean(row["IsPaie"]);
-                isReunion = Convert.ToBoolean(row["IsReunion"]);
-                isVehicule = Convert.ToBoolean(row["IsVehicule"]);
+                istypeService = Convert.ToBoolean(row["isService"]);
+                istypeReunion = Convert.ToBoolean(row["IsReunion"]);
+                istypeVehicule = Convert.ToBoolean(row["IsVehicule"]);
             }
         }
 
