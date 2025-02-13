@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using Org.BouncyCastle.Asn1.Ocsp;
 
 namespace REL
 {
@@ -29,8 +30,20 @@ namespace REL
 
             pnlrequest.Visible = false;
 
+          
 
+            if (cDemande.id_demande != 0)
+            {
+                Bindedit(cDemande.id_demande);
+                if (cDemande.isrequest)
+                {
+                    pnlrequest.Visible = true;
 
+                }
+            }
+            
+
+          
 
             Bindlist();
         }
@@ -133,30 +146,7 @@ namespace REL
 
             this.Close();
         }
-        public popupdemande(int id, bool request)
-        {
-            InitializeComponent();
 
-            tbdatedebut.Value = DateTime.Now;
-            tbdateend.Value = DateTime.Now;
-
-
-            ddltype.Items.Add("Sélectionnez une option");
-            ddltype.Items.Add("Un Service");
-            ddltype.Items.Add("Une Réunion");
-            ddltype.Items.Add("Un Véhicule");
-            ddltype.SelectedIndex = 0;
-
-
-
-
-            if (request)
-            {
-                pnlrequest.Visible = true;
-            }
-
-            Bindedit(id);
-        }
         private void Bindedit(int id)
         {
             DataTable dt = cDemande.listbackdemande(id);
@@ -172,6 +162,24 @@ namespace REL
 
         }
 
+        private void btvalid_Click(object sender, EventArgs e)
+        {
+            cDemande.valide(cDemande.id_demande);
+            this.Close();
+        }
 
+        private void btattente_Click(object sender, EventArgs e)
+        {
+            cDemande.attente(cDemande.id_demande);
+            this.Close();
+        }
+
+        private void btdelete_Click(object sender, EventArgs e)
+        {
+            cDemande.delete(cDemande.id_demande);
+            this.Close();
+        }
+     
+        
     }
 }

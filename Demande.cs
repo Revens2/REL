@@ -50,7 +50,7 @@ namespace REL
         }
         private void btadd_Click(object sender, EventArgs e)
         {
-
+            cDemande.id_demande = 0;
             popupdemande popup = new popupdemande();
             popup.StartPosition = FormStartPosition.CenterParent;
             popup.Show();
@@ -71,7 +71,8 @@ namespace REL
             {
                 int selectedId = Convert.ToInt32(gv_list.Rows[e.RowIndex].Cells["Id_demande"].Value);
 
-                popupdemande popup = new popupdemande(selectedId,false);
+                cDemande.id_demande = selectedId;
+                popupdemande popup = new popupdemande();
                 popup.ShowDialog();
 
 

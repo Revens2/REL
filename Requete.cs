@@ -43,7 +43,10 @@ namespace REL
             {
                 int selectedId = Convert.ToInt32(gvrequest.Rows[e.RowIndex].Cells["Id_demande"].Value);
 
-                popupdemande popup = new popupdemande(selectedId,true);
+               
+                cDemande.isrequest = true;
+                cDemande.id_demande = selectedId;
+                popupdemande popup = new popupdemande();
                 popup.ShowDialog();
 
 

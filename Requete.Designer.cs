@@ -37,21 +37,20 @@
             gvrequest.AllowUserToOrderColumns = true;
             gvrequest.BackgroundColor = SystemColors.ActiveCaptionText;
             gvrequest.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            gvrequest.Location = new Point(113, 119);
-            gvrequest.Margin = new Padding(2);
+            gvrequest.Location = new Point(44, 159);
+            gvrequest.Margin = new Padding(2, 3, 2, 3);
             gvrequest.Name = "gvrequest";
             gvrequest.RowHeadersWidth = 82;
-            gvrequest.Size = new Size(758, 281);
+            gvrequest.Size = new Size(1041, 375);
             gvrequest.TabIndex = 11;
             gvrequest.CellContentClick += gvrequest_CellContentClick;
             // 
             // Requete
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(985, 519);
+            ClientSize = new Size(1126, 692);
             Controls.Add(gvrequest);
-            Margin = new Padding(3, 2, 3, 2);
             Name = "Requete";
             Text = "Requete";
             ((System.ComponentModel.ISupportInitialize)gvrequest).EndInit();
