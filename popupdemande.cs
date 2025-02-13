@@ -27,7 +27,7 @@ namespace REL
             ddltype.Items.Add("Un Véhicule");
             ddltype.SelectedIndex = 0;
 
-
+            pnlrequest.Visible = false;
 
 
 
@@ -133,7 +133,7 @@ namespace REL
 
             this.Close();
         }
-        public popupdemande(int id)
+        public popupdemande(int id, bool request)
         {
             InitializeComponent();
 
@@ -150,7 +150,10 @@ namespace REL
 
 
 
-
+            if (request)
+            {
+                pnlrequest.Visible = true;
+            }
 
             Bindedit(id);
         }
@@ -158,15 +161,17 @@ namespace REL
         {
             DataTable dt = cDemande.listbackdemande(id);
             DataRow row = dt.Rows[0];
-            
+
             ddltype.SelectedIndex = Convert.ToInt32(row["type_demande"]);
             tbobjet.Text = row["objet_demande"].ToString();
             cbprioritaire.Checked = Convert.ToBoolean(row["prioritaire"]);
             tbcom.Text = row["Commentaire"].ToString();
             tbdatedebut.Value = Convert.ToDateTime(row["duree_debut"].ToString());
             tbdateend.Value = Convert.ToDateTime(row["duree_fin"].ToString());
-         
+
 
         }
+
+
     }
 }

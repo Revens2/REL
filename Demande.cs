@@ -71,7 +71,7 @@ namespace REL
             {
                 int selectedId = Convert.ToInt32(gv_list.Rows[e.RowIndex].Cells["Id_demande"].Value);
 
-                popupdemande popup = new popupdemande(selectedId);
+                popupdemande popup = new popupdemande(selectedId,false);
                 popup.ShowDialog();
 
 

@@ -43,6 +43,7 @@
             gvrequest.RowHeadersWidth = 82;
             gvrequest.Size = new Size(758, 281);
             gvrequest.TabIndex = 11;
+            gvrequest.CellContentClick += gvrequest_CellContentClick;
             // 
             // Requete
             // 

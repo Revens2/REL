@@ -21,21 +21,21 @@ namespace REL
 
         private void btHistorique_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            this.FindForm().Hide();
             Historique page = new Historique();
             page.ShowDialog();
         }
 
         private void btaccount_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            this.FindForm().Hide();
             Account compte = new Account();
             compte.ShowDialog();
         }
 
         private void btlogout_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            this.FindForm().Hide();
             Connexion conn = new Connexion();
             conn.ShowDialog();
             cUtilisateur user = new cUtilisateur();
@@ -44,14 +44,14 @@ namespace REL
 
         private void btrequete_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            this.FindForm().Hide();
             Requete request = new Requete();
             request.ShowDialog();
         }
 
         private void btdemande_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            this.FindForm().Hide();
             Demande dem = new Demande();
             dem.ShowDialog();
         }

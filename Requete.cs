@@ -21,6 +21,13 @@ namespace REL
             menu.Dock = DockStyle.Top;
             this.Controls.Add(menu);
             Bindlist();
+            DataGridViewButtonColumn Btnaction = new DataGridViewButtonColumn();
+            Btnaction.HeaderText = "Modification";
+            Btnaction.Name = "Btnaction";
+            Btnaction.Text = "Action";
+            Btnaction.UseColumnTextForButtonValue = true;
+
+            gvrequest.Columns.Add(Btnaction);
 
         }
 
@@ -28,6 +35,19 @@ namespace REL
         {
 
             gvrequest.DataSource = cDemande.listrequete();
+        }
+
+        private void gvrequest_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == gvrequest.Columns["Btnaction"].Index && e.RowIndex >= 0)
+            {
+                int selectedId = Convert.ToInt32(gvrequest.Rows[e.RowIndex].Cells["Id_demande"].Value);
+
+                popupdemande popup = new popupdemande(selectedId,true);
+                popup.ShowDialog();
+
+
+            }
         }
     }
 }
