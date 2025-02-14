@@ -31,6 +31,14 @@ namespace REL
             get { return isrequest; }
             set { isrequest = value; }
         }
+
+        public static bool isnewstatut;
+        public static bool Isnewstatut
+
+        {
+            get { return isnewstatut; }
+            set { isnewstatut = value; }
+        }
         private string Objet;
         private string Commentaire;
 
@@ -231,16 +239,16 @@ namespace REL
             cBdd.ExecuteQuery(query);
 
         }
-        public static void attente(int demande_id)
+        public static void attente(int demande_id, string mess_att)
         {
-            string query = $"update demande set statut = '4'  where id_demande ='{demande_id}';";
+            string query = $"update demande set statut = '4',motif_att = '{mess_att}' where id_demande ='{demande_id}';";
 
             cBdd.ExecuteQuery(query);
 
         }
-        public static void delete(int demande_id)
+        public static void delete(int demande_id, string mess_refu)
         {
-            string query = $"update demande set statut = '5'  where id_demande ='{demande_id}';";
+            string query = $"update demande set statut = '5', motif_refu = '{mess_refu}' where id_demande ='{demande_id}';";
 
             cBdd.ExecuteQuery(query);
 

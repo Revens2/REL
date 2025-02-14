@@ -164,20 +164,39 @@ namespace REL
 
         private void btvalid_Click(object sender, EventArgs e)
         {
-            cDemande.valide(cDemande.id_demande);
-            this.Close();
+            popvalid popup = new popvalid(1);
+            popup.ShowDialog();
+
+            if (cDemande.isnewstatut)
+            {
+                this.Close();
+
+            }
         }
 
         private void btattente_Click(object sender, EventArgs e)
         {
-            cDemande.attente(cDemande.id_demande);
-            this.Close();
+
+            popvalid popup = new popvalid(2);
+            popup.ShowDialog();
+            if (cDemande.isnewstatut)
+            {
+                this.Close();
+
+            }
         }
 
         private void btdelete_Click(object sender, EventArgs e)
         {
-            cDemande.delete(cDemande.id_demande);
-            this.Close();
+
+            popvalid popup = new popvalid(3);
+            popup.ShowDialog();
+            if (cDemande.isnewstatut)
+            {
+                this.Close();
+
+            }
+           
         }
      
         
