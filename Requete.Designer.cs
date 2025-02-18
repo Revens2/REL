@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             gvrequest = new DataGridView();
+            label2 = new Label();
+            cbfinal = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)gvrequest).BeginInit();
             SuspendLayout();
             // 
@@ -45,20 +47,45 @@
             gvrequest.TabIndex = 11;
             gvrequest.CellContentClick += gvrequest_CellContentClick;
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(44, 100);
+            label2.Name = "label2";
+            label2.Size = new Size(234, 20);
+            label2.TabIndex = 13;
+            label2.Text = "Gestion des demandes utilisateurs";
+            // 
+            // cbfinal
+            // 
+            cbfinal.AutoSize = true;
+            cbfinal.Location = new Point(53, 123);
+            cbfinal.Name = "cbfinal";
+            cbfinal.Size = new Size(210, 24);
+            cbfinal.TabIndex = 14;
+            cbfinal.Text = "Gestion des requetes Finals";
+            cbfinal.UseVisualStyleBackColor = true;
+            cbfinal.CheckedChanged += cbfinal_CheckedChanged;
+            // 
             // Requete
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1126, 692);
+            ClientSize = new Size(1126, 880);
+            Controls.Add(cbfinal);
+            Controls.Add(label2);
             Controls.Add(gvrequest);
             Name = "Requete";
             Text = "Requete";
             ((System.ComponentModel.ISupportInitialize)gvrequest).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private DataGridView gvrequest;
+        private Label label2;
+        private CheckBox cbfinal;
     }
 }

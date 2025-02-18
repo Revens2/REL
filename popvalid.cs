@@ -39,7 +39,14 @@ namespace REL
                     lbmess.Text = "Vous êtes sur le point d'annuler la demande veuillez laisser un message de justification";
                     tbmess.Visible = true;
                     break;
-
+                case 4:
+                    lbmess.Text = "Vous êtes sur le point de cloturer une demnade ";
+                    tbmess.Visible = false;
+                    break;
+                case 5:
+                    lbmess.Text = "Vous êtes sur le point de valider votre demande";
+                    tbmess.Visible = false;
+                    break;
             }
         }
 
@@ -68,6 +75,17 @@ namespace REL
                     this.Close();
                     break;
 
+                case 4:
+                    cDemande.cloture(cDemande.id_demande);
+                    cDemande.isnewstatut = true;
+                    this.Close();
+                    break;
+
+                case 5:
+                    cDemande.valideRDV(cDemande.id_demande);
+                    cDemande.isnewstatut = true;
+                    this.Close();
+                    break;
             }
         }
 

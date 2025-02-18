@@ -43,11 +43,25 @@ namespace REL
             cDemande dem = new cDemande();
             gv_list.DataSource = dem.listDemande(cUtilisateur.user_id, cBdd.CbConvert(cbprioritaire.Checked));
 
-            
-           
+         
+            foreach (DataGridViewRow row in gv_list.Rows)
+            {
+                if (row.Cells["statut"].Value != null && row.Cells["statut"].Value.ToString() == "2")
+                {
+                    popvalid popup = new popvalid(5);
+                    popup.ShowDialog();
+                    if (cDemande.isnewstatut)
+                    {
+                        this.Close();
 
+                    }
+                    break;
+                }
+            }
 
+          
         }
+
         private void btadd_Click(object sender, EventArgs e)
         {
             cDemande.id_demande = 0;

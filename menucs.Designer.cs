@@ -43,12 +43,12 @@
             btdemande.FlatStyle = FlatStyle.Flat;
             btdemande.Font = new Font("Arial", 14F, FontStyle.Bold);
             btdemande.ForeColor = Color.White;
-            btdemande.Location = new Point(45, 20);
+            btdemande.Location = new Point(11, 20);
             btdemande.Margin = new Padding(2);
             btdemande.Name = "btdemande";
-            btdemande.Size = new Size(137, 52);
+            btdemande.Size = new Size(180, 52);
             btdemande.TabIndex = 33;
-            btdemande.Text = "Demande";
+            btdemande.Text = "Vos Demande";
             btdemande.UseVisualStyleBackColor = false;
             btdemande.Click += btdemande_Click;
             // 
@@ -60,7 +60,7 @@
             btHistorique.FlatStyle = FlatStyle.Flat;
             btHistorique.Font = new Font("Arial", 14F, FontStyle.Bold);
             btHistorique.ForeColor = Color.White;
-            btHistorique.Location = new Point(417, 20);
+            btHistorique.Location = new Point(553, 20);
             btHistorique.Margin = new Padding(2);
             btHistorique.Name = "btHistorique";
             btHistorique.Size = new Size(152, 52);
@@ -80,9 +80,9 @@
             btrequete.Location = new Point(225, 20);
             btrequete.Margin = new Padding(2);
             btrequete.Name = "btrequete";
-            btrequete.Size = new Size(152, 52);
+            btrequete.Size = new Size(293, 52);
             btrequete.TabIndex = 35;
-            btrequete.Text = "Requête";
+            btrequete.Text = "Gestion des demandes";
             btrequete.UseVisualStyleBackColor = false;
             btrequete.Click += btrequete_Click;
             // 
@@ -94,7 +94,7 @@
             btaccount.FlatStyle = FlatStyle.Flat;
             btaccount.Font = new Font("Arial", 14F, FontStyle.Bold);
             btaccount.ForeColor = Color.White;
-            btaccount.Location = new Point(612, 20);
+            btaccount.Location = new Point(730, 20);
             btaccount.Margin = new Padding(2);
             btaccount.Name = "btaccount";
             btaccount.Size = new Size(143, 52);
@@ -111,7 +111,7 @@
             btlogout.FlatStyle = FlatStyle.Flat;
             btlogout.Font = new Font("Arial", 14F, FontStyle.Bold);
             btlogout.ForeColor = Color.White;
-            btlogout.Location = new Point(772, 20);
+            btlogout.Location = new Point(904, 20);
             btlogout.Margin = new Padding(2);
             btlogout.Name = "btlogout";
             btlogout.Size = new Size(185, 52);
@@ -130,7 +130,7 @@
             Controls.Add(btHistorique);
             Controls.Add(btdemande);
             Name = "menucs";
-            Size = new Size(1011, 150);
+            Size = new Size(1207, 150);
             ResumeLayout(false);
         }
 

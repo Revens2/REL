@@ -44,9 +44,27 @@ namespace REL
         {
             OpenConnection();
             MySqlCommand cmd = new MySqlCommand(query, connection);
-            int result = cmd.ExecuteNonQuery();
+            int result = cmd.ExecuteNonQuery(); // exe update delete insert
             CloseConnection();
             return result;
+        }
+
+        public static int ExecuteQuery2(string query)
+        {
+            OpenConnection();
+            MySqlCommand cmd = new MySqlCommand(query, connection);
+            MySqlDataReader rdr = cmd.ExecuteReader(); // exe uniquement select
+            if (rdr.Read())
+            {
+                int result = Convert.ToInt16(rdr.GetValue("last_id"));
+                CloseConnection();
+                return result;
+            }
+            else
+            {
+                CloseConnection();
+                return -10;
+            }
         }
         public static DataTable ExecuteSelectToDataTable(string query)
         {

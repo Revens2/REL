@@ -4,7 +4,9 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MySql.Data.MySqlClient;
 using Mysqlx.Crud;
+using Mysqlx.Session;
 using MySqlX.XDevAPI.Common;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
@@ -115,10 +117,10 @@ namespace REL
         public static int lastid()
         {
 
-            string query = "select max(id_demande) from demande ;";
+            string query = "select max(id_demande) as last_id from demande ;";
+            int result = cBdd.ExecuteQuery2(query);
+            id_demande = Convert.ToInt32(result);
 
-            DataTable dt = cBdd.ExecuteSelectToDataTable(query);
-            id_demande = dt.Rows.Count;
 
             return id_demande;
         }
@@ -150,7 +152,7 @@ namespace REL
             return result;
         }
 
-        public static DataTable listrequete()
+        public static DataTable listrequete(bool cbfinal)
         {
             int type = 0;
             if (cUtilisateur.istypeService)
@@ -166,10 +168,15 @@ namespace REL
             {
                 type = 3;
             }
+            string statut = "d.statut = 2 or d.statut = 3 ";
+            if (cbfinal)
+            {
+                statut = "d.statut = 5";
+            }
             string query = $" select d.id_demande,u.nom,u.prenom, d.statut, d.Objet_demande, d.duree_debut, d.duree_fin " +
              $"from demande d " +
              $"join utilisateur u on u.Id_Utilisateur = d.Id_Utilisateur " +
-             $"where d.type_demande = '{type}';";
+             $"where d.type_demande = '{type}' and {statut};";
 
             DataTable result = cBdd.ExecuteSelectToDataTable(query);
             return result;
@@ -234,26 +241,41 @@ namespace REL
 
         public static void valide(int demande_id)
         {
-            string query = $"update demande set statut = '3'  where id_demande ='{demande_id}';";
+            string query = $"update demande set statut = '2'  where id_demande ='{demande_id}';";
 
             cBdd.ExecuteQuery(query);
 
         }
         public static void attente(int demande_id, string mess_att)
         {
-            string query = $"update demande set statut = '4',motif_att = '{mess_att}' where id_demande ='{demande_id}';";
+            string query = $"update demande set statut = '3',motif_att = '{mess_att}' where id_demande ='{demande_id}';";
 
             cBdd.ExecuteQuery(query);
 
         }
         public static void delete(int demande_id, string mess_refu)
         {
-            string query = $"update demande set statut = '5', motif_refu = '{mess_refu}' where id_demande ='{demande_id}';";
+            string query = $"update demande set statut = '4', motif_refu = '{mess_refu}' where id_demande ='{demande_id}';";
 
             cBdd.ExecuteQuery(query);
 
         }
 
+        public static void cloture(int demande_id)
+        {
+            string query = $"update demande set statut = '6' where id_demande ='{demande_id}';";
+
+            cBdd.ExecuteQuery(query);
+
+        }
+
+        public static void valideRDV(int demande_id)
+        {
+            string query = $"update demande set statut = '5' where id_demande ='{demande_id}';";
+
+            cBdd.ExecuteQuery(query);
+
+        }
 
     }
 }

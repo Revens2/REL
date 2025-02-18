@@ -25,10 +25,10 @@ namespace REL
         private void BindDataGridView()
         {
             cDemande dem = new cDemande();
-            int statut = 6;
+            int statut = 5;
             if (cbstatut.Checked)
             {
-                statut = 5;
+                statut = 4;
             }
             gv_list.DataSource = dem.listHistorique(statut, cUtilisateur.user_id);
 
