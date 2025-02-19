@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.VisualBasic.Devices;
 
 namespace REL
 {
@@ -36,6 +37,7 @@ namespace REL
 
             gv_list.Columns.Add(btnDelete);
 
+
         }
 
         private void Bindlist()
@@ -43,23 +45,28 @@ namespace REL
             cDemande dem = new cDemande();
             gv_list.DataSource = dem.listDemande(cUtilisateur.user_id, cBdd.CbConvert(cbprioritaire.Checked));
 
-         
+            int compteur = 0;
+
             foreach (DataGridViewRow row in gv_list.Rows)
             {
-                if (row.Cells["statut"].Value != null && row.Cells["statut"].Value.ToString() == "2")
+                if (row.Cells["statut"].Value != null && row.Cells["statut"].Value.ToString() == "2") 
                 {
-                    popvalid popup = new popvalid(5);
-                    popup.ShowDialog();
-                    if (cDemande.isnewstatut)
-                    {
-                        this.Close();
-
-                    }
-                    break;
+                    compteur++;
                 }
             }
+            if (compteur != 0)
+            {
+                lbcompteur.Text = compteur.ToString();
+                lbcompteur.Visible = true;
+                btvalidate.Visible = true;
+            }
+            else
+            {
+                lbcompteur.Visible = false;
+                btvalidate.Visible = false;
+            }
 
-          
+
         }
 
         private void btadd_Click(object sender, EventArgs e)
@@ -77,7 +84,7 @@ namespace REL
             Bindlist();
         }
 
-     
+
 
         private void gv_list_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -101,7 +108,22 @@ namespace REL
 
             }
         }
-        
+
+        private void btvalidate_Click(object sender, EventArgs e)
+        {
+
+            foreach (DataGridViewRow row in gv_list.Rows)
+            {
+                if (row.Cells["statut"].Value != null && row.Cells["statut"].Value.ToString() == "2")
+
+                {
+                    cDemande.id_demande = Convert.ToInt32(row.Cells["id_demande"].Value);
+                    popvalid popup = new popvalid(5);
+                    popup.ShowDialog();
+                    Bindlist();
+                }
+            }
+        }
     }
 
 }

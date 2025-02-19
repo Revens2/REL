@@ -43,7 +43,7 @@
             gvrequest.Margin = new Padding(2, 3, 2, 3);
             gvrequest.Name = "gvrequest";
             gvrequest.RowHeadersWidth = 82;
-            gvrequest.Size = new Size(1041, 375);
+            gvrequest.Size = new Size(1126, 375);
             gvrequest.TabIndex = 11;
             gvrequest.CellContentClick += gvrequest_CellContentClick;
             // 
@@ -71,7 +71,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1126, 880);
+            ClientSize = new Size(1214, 880);
             Controls.Add(cbfinal);
             Controls.Add(label2);
             Controls.Add(gvrequest);

@@ -155,11 +155,11 @@ namespace REL
 
         public static int Validregister(string unName, string unPrenom, string dateDeNaissance, string unMail, string unPassword, string uneAdresse, string unZip, string uneVille, string unNumero)
         {
-            int isClientValue = 1;
+            int isUser = 1;
 
 
-            string query = $"INSERT INTO utilisateur (Nom, Prenom, Date_de_naissance,  Adresse, Zip, Ville, Numero, IsClient, Email, Mot_de_passe) " +
-                           $"VALUES ('{unName}', '{unPrenom}', '{dateDeNaissance}','{uneAdresse}', '{unZip}', '{uneVille}', '{unNumero}', {isClientValue}, '{unMail}', '{unPassword}')";
+            string query = $"INSERT INTO utilisateur (Nom, Prenom, Date_de_naissance,  Adresse, Zip, Ville, Numero, Email, Mot_de_passe) " +
+                           $"VALUES ('{unName}', '{unPrenom}', '{dateDeNaissance}','{uneAdresse}', '{unZip}', '{uneVille}', '{unNumero}', '{unMail}', '{unPassword}')";
 
 
             int result = cBdd.ExecuteQuery(query);

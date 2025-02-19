@@ -261,9 +261,9 @@ namespace REL
 
         }
 
-        public static void cloture(int demande_id)
+        public static void cloture(int demande_id, string mess_clo)
         {
-            string query = $"update demande set statut = '6' where id_demande ='{demande_id}';";
+            string query = $"update demande set statut = '6', motif_clo = '{mess_clo}' where id_demande ='{demande_id}';";
 
             cBdd.ExecuteQuery(query);
 

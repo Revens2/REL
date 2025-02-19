@@ -41,12 +41,13 @@ namespace REL
                     break;
                 case 4:
                     lbmess.Text = "Vous êtes sur le point de cloturer une demnade ";
-                    tbmess.Visible = false;
+                    tbmess.Visible = true;
                     break;
                 case 5:
                     lbmess.Text = "Vous êtes sur le point de valider votre demande";
                     tbmess.Visible = false;
                     break;
+
             }
         }
 
@@ -76,7 +77,7 @@ namespace REL
                     break;
 
                 case 4:
-                    cDemande.cloture(cDemande.id_demande);
+                    cDemande.cloture(cDemande.id_demande, tbmess.Text);
                     cDemande.isnewstatut = true;
                     this.Close();
                     break;

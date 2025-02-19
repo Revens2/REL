@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -27,10 +28,21 @@ namespace REL
 
         private void Bindlist()
         {
+            gvrequest.Columns.Clear();
             gvrequest.DataSource = cDemande.listrequete(cbfinal.Checked);
             if (cbfinal.Checked)
             {
+                DataGridViewButtonColumn Btnclo = new DataGridViewButtonColumn();
+                Btnclo.HeaderText = "Cloture";
+                Btnclo.Name = "Btnclo";
+                Btnclo.Text = "Cloturer la demande";
+                Btnclo.UseColumnTextForButtonValue = true;
+
+                gvrequest.Columns.Add(Btnclo);
                 
+            }
+            else
+            {
                 DataGridViewButtonColumn Btndem = new DataGridViewButtonColumn();
                 Btndem.HeaderText = "Modification";
                 Btndem.Name = "Btndem";
@@ -39,44 +51,38 @@ namespace REL
 
                 gvrequest.Columns.Add(Btndem);
             }
-            else
-            {
-                DataGridViewButtonColumn Btnclo = new DataGridViewButtonColumn();
-                Btnclo.HeaderText = "Modification";
-                Btnclo.Name = "Btnclo";
-                Btnclo.Text = "Cloturer la demande";
-                Btnclo.UseColumnTextForButtonValue = true;
-
-                gvrequest.Columns.Add(Btnclo);
-            }
            
         }
 
         private void gvrequest_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == gvrequest.Columns["Btndem"].Index && e.RowIndex >= 0)
+            if (cbfinal.Checked)
             {
-                int selectedId = Convert.ToInt32(gvrequest.Rows[e.RowIndex].Cells["Id_demande"].Value);
+                if (e.ColumnIndex == gvrequest.Columns["Btnclo"].Index && e.RowIndex >= 0)
+                {
+                    int selectedId = Convert.ToInt32(gvrequest.Rows[e.RowIndex].Cells["Id_demande"].Value);
+                    cDemande.id_demande = selectedId;
+                    popvalid popup = new popvalid(4);
+                    popup.ShowDialog();
 
-
-                cDemande.isrequest = true;
-                cDemande.id_demande = selectedId;
-                popupdemande popup = new popupdemande();
-                popup.ShowDialog();
-
-
+                }
             }
-            if (e.ColumnIndex == gvrequest.Columns["Btnclo"].Index && e.RowIndex >= 0)
+            else
             {
-                int selectedId = Convert.ToInt32(gvrequest.Rows[e.RowIndex].Cells["Id_demande"].Value);
 
+                if (e.ColumnIndex == gvrequest.Columns["Btndem"].Index && e.RowIndex >= 0)
+                {
+                    int selectedId = Convert.ToInt32(gvrequest.Rows[e.RowIndex].Cells["Id_demande"].Value);
 
-                cDemande.id_demande = selectedId;
-                popupdemande popup = new popupdemande();
-                popup.ShowDialog();
+                    cDemande.isrequest = true;
+                    cDemande.id_demande = selectedId;
+                    popupdemande popup = new popupdemande();
+                    popup.ShowDialog();
 
-
+                }
             }
+        
+            Bindlist();
         }
 
         private void cbfinal_CheckedChanged(object sender, EventArgs e)
