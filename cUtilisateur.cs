@@ -200,6 +200,28 @@ namespace REL
             }
         }
 
+        public static int GetAccounType()
+        {
+
+            int type = 0;
+            if (cUtilisateur.istypeService)
+            {
+                type = 1;
+
+            }
+            else if (cUtilisateur.istypeReunion)
+            {
+                type = 2;
+            }
+            else if (cUtilisateur.istypeVehicule)
+            {
+                type = 3;
+            }
+
+            return type;
+
+        }
+
     }
 
 

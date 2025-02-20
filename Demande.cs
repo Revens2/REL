@@ -76,6 +76,7 @@ namespace REL
             popupdemande popup = new popupdemande();
             popup.StartPosition = FormStartPosition.CenterParent;
             popup.Show();
+            Bindlist();
         }
 
 

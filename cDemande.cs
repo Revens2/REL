@@ -73,20 +73,7 @@ namespace REL
 
         public static DataTable listrequete(bool cbfinal)
         {
-            int type = 0;
-            if (cUtilisateur.istypeService)
-            {
-                type = 1;
-
-            }
-            else if (cUtilisateur.istypeReunion)
-            {
-                type = 2;
-            }
-            else if (cUtilisateur.istypeVehicule)
-            {
-                type = 3;
-            }
+            int type = cUtilisateur.GetAccounType();
             string statut = "d.statut = 1 or d.statut = 3 ";
             if (cbfinal)
             {
@@ -190,39 +177,24 @@ namespace REL
 
         public static void UpdateNotif(bool SwitchNotif, int demande_id)
         {
-            int type = 0;
-            if (cUtilisateur.istypeService)
-            {
-                type = 1;
-
-            }
-            else if (cUtilisateur.istypeReunion)
-            {
-                type = 2;
-            }
-            else if (cUtilisateur.istypeVehicule)
-            {
-                type = 3;
-            }
-
             if (SwitchNotif)
             {
 
-                string query1 = $"update demande set Adminnotif = '1' where id_demande ='{demande_id}' and type_demande = '{type}';";
+                string query1 = $"update demande set Adminnotif = '1' where id_demande ='{demande_id}';";
 
                 cBdd.ExecuteQuery(query1);
 
-                string query2 = $"update demande set Usernotif = '0' where id_demande ='{demande_id}' and type_demande = '{type}';";
+                string query2 = $"update demande set Usernotif = '0' where id_demande ='{demande_id}' ;";
 
                 cBdd.ExecuteQuery(query2);
             }
             else
             {
-                string query1 = $"update demande set Adminnotif = '0' where id_demande ='{demande_id}' and type_demande = '{type}';";
+                string query1 = $"update demande set Adminnotif = '0' where id_demande ='{demande_id}';";
 
                 cBdd.ExecuteQuery(query1);
 
-                string query2 = $"update demande set Usernotif = '1' where id_demande ='{demande_id}' and type_demande = '{type}';";
+                string query2 = $"update demande set Usernotif = '1' where id_demande ='{demande_id}';";
 
                 cBdd.ExecuteQuery(query2);
             }
@@ -231,7 +203,8 @@ namespace REL
 
         public static int NotifGestion()
         {
-            string query = $"select count(Adminnotif) from demande where Adminnotif = 1;";
+            int type = cUtilisateur.GetAccounType();
+            string query = $"select count(Adminnotif) from demande where Adminnotif = 1 and type_demande = '{type}';";
 
             int result = cBdd.ExecuteQuery2(query);
 
@@ -240,7 +213,7 @@ namespace REL
 
         public static int NotifDemande()
         {
-            string query = $"select count(Usernotif) from demande where Usernotif = 1;";
+            string query = $"select count(Usernotif) from demande where Usernotif = 1 and id_utilisateur = '{cUtilisateur.user_id}';";
 
             int result = cBdd.ExecuteQuery2(query);
 
@@ -303,6 +276,7 @@ namespace REL
 
             return id_demande;
         }
+        
 
         public static void updatedemande(int id_demande, int untype_demande, string unObjet, string unCommetaire, int unPrioritaire, string uneDuree_debut, string UneDuree_fin, int id_user)
         {

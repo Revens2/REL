@@ -27,14 +27,17 @@ namespace REL
             if(lbnotifdemande.Text == "0")
             {
                 lbnotifdemande.Visible = false;
+            }else
+            {
+                lbnotifdemande.Visible = true;
             }
-            else if (lbnotifgestion.Text == "0")
+
+            if (lbnotifgestion.Text == "0")
             {
                 lbnotifgestion.Visible = false;
             }
             else
-            {
-                lbnotifdemande.Visible = true;
+            { 
                 lbnotifgestion.Visible = true;
                     
             }
