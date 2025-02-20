@@ -84,9 +84,9 @@
             lbprioritaire.AutoSize = true;
             lbprioritaire.Location = new Point(69, 200);
             lbprioritaire.Name = "lbprioritaire";
-            lbprioritaire.Size = new Size(186, 20);
+            lbprioritaire.Size = new Size(253, 20);
             lbprioritaire.TabIndex = 2;
-            lbprioritaire.Text = "Votre doit être prioritaire ?";
+            lbprioritaire.Text = "Votre demande doit être prioritaire ?";
             // 
             // cbprioritaire
             // 

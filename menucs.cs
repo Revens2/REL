@@ -16,7 +16,28 @@ namespace REL
         {
             InitializeComponent();
             btrequete.Visible = (cUtilisateur.isAdmin || cUtilisateur.istypeService || cUtilisateur.isRh || cUtilisateur.isInfo || cUtilisateur.isPaie || cUtilisateur.istypeReunion || cUtilisateur.istypeVehicule);
+            BindNotif();
+        }
 
+
+        private void BindNotif()
+        {
+            lbnotifdemande.Text = Convert.ToString(cDemande.NotifDemande());
+            lbnotifgestion.Text = Convert.ToString(cDemande.NotifGestion());
+            if(lbnotifdemande.Text == "0")
+            {
+                lbnotifdemande.Visible = false;
+            }
+            else if (lbnotifgestion.Text == "0")
+            {
+                lbnotifgestion.Visible = false;
+            }
+            else
+            {
+                lbnotifdemande.Visible = true;
+                lbnotifgestion.Visible = true;
+                    
+            }
         }
 
         private void btHistorique_Click(object sender, EventArgs e)

@@ -85,6 +85,7 @@ namespace REL
                 case 5:
                     cDemande.valideRDV(cDemande.id_demande);
                     cDemande.isnewstatut = true;
+                    cDemande.UpdateNotif(true, cDemande.id_demande);
                     this.Close();
                     break;
             }

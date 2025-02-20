@@ -29,6 +29,7 @@ namespace REL
             btnEdit.UseColumnTextForButtonValue = true;
 
             gv_list.Columns.Add(btnEdit);
+
             DataGridViewButtonColumn btnDelete = new DataGridViewButtonColumn();
             btnDelete.HeaderText = "Action";
             btnDelete.Name = "btnDelete";

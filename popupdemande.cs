@@ -30,7 +30,7 @@ namespace REL
 
             pnlrequest.Visible = false;
 
-          
+
 
             if (cDemande.id_demande != 0)
             {
@@ -41,9 +41,9 @@ namespace REL
 
                 }
             }
-            
 
-          
+
+
 
             Bindlist();
         }
@@ -169,6 +169,7 @@ namespace REL
 
             if (cDemande.isnewstatut)
             {
+                cDemande.UpdateNotif(true,cDemande.id_demande);
                 this.Close();
 
             }
@@ -181,6 +182,7 @@ namespace REL
             popup.ShowDialog();
             if (cDemande.isnewstatut)
             {
+                cDemande.UpdateNotif(true, cDemande.id_demande);
                 this.Close();
 
             }
@@ -193,12 +195,14 @@ namespace REL
             popup.ShowDialog();
             if (cDemande.isnewstatut)
             {
+                cDemande.UpdateNotif(true, cDemande.id_demande);
                 this.Close();
 
             }
-           
+
         }
-     
+
+
         
     }
 }

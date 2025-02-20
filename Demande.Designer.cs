@@ -46,12 +46,12 @@
             btadd.Cursor = Cursors.Hand;
             btadd.FlatAppearance.BorderSize = 0;
             btadd.FlatStyle = FlatStyle.Flat;
-            btadd.Font = new Font("Arial", 14F, FontStyle.Bold);
+            btadd.Font = new Font("Arial", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btadd.ForeColor = Color.White;
-            btadd.Location = new Point(41, 121);
+            btadd.Location = new Point(260, 225);
             btadd.Margin = new Padding(2);
             btadd.Name = "btadd";
-            btadd.Size = new Size(391, 45);
+            btadd.Size = new Size(256, 34);
             btadd.TabIndex = 9;
             btadd.Text = "Ajouter une nouvelle demande";
             btadd.UseVisualStyleBackColor = false;
@@ -73,20 +73,21 @@
             // cbprioritaire
             // 
             cbprioritaire.AutoSize = true;
-            cbprioritaire.Location = new Point(272, 217);
+            cbprioritaire.Location = new Point(12, 231);
             cbprioritaire.Name = "cbprioritaire";
-            cbprioritaire.Size = new Size(277, 24);
+            cbprioritaire.Size = new Size(203, 24);
             cbprioritaire.TabIndex = 30;
-            cbprioritaire.Text = "Afficher les demandes non prioritaire";
+            cbprioritaire.Text = "Vos demandes prioritaires";
             cbprioritaire.UseVisualStyleBackColor = true;
             cbprioritaire.CheckedChanged += cbprioritaire_CheckedChanged;
             // 
             // lbdemande
             // 
             lbdemande.AutoSize = true;
-            lbdemande.Location = new Point(284, 244);
+            lbdemande.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbdemande.Location = new Point(12, 168);
             lbdemande.Name = "lbdemande";
-            lbdemande.Size = new Size(170, 20);
+            lbdemande.Size = new Size(407, 46);
             lbdemande.TabIndex = 31;
             lbdemande.Text = "Vos dernières demandes";
             // 

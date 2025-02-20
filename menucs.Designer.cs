@@ -33,6 +33,8 @@
             btrequete = new Button();
             btaccount = new Button();
             btlogout = new Button();
+            lbnotifdemande = new Label();
+            lbnotifgestion = new Label();
             SuspendLayout();
             // 
             // btdemande
@@ -120,10 +122,32 @@
             btlogout.UseVisualStyleBackColor = false;
             btlogout.Click += btlogout_Click;
             // 
+            // lbnotifdemande
+            // 
+            lbnotifdemande.AutoSize = true;
+            lbnotifdemande.BackColor = Color.Red;
+            lbnotifdemande.Location = new Point(184, 11);
+            lbnotifdemande.Name = "lbnotifdemande";
+            lbnotifdemande.Size = new Size(17, 20);
+            lbnotifdemande.TabIndex = 38;
+            lbnotifdemande.Text = "1";
+            // 
+            // lbnotifgestion
+            // 
+            lbnotifgestion.AutoSize = true;
+            lbnotifgestion.BackColor = Color.Red;
+            lbnotifgestion.Location = new Point(510, 11);
+            lbnotifgestion.Name = "lbnotifgestion";
+            lbnotifgestion.Size = new Size(17, 20);
+            lbnotifgestion.TabIndex = 39;
+            lbnotifgestion.Text = "1";
+            // 
             // menucs
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(lbnotifgestion);
+            Controls.Add(lbnotifdemande);
             Controls.Add(btlogout);
             Controls.Add(btaccount);
             Controls.Add(btrequete);
@@ -132,6 +156,7 @@
             Name = "menucs";
             Size = new Size(1207, 150);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -141,5 +166,7 @@
         private Button btrequete;
         private Button btaccount;
         private Button btlogout;
+        private Label lbnotifdemande;
+        private Label lbnotifgestion;
     }
 }

@@ -56,7 +56,7 @@ namespace REL
             MySqlDataReader rdr = cmd.ExecuteReader(); // exe uniquement select
             if (rdr.Read())
             {
-                int result = Convert.ToInt16(rdr.GetValue("last_id"));
+                int result = Convert.ToInt16(rdr.GetValue(0));
                 CloseConnection();
                 return result;
             }

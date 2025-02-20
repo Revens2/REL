@@ -17,15 +17,15 @@ namespace REL
         public Historique()
         {
             InitializeComponent();
-            BindDataGridView();
+            Bindlist();
             menu = new menucs();
             menu.Dock = DockStyle.Top;
             this.Controls.Add(menu);
         }
-        private void BindDataGridView()
+        private void Bindlist()
         {
             cDemande dem = new cDemande();
-            int statut = 5;
+            int statut = 6;
             if (cbstatut.Checked)
             {
                 statut = 4;
@@ -36,7 +36,7 @@ namespace REL
 
         private void cbstatut_CheckedChanged(object sender, EventArgs e)
         {
-            BindDataGridView();
+            Bindlist();
         }
 
         private void btlogout_Click(object sender, EventArgs e)
