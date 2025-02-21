@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.VisualBasic.Devices;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace REL
@@ -21,6 +22,7 @@ namespace REL
             menu = new menucs();
             menu.Dock = DockStyle.Top;
             this.Controls.Add(menu);
+            gvrequest.DataBindingComplete += gvrequest_DataBindingComplete;     
             Bindlist();
            
 
@@ -51,7 +53,7 @@ namespace REL
 
                 gvrequest.Columns.Add(Btndem);
             }
-           
+
         }
 
         private void gvrequest_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -84,6 +86,23 @@ namespace REL
         
             Bindlist();
         }
+
+        private void gvrequest_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            foreach (DataGridViewRow row in gvrequest.Rows)
+            {
+                if (row.Cells["statut"].Value != null && row.Cells["statut"].Value.ToString() == "1")
+                {
+                    row.DefaultCellStyle.BackColor = Color.SkyBlue;
+                }
+
+                if (row.Cells["statut"].Value != null && row.Cells["statut"].Value.ToString() == "3")
+                {
+                    row.DefaultCellStyle.BackColor = Color.IndianRed;
+                }
+            }
+        }
+
 
         private void cbfinal_CheckedChanged(object sender, EventArgs e)
         {

@@ -11,6 +11,7 @@ using Microsoft.VisualBasic.Devices;
 using System.IO;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+using Org.BouncyCastle.Asn1.Ocsp;
 
 namespace REL
 {
@@ -119,11 +120,12 @@ namespace REL
 
             foreach (DataGridViewRow row in gv_list.Rows)
             {
-                if (row.Cells["statut"].Value != null && row.Cells["statut"].Value.ToString() == "2")
+                if (row.Cells["statut"].Value != null && row.Cells["UserNotif"].Value.ToString() == "1")
 
                 {
                     cDemande.id_demande = Convert.ToInt32(row.Cells["id_demande"].Value);
-                    popvalid popup = new popvalid(5);
+
+                    popupdemande popup = new popupdemande();
                     popup.ShowDialog();
                     Bindlist();
                 }

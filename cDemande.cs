@@ -82,7 +82,7 @@ namespace REL
             string query = $" select d.id_demande,u.nom,u.prenom, d.statut, d.Objet_demande, d.duree_debut, d.duree_fin " +
              $"from demande d " +
              $"join utilisateur u on u.Id_Utilisateur = d.Id_Utilisateur " +
-             $"where d.type_demande = '{type}' and {statut};";
+             $"where d.type_demande = '{type}' and {statut} order by statut;";
 
             DataTable result = cBdd.ExecuteSelectToDataTable(query);
             return result;

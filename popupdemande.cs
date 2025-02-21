@@ -19,8 +19,6 @@ namespace REL
             InitializeComponent();
             tbdatedebut.Value = DateTime.Now;
             tbdateend.Value = DateTime.Now;
-
-
             ddltype.Items.Add("Sélectionnez une option");
             ddltype.Items.Add("Un Service");
             ddltype.Items.Add("Une Réunion");
@@ -28,8 +26,6 @@ namespace REL
             ddltype.SelectedIndex = 0;
 
             pnlrequest.Visible = false;
-
-
 
             if (cDemande.id_demande != 0)
             {
@@ -40,10 +36,6 @@ namespace REL
 
                 }
             }
-
-
-
-
             Bindlist();
         }
         private void Bindlist()
