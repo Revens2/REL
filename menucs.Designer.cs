@@ -35,6 +35,8 @@
             btlogout = new Button();
             lbnotifdemande = new Label();
             lbnotifgestion = new Label();
+            lbinfo = new Label();
+            lbnotifhisto = new Label();
             SuspendLayout();
             // 
             // btdemande
@@ -142,10 +144,32 @@
             lbnotifgestion.TabIndex = 39;
             lbnotifgestion.Text = "1";
             // 
+            // lbinfo
+            // 
+            lbinfo.AutoSize = true;
+            lbinfo.Font = new Font("Segoe UI Semibold", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbinfo.Location = new Point(1127, 25);
+            lbinfo.Name = "lbinfo";
+            lbinfo.Size = new Size(94, 38);
+            lbinfo.TabIndex = 41;
+            lbinfo.Text = "label2";
+            // 
+            // lbnotifhisto
+            // 
+            lbnotifhisto.AutoSize = true;
+            lbnotifhisto.BackColor = Color.Red;
+            lbnotifhisto.Location = new Point(698, 11);
+            lbnotifhisto.Name = "lbnotifhisto";
+            lbnotifhisto.Size = new Size(17, 20);
+            lbnotifhisto.TabIndex = 42;
+            lbnotifhisto.Text = "1";
+            // 
             // menucs
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(lbnotifhisto);
+            Controls.Add(lbinfo);
             Controls.Add(lbnotifgestion);
             Controls.Add(lbnotifdemande);
             Controls.Add(btlogout);
@@ -154,7 +178,7 @@
             Controls.Add(btHistorique);
             Controls.Add(btdemande);
             Name = "menucs";
-            Size = new Size(1207, 150);
+            Size = new Size(1380, 150);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -168,5 +192,7 @@
         private Button btlogout;
         private Label lbnotifdemande;
         private Label lbnotifgestion;
+        private Label lbinfo;
+        private Label lbnotifhisto;
     }
 }

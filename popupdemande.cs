@@ -17,7 +17,6 @@ namespace REL
         public popupdemande()
         {
             InitializeComponent();
-
             tbdatedebut.Value = DateTime.Now;
             tbdateend.Value = DateTime.Now;
 
@@ -143,7 +142,9 @@ namespace REL
                     break;
             }
             cDemande.Demandesave(ddltype.SelectedIndex, tbobjet.Text, tbcom.Text, cBdd.CbConvert(cbprioritaire.Checked), cBdd.DateConvert(tbdatedebut.Value), cBdd.DateConvert(tbdateend.Value), cUtilisateur.user_id, super_id);
+            Demande demande = new Demande();
 
+            demande.Bindlist();
             this.Close();
         }
 
@@ -169,7 +170,6 @@ namespace REL
 
             if (cDemande.isnewstatut)
             {
-                cDemande.UpdateNotif(true,cDemande.id_demande);
                 this.Close();
 
             }
@@ -182,7 +182,7 @@ namespace REL
             popup.ShowDialog();
             if (cDemande.isnewstatut)
             {
-                cDemande.UpdateNotif(true, cDemande.id_demande);
+                cDemande.UpdateNotif(true);
                 this.Close();
 
             }
@@ -195,7 +195,7 @@ namespace REL
             popup.ShowDialog();
             if (cDemande.isnewstatut)
             {
-                cDemande.UpdateNotif(true, cDemande.id_demande);
+                cDemande.UpdateNotif(true);
                 this.Close();
 
             }

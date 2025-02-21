@@ -66,7 +66,7 @@ namespace REL
         #region List 
         public DataTable listDemande(int id_user, int cbprioritaire)
         {
-            string query = $"select id_demande, Prioritaire, Objet_demande, Commentaire, type_demande, Duree_debut, Duree_fin, statut from demande where Id_Utilisateur= '{id_user}' and Prioritaire = '{cbprioritaire}';";
+            string query = $"select id_demande, Prioritaire, Objet_demande, Commentaire, type_demande, Duree_debut, Duree_fin, statut from demande where Id_Utilisateur= '{id_user}' and Prioritaire = '{cbprioritaire}' AND statut <> 6 AND statut <> 4;";
             DataTable result = cBdd.ExecuteSelectToDataTable(query);
             return result;
         }
@@ -175,29 +175,55 @@ namespace REL
 
         #region Notif
 
-        public static void UpdateNotif(bool SwitchNotif, int demande_id)
+        public static void UpdateNotif(bool SwitchNotif)
         {
             if (SwitchNotif)
             {
 
-                string query1 = $"update demande set Adminnotif = '1' where id_demande ='{demande_id}';";
+                string query1 = $"update demande set Adminnotif = '1' where id_demande ='{cDemande.id_demande}';";
 
                 cBdd.ExecuteQuery(query1);
 
-                string query2 = $"update demande set Usernotif = '0' where id_demande ='{demande_id}' ;";
+                string query2 = $"update demande set Usernotif = '0' where id_demande ='{cDemande.id_demande}' ;";
 
                 cBdd.ExecuteQuery(query2);
             }
             else
             {
-                string query1 = $"update demande set Adminnotif = '0' where id_demande ='{demande_id}';";
+                string query1 = $"update demande set Adminnotif = '0' where id_demande ='{cDemande.id_demande}';";
 
                 cBdd.ExecuteQuery(query1);
 
-                string query2 = $"update demande set Usernotif = '1' where id_demande ='{demande_id}';";
+                string query2 = $"update demande set Usernotif = '1' where id_demande ='{cDemande.id_demande}';";
 
                 cBdd.ExecuteQuery(query2);
             }
+
+        }
+
+        public static void UpdateHistoNotif(bool on)
+        {
+            if (on)
+            {
+
+                string query1 = $"update demande set Histonotif = '1' where id_demande ='{cDemande.id_demande}';";
+
+                cBdd.ExecuteQuery(query1);
+
+            }
+            else
+            {
+                string query1 = $"update demande set Histonotif = '0' where id_utilisateur ='{cUtilisateur.user_id}';";
+
+                cBdd.ExecuteQuery(query1);
+
+            }
+            string query2 = $"update demande set Adminnotif = '0' where id_demande ='{cDemande.id_demande}';";
+
+            cBdd.ExecuteQuery(query2);
+            string query3 = $"update demande set Usernotif = '0' where id_demande ='{cDemande.id_demande}' ;";
+
+            cBdd.ExecuteQuery(query3);
 
         }
 
@@ -214,6 +240,16 @@ namespace REL
         public static int NotifDemande()
         {
             string query = $"select count(Usernotif) from demande where Usernotif = 1 and id_utilisateur = '{cUtilisateur.user_id}';";
+
+            int result = cBdd.ExecuteQuery2(query);
+
+            return result;
+        }
+
+        public static int NotifHistorique()
+        {
+            int type = cUtilisateur.GetAccounType();
+            string query = $"select count(Histonotif) from demande where Histonotif = 1 and id_utilisateur = '{cUtilisateur.user_id}';";
 
             int result = cBdd.ExecuteQuery2(query);
 

@@ -15,12 +15,12 @@ namespace REL
         }
         private string name;
         private string prenom;
-        private string dateDeNaissance;   // Nullable car SQL peut permettre NULL
-        private string numero;      // Peut rester int, mais ajustable en string si besoin
+        private string dateDeNaissance;  
+        private int numero;     
         private string mail;
         private string password;
         private string adresse;
-        private string zip;
+        private int zip;
         private string ville;
         public static bool isAdmin { get; private set; }
         public static bool isRh { get; private set; }
@@ -37,18 +37,26 @@ namespace REL
         public cUtilisateur() { }
 
         // Constructeur complet
-        public cUtilisateur(string name,string prenom, string dateDeNaissance, string numero,string mail, string password,string adresse,string zip,string ville)
+        public cUtilisateur(int id_utilisateur)
         {
-         
-            this.name = name;
-            this.prenom = prenom;
-            this.dateDeNaissance = dateDeNaissance;
-            this.numero = numero;
-            this.mail = mail;
-            this.password = password;
-            this.adresse = adresse;
-            this.zip = zip;
-            this.ville = ville;
+            string query = $"SELECT Nom, Prenom, Date_de_naissance, Numero, Email, Adresse, Zip,Ville FROM utilisateur WHERE Id_Utilisateur = {id_utilisateur};";
+            
+
+            DataTable dt = cBdd.ExecuteSelectToDataTable(query);
+
+            if (dt.Rows.Count > 0)
+            {
+                DataRow row = dt.Rows[0];
+
+                this.name = Convert.ToString(row["Nom"]);
+                this.prenom = Convert.ToString(row["Prenom"]);
+                this.dateDeNaissance = Convert.ToString(row["Date_de_naissance"]);
+                this.Numero = Convert.ToInt32(row["Numero"]);
+                this.mail = Convert.ToString(row["Email"]);
+                this.adresse = Convert.ToString(row["Adresse"]);
+                this.zip = Convert.ToInt32(row["Zip"]);
+                this.ville = Convert.ToString(row["Ville"]);
+            }
 
         }
 
@@ -72,7 +80,7 @@ namespace REL
             set { dateDeNaissance = value; }
         }
 
-        public string Numero
+        public int Numero
         {
             get { return numero; }
             set { numero = value; }
@@ -96,7 +104,7 @@ namespace REL
             set { adresse = value; }
         }
 
-        public string Zip
+        public int Zip
         {
             get { return zip; }
             set { zip = value; }

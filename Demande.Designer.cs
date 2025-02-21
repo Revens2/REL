@@ -37,6 +37,7 @@
             btvalidate = new Button();
             notifyIcon1 = new NotifyIcon(components);
             lbcompteur = new Label();
+            btexport = new Button();
             ((System.ComponentModel.ISupportInitialize)gv_list).BeginInit();
             SuspendLayout();
             // 
@@ -129,11 +130,29 @@
             lbcompteur.TabIndex = 34;
             lbcompteur.Text = "1";
             // 
+            // btexport
+            // 
+            btexport.BackColor = Color.Black;
+            btexport.Cursor = Cursors.Hand;
+            btexport.FlatAppearance.BorderSize = 0;
+            btexport.FlatStyle = FlatStyle.Flat;
+            btexport.Font = new Font("Arial", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btexport.ForeColor = Color.White;
+            btexport.Location = new Point(559, 225);
+            btexport.Margin = new Padding(2);
+            btexport.Name = "btexport";
+            btexport.Size = new Size(150, 34);
+            btexport.TabIndex = 35;
+            btexport.Text = "Export en PDF";
+            btexport.UseVisualStyleBackColor = false;
+            btexport.Click += btexport_Click;
+            // 
             // Demande
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1363, 669);
+            Controls.Add(btexport);
             Controls.Add(lbcompteur);
             Controls.Add(btvalidate);
             Controls.Add(lbdemande);
@@ -157,5 +176,6 @@
         private Button btvalidate;
         private NotifyIcon notifyIcon1;
         private Label lbcompteur;
+        private Button btexport;
     }
 }

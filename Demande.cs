@@ -8,6 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.Devices;
+using System.IO;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 
 namespace REL
 {
@@ -41,7 +44,7 @@ namespace REL
 
         }
 
-        private void Bindlist()
+        public void Bindlist()
         {
             cDemande dem = new cDemande();
             gv_list.DataSource = dem.listDemande(cUtilisateur.user_id, cBdd.CbConvert(cbprioritaire.Checked));
@@ -50,7 +53,7 @@ namespace REL
 
             foreach (DataGridViewRow row in gv_list.Rows)
             {
-                if (row.Cells["statut"].Value != null && row.Cells["statut"].Value.ToString() == "2") 
+                if (row.Cells["statut"].Value != null && row.Cells["statut"].Value.ToString() == "2")
                 {
                     compteur++;
                 }
@@ -126,6 +129,71 @@ namespace REL
                 }
             }
         }
-    }
 
+        private void btexport_Click(object sender, EventArgs e)
+        {
+            string filePath = Path.Combine(Application.StartupPath, "ExportDemandes.pdf");
+            ExportGridToPdf(filePath);
+        }
+        public void ExportGridToPdf(string filePath)
+        {
+            // Définir la page du document avec des marges
+            Document document = new Document(PageSize.A4, 10f, 10f, 20f, 20f);
+            PdfWriter writer = PdfWriter.GetInstance(document, new FileStream(filePath, FileMode.Create));
+            document.Open();
+
+            // Déterminer le nombre de colonnes visibles dans gv_list
+            int visibleColumnCount = 0;
+            foreach (DataGridViewColumn col in gv_list.Columns)
+            {
+                if (col.Visible)
+                    visibleColumnCount++;
+            }
+
+            // Créer un tableau PDF avec autant de colonnes que de colonnes visibles
+            PdfPTable pdfTable = new PdfPTable(visibleColumnCount);
+            pdfTable.WidthPercentage = 100;
+            pdfTable.SpacingBefore = 10f;
+            pdfTable.SpacingAfter = 10f;
+
+            // Ajouter les en-têtes
+            foreach (DataGridViewColumn column in gv_list.Columns)
+            {
+                if (column.Visible)
+                {
+                    PdfPCell headerCell = new PdfPCell(new Phrase(column.HeaderText, FontFactory.GetFont("Arial", "10", Font.Bold)));
+                    headerCell.HorizontalAlignment = Element.ALIGN_CENTER;
+                    headerCell.BackgroundColor = new BaseColor(240, 240, 240);
+                    pdfTable.AddCell(headerCell);
+                }
+            }
+
+            // Ajouter les lignes du DataGridView
+            foreach (DataGridViewRow row in gv_list.Rows)
+            {
+                // Sauter la ligne de création de nouvelle ligne
+                if (row.IsNewRow)
+                    continue;
+
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    // Exporter uniquement les cellules appartenant à une colonne visible
+                    if (cell.OwningColumn.Visible)
+                    {
+                        string cellText = cell.Value != null ? cell.Value.ToString() : "";
+                        PdfPCell pdfCell = new PdfPCell(new Phrase(cellText, FontFactory.GetFont("Arial", "10", Font.Bold)));
+                        pdfCell.HorizontalAlignment = Element.ALIGN_CENTER;
+                        pdfTable.AddCell(pdfCell);
+                    }
+                }
+            }
+
+            // Ajouter le tableau au document
+            document.Add(pdfTable);
+            document.Close();
+            writer.Close();
+        }
+
+    }
 }
+    

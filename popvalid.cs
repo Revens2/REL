@@ -59,36 +59,38 @@ namespace REL
 
                 case 1:
                     cDemande.valide(cDemande.id_demande);
-                    cDemande.isnewstatut = true;
-                    this.Close();
+                    cDemande.UpdateNotif(false);
                     break;
 
                 case 2:
 
                     cDemande.attente(cDemande.id_demande, tbmess.Text);
-                    cDemande.isnewstatut = true;
-                    this.Close();
+                    
                     break;
                 case 3:
 
                     cDemande.delete(cDemande.id_demande, tbmess.Text);
-                    cDemande.isnewstatut = true;
-                    this.Close();
+                    cDemande.UpdateHistoNotif(false);
+
                     break;
 
                 case 4:
                     cDemande.cloture(cDemande.id_demande, tbmess.Text);
-                    cDemande.isnewstatut = true;
-                    this.Close();
+                    cDemande.UpdateHistoNotif(false);
                     break;
 
                 case 5:
                     cDemande.valideRDV(cDemande.id_demande);
-                    cDemande.isnewstatut = true;
-                    cDemande.UpdateNotif(true, cDemande.id_demande);
-                    this.Close();
+                    cDemande.UpdateNotif(true);
                     break;
             }
+            menucs menu = new menucs();
+            menu.BindNotif();
+            Requete requete = new Requete();
+            requete.Invalidate();
+            requete.Update();
+            cDemande.isnewstatut = true;
+            this.Close();
         }
 
         private void btcancel_Click(object sender, EventArgs e)

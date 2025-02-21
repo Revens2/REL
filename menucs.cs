@@ -16,15 +16,18 @@ namespace REL
         {
             InitializeComponent();
             btrequete.Visible = (cUtilisateur.isAdmin || cUtilisateur.istypeService || cUtilisateur.isRh || cUtilisateur.isInfo || cUtilisateur.isPaie || cUtilisateur.istypeReunion || cUtilisateur.istypeVehicule);
+            cUtilisateur user = new cUtilisateur(cUtilisateur.User_id);
+            lbinfo.Text = $"{user.Name} {user.Prenom}";
             BindNotif();
         }
 
 
-        private void BindNotif()
+        public void BindNotif()
         {
             lbnotifdemande.Text = Convert.ToString(cDemande.NotifDemande());
             lbnotifgestion.Text = Convert.ToString(cDemande.NotifGestion());
-            if(lbnotifdemande.Text == "0")
+            lbnotifhisto.Text = Convert.ToString(cDemande.NotifHistorique()); 
+            if (lbnotifdemande.Text == "0")
             {
                 lbnotifdemande.Visible = false;
             }else
@@ -40,6 +43,15 @@ namespace REL
             { 
                 lbnotifgestion.Visible = true;
                     
+            }
+            if (lbnotifhisto.Text == "0")
+            {
+                lbnotifhisto.Visible = false;
+            }
+            else
+            {
+                lbnotifhisto.Visible = true;
+
             }
         }
 

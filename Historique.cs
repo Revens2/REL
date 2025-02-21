@@ -21,6 +21,7 @@ namespace REL
             menu = new menucs();
             menu.Dock = DockStyle.Top;
             this.Controls.Add(menu);
+            cDemande.UpdateHistoNotif(false);
         }
         private void Bindlist()
         {

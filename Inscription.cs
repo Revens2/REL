@@ -28,13 +28,13 @@ namespace REL
             string numero = tbnumero.Text;
             string dateDeNaissance = tbdate.Value.ToString("yyyy-MM-dd");
 
-            cUtilisateur monUser = new cUtilisateur(name, prenom, dateDeNaissance, numero, mail, password, adresse, zip, ville);
+            //cUtilisateur monUser = new cUtilisateur(name, prenom, dateDeNaissance, numero, mail, password, adresse, zip, ville);
 
-            if (string.IsNullOrEmpty(monUser.GetUserInfo()))
-            {
-                MessageBox.Show("remplie tout");
-                return;
-            }
+            //if (string.IsNullOrEmpty(monUser.GetUserInfo()))
+            //{
+            //    MessageBox.Show("remplie tout");
+            //    return;
+            //}
 
             if (cUtilisateur.Validregister(name, prenom, dateDeNaissance, mail, password, adresse, zip, ville, numero) > 0)
             {
