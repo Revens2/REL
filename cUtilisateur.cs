@@ -172,9 +172,13 @@ namespace REL
 
             int result = cBdd.ExecuteQuery(query);
 
-            string query2 = $"INSERT INTO Role (Id_utilisateur, IsUser) " +
-                           $"VALUES (SELECT LAST_INSERT_ID();, '{cUtilisateur.user_id}')";
-       cBdd.ExecuteQuery(query2);
+            string query2 = $"SELECT LAST_INSERT_ID() from utilisateur;";
+            int lastid = cBdd.ExecuteQuery2(query2);
+
+            string query3 = $"INSERT INTO Role (Id_utilisateur, IsUser) " +
+                          $"VALUES ('{lastid}', '{isUser}')";
+
+            cBdd.ExecuteQuery(query3);
             return result;
         }
 
