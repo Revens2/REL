@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
+using DrawingImage = System.Drawing.Image;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,11 +18,12 @@ namespace REL
     public partial class Demande : Form
     {
         private menucs menu;
+        private Dictionary<string, DrawingImage> statusIcons;
         public Demande()
         {
             InitializeComponent();
+            gv_list.DataBindingComplete += gv_list_DataBindingComplete;
             Bindlist();
-
             menu = new menucs();
             menu.Dock = DockStyle.Top;
             this.Controls.Add(menu);
@@ -41,16 +42,23 @@ namespace REL
             btnDelete.UseColumnTextForButtonValue = true;
 
             gv_list.Columns.Add(btnDelete);
-
-
         }
+
+        private void gv_list_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+{
+    ApplyStatusIcons();
+}
 
         public void Bindlist()
         {
             cDemande dem = new cDemande();
             gv_list.DataSource = dem.listDemande(cUtilisateur.user_id, cBdd.CbConvert(cbprioritaire.Checked));
+            gv_list.Columns["Prioritaire"].Visible = false;
+            gv_list.Columns["id_demande"].Visible = false;
+            //gv_list.Columns["statut"].Visible = false;
 
             int compteur = 0;
+
 
             foreach (DataGridViewRow row in gv_list.Rows)
             {
@@ -70,8 +78,47 @@ namespace REL
                 lbcompteur.Visible = false;
                 btvalidate.Visible = false;
             }
+        }
+
+            
+
+        private void ApplyStatusIcons()
+        {
+            statusIcons = new Dictionary<string, DrawingImage>();
+            string iconsFolder = Path.Combine(Application.StartupPath, "icons");
+
+            statusIcons["1"] = DrawingImage.FromFile(Path.Combine(iconsFolder, "enregistre.png"));
+            statusIcons["2"] = DrawingImage.FromFile(Path.Combine(iconsFolder, "accepte.png"));
+            statusIcons["3"] = DrawingImage.FromFile(Path.Combine(iconsFolder, "attente.png"));
+            statusIcons["4"] = DrawingImage.FromFile(Path.Combine(iconsFolder, "annule.png"));
+            statusIcons["5"] = DrawingImage.FromFile(Path.Combine(iconsFolder, "encours.png"));
+            statusIcons["6"] = DrawingImage.FromFile(Path.Combine(iconsFolder, "termine.png"));
+
+            if (!gv_list.Columns.Contains("statutImage"))
+            {
+                DataGridViewImageColumn imgCol = new DataGridViewImageColumn();
+                imgCol.Name = "statutImage";
+                imgCol.HeaderText = "Statut";
+                gv_list.Columns.Add(imgCol);
+            }
+
+               
+   
 
 
+            foreach (DataGridViewRow row in gv_list.Rows)
+            {
+                if (!row.IsNewRow)
+                {
+                        if (statusIcons.ContainsKey(row.Cells["statut"].Value.ToString()))
+                        {
+                            row.Cells["statutImage"].Value = statusIcons[row.Cells["statut"].Value.ToString()];
+                        }
+                    
+                }
+            }
+
+            gv_list.Refresh();
         }
 
         private void btadd_Click(object sender, EventArgs e)

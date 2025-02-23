@@ -49,7 +49,7 @@ namespace REL
                 tbmail.Focus();
                 return;
             }
-            if (!IsValidEmail(mail))
+            if (!cUtilisateur.IsValidEmail(mail))
             {
                 MessageBox.Show("Veuillez saisir une adresse email valide.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 tbmail.Focus();
@@ -143,18 +143,7 @@ namespace REL
             }
         }
 
-        private bool IsValidEmail(string email)
-        {
-            try
-            {
-                var addr = new System.Net.Mail.MailAddress(email);
-                return addr.Address == email;
-            }
-            catch
-            {
-                return false;
-            }
-        }
+ 
 
 
         private void Inscription_Load(object sender, EventArgs e)

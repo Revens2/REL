@@ -32,6 +32,7 @@ namespace REL
         {
             gvrequest.Columns.Clear();
             gvrequest.DataSource = cDemande.listrequete(cbfinal.Checked);
+            gvrequest.Columns["id_demande"].Visible = false;
             if (cbfinal.Checked)
             {
                 DataGridViewButtonColumn Btnclo = new DataGridViewButtonColumn();

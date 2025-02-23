@@ -13,7 +13,7 @@ namespace REL
             ApplicationConfiguration.Initialize();
 
             Connexion mainForm = new Connexion();
-            mainForm.FormClosed += (s, e) => Environment.Exit(0); // Ferme proprement quand la fenêtre se ferme
+            mainForm.FormClosed += (s, e) => Application.Exit(); 
 
             Application.Run(mainForm);
         }

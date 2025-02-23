@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using Org.BouncyCastle.Asn1.Ocsp;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace REL
 {
@@ -88,6 +89,25 @@ namespace REL
 
         private void btsave_Click(object sender, EventArgs e)
         {
+
+            if (ddltype.SelectedIndex == 0)
+            {
+                MessageBox.Show("Veuillez selectionner le type de la demande.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ddltype.Focus();
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(tbobjet.Text))
+            {
+                MessageBox.Show("Veuillez saisir l'objet de la demande.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                tbobjet.Focus();
+                return;
+            }
+            if (tbdatedebut.Value >= tbdateend.Value)
+            {
+                MessageBox.Show("Veillez à ce que la date de début soit inférieur ou égale a la date de fin.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                tbobjet.Focus();
+                return;
+            }
             int super_id = 0;
 
             switch (ddltype.SelectedIndex)

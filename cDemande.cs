@@ -66,7 +66,7 @@ namespace REL
         #region List 
         public DataTable listDemande(int id_user, int cbprioritaire)
         {
-            string query = $"select id_demande, Prioritaire, Objet_demande, Commentaire, type_demande, Duree_debut, Duree_fin, statut from demande where Id_Utilisateur= '{id_user}' and Prioritaire = '{cbprioritaire}' AND statut <> 6 AND statut <> 4;";
+            string query = $"select id_demande, Prioritaire, statut, type_demande, Objet_demande, Commentaire, Duree_debut, Duree_fin from demande where Id_Utilisateur= '{id_user}' and Prioritaire = '{cbprioritaire}';";
             DataTable result = cBdd.ExecuteSelectToDataTable(query);
             return result;
         }
@@ -79,7 +79,7 @@ namespace REL
             {
                 statut = "d.statut = 5";
             }
-            string query = $" select d.id_demande,u.nom,u.prenom, d.statut, d.Objet_demande, d.duree_debut, d.duree_fin " +
+            string query = $" select d.id_demande,d.statut, u.nom,u.prenom, d.Objet_demande, d.duree_debut, d.duree_fin " +
              $"from demande d " +
              $"join utilisateur u on u.Id_Utilisateur = d.Id_Utilisateur " +
              $"where d.type_demande = '{type}' and {statut} order by statut;";

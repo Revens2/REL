@@ -67,7 +67,7 @@
             gv_list.Margin = new Padding(2);
             gv_list.Name = "gv_list";
             gv_list.RowHeadersWidth = 82;
-            gv_list.Size = new Size(1341, 375);
+            gv_list.Size = new Size(1140, 375);
             gv_list.TabIndex = 10;
             gv_list.CellContentClick += gv_list_CellContentClick;
             // 
