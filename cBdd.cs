@@ -87,10 +87,10 @@ namespace REL
 
         public static int CbConvert(bool cb)
         {
-            int result = 1;
+            int result = 0;
             if (cb)
             {
-                result = 0;
+                result = 1;
             }
             return result;
         }

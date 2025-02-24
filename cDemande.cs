@@ -132,6 +132,36 @@ namespace REL
 
         }
 
+        public static DataTable listbackcompletedemande(int demande_id)
+        {
+           
+            string query = $" select type_demande, objet_demande, Commentaire, Prioritaire, duree_debut, duree_fin, motif_att  from demande d where Id_Demande =  '{demande_id}';";
+
+            DataTable dt = cBdd.ExecuteSelectToDataTable(query);
+
+            if(dt.Rows.Count > 0)
+            {
+                DataRow row = dt.Rows[0];
+                int type = Convert.ToInt32(row["type_demande"]);
+                switch (type)
+                {
+                    case 1:
+                        string query2 = $"select name_service from services s join demande_services ds on s.id_service = ds.id_service where ds.id_demande = '{demande_id}';";
+                        DataTable result = cBdd.ExecuteSelectToDataTable(query2);
+                        return result;
+                    case 2:
+                        string query3 = $"select Nom_salle from reunion r join demande_reunion dr on r.id_reunion = dr.id_reunion where dr.id_demande = '{demande_id}';";
+                        DataTable result2 = cBdd.ExecuteSelectToDataTable(query3);
+                        return result2;
+                    case 3:
+                        string query4 = $"select marque, modele from vehicule v join demande_vehicule dv on v.id_vehicule = dv.id_vehicule where dv.id_demande = '{demande_id}';";
+                        DataTable result3 = cBdd.ExecuteSelectToDataTable(query4);
+                        return result3;
+                }
+            }
+            return dt;
+
+        }
         #endregion
 
 

@@ -55,7 +55,7 @@ namespace REL
             gv_list.DataSource = dem.listDemande(cUtilisateur.user_id, cBdd.CbConvert(cbprioritaire.Checked));
             gv_list.Columns["Prioritaire"].Visible = false;
             gv_list.Columns["id_demande"].Visible = false;
-            //gv_list.Columns["statut"].Visible = false;
+            gv_list.Columns["statut"].Visible = false;
 
             int compteur = 0;
 
@@ -167,7 +167,7 @@ namespace REL
 
             foreach (DataGridViewRow row in gv_list.Rows)
             {
-                if (row.Cells["statut"].Value != null && row.Cells["UserNotif"].Value.ToString() == "1")
+                if (row.Cells["statut"].Value != null && row.Cells["statut"].Value.ToString() == "2")
 
                 {
                     cDemande.id_demande = Convert.ToInt32(row.Cells["id_demande"].Value);
