@@ -138,30 +138,34 @@ namespace REL
             string query = $" select type_demande, objet_demande, Commentaire, Prioritaire, duree_debut, duree_fin, motif_att  from demande d where Id_Demande =  '{demande_id}';";
 
             DataTable dt = cBdd.ExecuteSelectToDataTable(query);
-
-            if(dt.Rows.Count > 0)
+            dt.Columns.Add("detailtype", typeof(string));
+            DataTable dtDetail= null;
+            if (dt.Rows.Count > 0)
             {
                 DataRow row = dt.Rows[0];
                 int type = Convert.ToInt32(row["type_demande"]);
+                
                 switch (type)
                 {
                     case 1:
-                        string query2 = $"select name_service from services s join demande_services ds on s.id_service = ds.id_service where ds.id_demande = '{demande_id}';";
-                        DataTable result = cBdd.ExecuteSelectToDataTable(query2);
-                        return result;
+                        string query2 = $"select name_service as detailtype from services s join demande_services ds on s.id_service = ds.id_service where ds.id_demande = '{demande_id}';";
+                        dtDetail = cBdd.ExecuteSelectToDataTable(query2);
+                        break;
                     case 2:
-                        string query3 = $"select Nom_salle from reunion r join demande_reunion dr on r.id_reunion = dr.id_reunion where dr.id_demande = '{demande_id}';";
-                        DataTable result2 = cBdd.ExecuteSelectToDataTable(query3);
-                        return result2;
+                        string query3 = $"select Nom_salle as detailtype from reunion r join demande_reunion dr on r.id_reunion = dr.id_reunion where dr.id_demande = '{demande_id}';";
+                        dtDetail = cBdd.ExecuteSelectToDataTable(query3);
+                        break;
                     case 3:
-                        string query4 = $"select marque, modele from vehicule v join demande_vehicule dv on v.id_vehicule = dv.id_vehicule where dv.id_demande = '{demande_id}';";
-                        DataTable result3 = cBdd.ExecuteSelectToDataTable(query4);
-                        return result3;
+                        string query4 = $"select as detailtype modele from vehicule v join demande_vehicule dv on v.id_vehicule = dv.id_vehicule where dv.id_demande = '{demande_id}';";
+                        dtDetail = cBdd.ExecuteSelectToDataTable(query4);
+                        break;
                 }
+                dt.Rows[0]["detailtype"] = dtDetail.Rows[0]["detailtype"].ToString();
             }
-            return dt;
 
+            return dt;
         }
+
         #endregion
 
 

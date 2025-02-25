@@ -15,6 +15,12 @@ namespace REL
         public popupconfirmdem()
         {
             InitializeComponent();
+            Bindlist();
+        }
+        private void Bindlist()
+        {
+            DataTable dtdata = cDemande.listbackcompletedemande(cDemande.id_demande);
+            int oui = dtdata.Rows.Count;
         }
 
         private void btcancel_Click(object sender, EventArgs e)

@@ -172,7 +172,7 @@ namespace REL
                 {
                     cDemande.id_demande = Convert.ToInt32(row.Cells["id_demande"].Value);
 
-                    popupdemande popup = new popupdemande();
+                    popupconfirmdem popup = new popupconfirmdem();
                     popup.ShowDialog();
                     Bindlist();
                 }
