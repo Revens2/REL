@@ -41,12 +41,12 @@
             label3 = new Label();
             lbtypedata = new Label();
             lbobjetdata = new Label();
-            lbpriodata = new Label();
             lbcomdata = new Label();
             lbdebutdata = new Label();
             lbfindata = new Label();
             lbservicedata = new Label();
             lbmotifdata = new Label();
+            cbprio = new CheckBox();
             SuspendLayout();
             // 
             // lbtype
@@ -171,15 +171,6 @@
             lbobjetdata.TabIndex = 13;
             lbobjetdata.Text = "objetdata";
             // 
-            // lbpriodata
-            // 
-            lbpriodata.AutoSize = true;
-            lbpriodata.Location = new Point(143, 131);
-            lbpriodata.Name = "lbpriodata";
-            lbpriodata.Size = new Size(51, 15);
-            lbpriodata.TabIndex = 14;
-            lbpriodata.Text = "priodata";
-            // 
             // lbcomdata
             // 
             lbcomdata.AutoSize = true;
@@ -225,17 +216,27 @@
             lbmotifdata.TabIndex = 19;
             lbmotifdata.Text = "motifdata";
             // 
+            // cbprio
+            // 
+            cbprio.AutoSize = true;
+            cbprio.Enabled = false;
+            cbprio.Location = new Point(167, 132);
+            cbprio.Name = "cbprio";
+            cbprio.Size = new Size(15, 14);
+            cbprio.TabIndex = 20;
+            cbprio.UseVisualStyleBackColor = true;
+            // 
             // popupconfirmdem
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(700, 338);
+            Controls.Add(cbprio);
             Controls.Add(lbmotifdata);
             Controls.Add(lbservicedata);
             Controls.Add(lbfindata);
             Controls.Add(lbdebutdata);
             Controls.Add(lbcomdata);
-            Controls.Add(lbpriodata);
             Controls.Add(lbobjetdata);
             Controls.Add(lbtypedata);
             Controls.Add(label3);
@@ -271,11 +272,11 @@
         private Label label3;
         private Label lbtypedata;
         private Label lbobjetdata;
-        private Label lbpriodata;
         private Label lbcomdata;
         private Label lbdebutdata;
         private Label lbfindata;
         private Label lbservicedata;
         private Label lbmotifdata;
+        private CheckBox cbprio;
     }
 }

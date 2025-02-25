@@ -20,8 +20,18 @@ namespace REL
         private void Bindlist()
         {
             DataTable dtdata = cDemande.listbackcompletedemande(cDemande.id_demande);
-            int oui = dtdata.Rows.Count;
+            DataRow row = dtdata.Rows[0];
+
+            lbtypedata.Text = row["type_demande"].ToString();
+            lbobjetdata.Text = row["objet_demande"].ToString();
+            cbprio.Checked = Convert.ToBoolean(row["Prioritaire"]);
+            lbcomdata.Text = row["Commentaire"].ToString();
+            lbdebutdata.Text = row["duree_debut"].ToString();
+            lbfindata.Text = row["duree_fin"].ToString();
+            lbservicedata.Text = row["detailtype"].ToString();
+            lbmotifdata.Text = row["motif_att"].ToString();
         }
+        
 
         private void btcancel_Click(object sender, EventArgs e)
         {
