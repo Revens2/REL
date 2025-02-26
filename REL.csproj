@@ -22,6 +22,9 @@
     <Compile Update="Account.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="BaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 
 </Project>

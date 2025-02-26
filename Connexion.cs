@@ -5,11 +5,11 @@ using MySql.Data.MySqlClient;
 
 namespace REL
 {
-    public partial class Connexion : Form
+    public partial class Connexion : BaseForm
     {
-        
 
-        
+
+
         public Connexion()
         {
             InitializeComponent();
@@ -17,7 +17,7 @@ namespace REL
 
         private void btnValidation_Click(object sender, EventArgs e)
         {
-            
+
             string username = tbusername.Text;
             string password = tbmdp.Text;
 
@@ -41,7 +41,7 @@ namespace REL
             //    return;
             //}
             cUtilisateur monUser = new cUtilisateur();
-       
+
 
             if (monUser.validLogin(username, password))
             {
@@ -71,7 +71,12 @@ namespace REL
             this.Hide();
             Inscription inscri = new Inscription();
             inscri.ShowDialog();
-            
+
+        }
+
+        private void imgaccount_Click(object sender, EventArgs e)
+        {
+            imgaccount.Image = Image.FromFile(Path.Combine(Application.StartupPath, "icons", "utilisateur.png"));
         }
     }
 }
