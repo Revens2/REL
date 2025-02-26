@@ -62,9 +62,9 @@
             // 
             // imgaccount
             // 
-            imgaccount.Location = new Point(0, 35);
+            imgaccount.Location = new Point(3, 35);
             imgaccount.Name = "imgaccount";
-            imgaccount.Size = new Size(46, 29);
+            imgaccount.Size = new Size(43, 29);
             imgaccount.TabIndex = 6;
             imgaccount.TabStop = false;
             // 

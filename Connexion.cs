@@ -13,6 +13,8 @@ namespace REL
         public Connexion()
         {
             InitializeComponent();
+            imgaccount.Image = Image.FromFile(Path.Combine("icons", "utilisateur.png"));
+
         }
 
         private void btnValidation_Click(object sender, EventArgs e)
@@ -74,10 +76,7 @@ namespace REL
 
         }
 
-        private void imgaccount_Click(object sender, EventArgs e)
-        {
-            imgaccount.Image = Image.FromFile(Path.Combine(Application.StartupPath, "icons", "utilisateur.png"));
-        }
+
     }
 }
 
