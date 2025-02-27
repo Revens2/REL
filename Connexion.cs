@@ -13,7 +13,6 @@ namespace REL
         public Connexion()
         {
             InitializeComponent();
-            imgaccount.Image = Image.FromFile(Path.Combine("icons", "utilisateur.png"));
 
         }
 
@@ -76,7 +75,7 @@ namespace REL
 
         }
 
-
+      
     }
 }
 

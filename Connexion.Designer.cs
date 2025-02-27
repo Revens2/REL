@@ -20,8 +20,10 @@
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Connexion));
             labelTitle = new Label();
             panelLogin = new Panel();
+            pictureBox1 = new PictureBox();
             imgaccount = new PictureBox();
             lbusername = new Label();
             tbusername = new TextBox();
@@ -30,6 +32,7 @@
             tbmdp = new TextBox();
             btinscri = new Button();
             panelLogin.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)imgaccount).BeginInit();
             SuspendLayout();
             // 
@@ -47,6 +50,7 @@
             // panelLogin
             // 
             panelLogin.BackColor = Color.FromArgb(50, 50, 50);
+            panelLogin.Controls.Add(pictureBox1);
             panelLogin.Controls.Add(imgaccount);
             panelLogin.Controls.Add(lbusername);
             panelLogin.Controls.Add(tbusername);
@@ -57,14 +61,27 @@
             panelLogin.Location = new Point(248, 196);
             panelLogin.Margin = new Padding(3, 2, 3, 2);
             panelLogin.Name = "panelLogin";
-            panelLogin.Size = new Size(306, 150);
+            panelLogin.Size = new Size(304, 170);
             panelLogin.TabIndex = 1;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.BackColor = Color.White;
+            pictureBox1.ErrorImage = (Image)resources.GetObject("pictureBox1.ErrorImage");
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(37, 96);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(21, 24);
+            pictureBox1.TabIndex = 7;
+            pictureBox1.TabStop = false;
             // 
             // imgaccount
             // 
-            imgaccount.Location = new Point(3, 35);
+            imgaccount.BackColor = Color.White;
+            imgaccount.Image = (Image)resources.GetObject("imgaccount.Image");
+            imgaccount.Location = new Point(37, 39);
             imgaccount.Name = "imgaccount";
-            imgaccount.Size = new Size(43, 29);
+            imgaccount.Size = new Size(29, 28);
             imgaccount.TabIndex = 6;
             imgaccount.TabStop = false;
             // 
@@ -85,8 +102,10 @@
             tbusername.Font = new Font("Arial", 12F);
             tbusername.Location = new Point(36, 38);
             tbusername.Margin = new Padding(3, 2, 3, 2);
+            tbusername.MinimumSize = new Size(100, 30);
             tbusername.Name = "tbusername";
-            tbusername.Size = new Size(245, 26);
+            tbusername.PlaceholderText = "Username";
+            tbusername.Size = new Size(245, 30);
             tbusername.TabIndex = 1;
             // 
             // btvalidated
@@ -97,7 +116,7 @@
             btvalidated.FlatStyle = FlatStyle.Flat;
             btvalidated.Font = new Font("Arial", 12F, FontStyle.Bold);
             btvalidated.ForeColor = Color.White;
-            btvalidated.Location = new Point(165, 120);
+            btvalidated.Location = new Point(166, 141);
             btvalidated.Margin = new Padding(3, 2, 3, 2);
             btvalidated.Name = "btvalidated";
             btvalidated.Size = new Size(105, 26);
@@ -111,7 +130,7 @@
             lbmdp.AutoSize = true;
             lbmdp.Font = new Font("Arial", 12F);
             lbmdp.ForeColor = Color.White;
-            lbmdp.Location = new Point(36, 66);
+            lbmdp.Location = new Point(36, 70);
             lbmdp.Name = "lbmdp";
             lbmdp.Size = new Size(103, 18);
             lbmdp.TabIndex = 2;
@@ -121,11 +140,13 @@
             // 
             tbmdp.BorderStyle = BorderStyle.FixedSingle;
             tbmdp.Font = new Font("Arial", 12F);
-            tbmdp.Location = new Point(36, 90);
+            tbmdp.Location = new Point(36, 94);
             tbmdp.Margin = new Padding(3, 2, 3, 2);
+            tbmdp.Multiline = true;
             tbmdp.Name = "tbmdp";
             tbmdp.PasswordChar = '*';
-            tbmdp.Size = new Size(245, 26);
+            tbmdp.PlaceholderText = "Passeword";
+            tbmdp.Size = new Size(245, 30);
             tbmdp.TabIndex = 3;
             // 
             // btinscri
@@ -136,7 +157,7 @@
             btinscri.FlatStyle = FlatStyle.Flat;
             btinscri.Font = new Font("Arial", 12F, FontStyle.Bold);
             btinscri.ForeColor = Color.White;
-            btinscri.Location = new Point(54, 120);
+            btinscri.Location = new Point(37, 141);
             btinscri.Margin = new Padding(3, 2, 3, 2);
             btinscri.Name = "btinscri";
             btinscri.Size = new Size(105, 26);
@@ -157,9 +178,10 @@
             Margin = new Padding(3, 2, 3, 2);
             Name = "Connexion";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Page de Connexion";
+            Text = "Connexion";
             panelLogin.ResumeLayout(false);
             panelLogin.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)imgaccount).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -175,5 +197,6 @@
         private TextBox tbmdp;
         private Button btinscri;
         private PictureBox imgaccount;
+        private PictureBox pictureBox1;
     }
 }
