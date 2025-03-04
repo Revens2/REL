@@ -79,10 +79,15 @@ namespace REL
             {
                 statut = "d.statut = 5";
             }
+               string type_demande = $"d.type_demande = '{type}' and";
+            if (cUtilisateur.isAdmin)
+            {
+                 type_demande = "";
+            }
             string query = $" select d.id_demande,d.statut, u.nom,u.prenom, d.Objet_demande, d.duree_debut, d.duree_fin " +
              $"from demande d " +
              $"join utilisateur u on u.Id_Utilisateur = d.Id_Utilisateur " +
-             $"where d.type_demande = '{type}' and {statut} order by statut;";
+             $"where {type_demande} {statut} order by statut;";
 
             DataTable result = cBdd.ExecuteSelectToDataTable(query);
             return result;
