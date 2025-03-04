@@ -41,9 +41,9 @@
             labelTitle.AutoSize = true;
             labelTitle.Font = new Font("Arial", 18F, FontStyle.Bold);
             labelTitle.ForeColor = Color.White;
-            labelTitle.Location = new Point(266, 128);
+            labelTitle.Location = new Point(304, 171);
             labelTitle.Name = "labelTitle";
-            labelTitle.Size = new Size(286, 29);
+            labelTitle.Size = new Size(354, 35);
             labelTitle.TabIndex = 0;
             labelTitle.Text = "Veuillez vous connecter";
             // 
@@ -58,10 +58,9 @@
             panelLogin.Controls.Add(lbmdp);
             panelLogin.Controls.Add(tbmdp);
             panelLogin.Controls.Add(btinscri);
-            panelLogin.Location = new Point(248, 196);
-            panelLogin.Margin = new Padding(3, 2, 3, 2);
+            panelLogin.Location = new Point(283, 261);
             panelLogin.Name = "panelLogin";
-            panelLogin.Size = new Size(304, 170);
+            panelLogin.Size = new Size(347, 227);
             panelLogin.TabIndex = 1;
             // 
             // pictureBox1
@@ -69,9 +68,10 @@
             pictureBox1.BackColor = Color.White;
             pictureBox1.ErrorImage = (Image)resources.GetObject("pictureBox1.ErrorImage");
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(37, 96);
+            pictureBox1.Location = new Point(42, 129);
+            pictureBox1.Margin = new Padding(3, 4, 3, 4);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(21, 24);
+            pictureBox1.Size = new Size(24, 28);
             pictureBox1.TabIndex = 7;
             pictureBox1.TabStop = false;
             // 
@@ -79,9 +79,10 @@
             // 
             imgaccount.BackColor = Color.White;
             imgaccount.Image = (Image)resources.GetObject("imgaccount.Image");
-            imgaccount.Location = new Point(37, 39);
+            imgaccount.Location = new Point(43, 53);
+            imgaccount.Margin = new Padding(3, 4, 3, 4);
             imgaccount.Name = "imgaccount";
-            imgaccount.Size = new Size(29, 28);
+            imgaccount.Size = new Size(33, 26);
             imgaccount.TabIndex = 6;
             imgaccount.TabStop = false;
             // 
@@ -90,9 +91,9 @@
             lbusername.AutoSize = true;
             lbusername.Font = new Font("Arial", 12F);
             lbusername.ForeColor = Color.White;
-            lbusername.Location = new Point(36, 18);
+            lbusername.Location = new Point(41, 24);
             lbusername.Name = "lbusername";
-            lbusername.Size = new Size(123, 18);
+            lbusername.Size = new Size(154, 23);
             lbusername.TabIndex = 0;
             lbusername.Text = "Nom d'utilisateur";
             // 
@@ -100,13 +101,13 @@
             // 
             tbusername.BorderStyle = BorderStyle.FixedSingle;
             tbusername.Font = new Font("Arial", 12F);
-            tbusername.Location = new Point(36, 38);
-            tbusername.Margin = new Padding(3, 2, 3, 2);
-            tbusername.MinimumSize = new Size(100, 30);
+            tbusername.Location = new Point(41, 51);
+            tbusername.MinimumSize = new Size(114, 30);
             tbusername.Name = "tbusername";
             tbusername.PlaceholderText = "Username";
-            tbusername.Size = new Size(245, 30);
+            tbusername.Size = new Size(280, 30);
             tbusername.TabIndex = 1;
+            tbusername.TextAlign = HorizontalAlignment.Center;
             // 
             // btvalidated
             // 
@@ -116,10 +117,9 @@
             btvalidated.FlatStyle = FlatStyle.Flat;
             btvalidated.Font = new Font("Arial", 12F, FontStyle.Bold);
             btvalidated.ForeColor = Color.White;
-            btvalidated.Location = new Point(166, 141);
-            btvalidated.Margin = new Padding(3, 2, 3, 2);
+            btvalidated.Location = new Point(190, 188);
             btvalidated.Name = "btvalidated";
-            btvalidated.Size = new Size(105, 26);
+            btvalidated.Size = new Size(120, 35);
             btvalidated.TabIndex = 4;
             btvalidated.Text = "Valider";
             btvalidated.UseVisualStyleBackColor = false;
@@ -130,9 +130,9 @@
             lbmdp.AutoSize = true;
             lbmdp.Font = new Font("Arial", 12F);
             lbmdp.ForeColor = Color.White;
-            lbmdp.Location = new Point(36, 70);
+            lbmdp.Location = new Point(41, 93);
             lbmdp.Name = "lbmdp";
-            lbmdp.Size = new Size(103, 18);
+            lbmdp.Size = new Size(131, 23);
             lbmdp.TabIndex = 2;
             lbmdp.Text = "Mot de passe";
             // 
@@ -140,14 +140,14 @@
             // 
             tbmdp.BorderStyle = BorderStyle.FixedSingle;
             tbmdp.Font = new Font("Arial", 12F);
-            tbmdp.Location = new Point(36, 94);
-            tbmdp.Margin = new Padding(3, 2, 3, 2);
+            tbmdp.Location = new Point(41, 128);
             tbmdp.Multiline = true;
             tbmdp.Name = "tbmdp";
             tbmdp.PasswordChar = '*';
             tbmdp.PlaceholderText = "Passeword";
-            tbmdp.Size = new Size(245, 30);
+            tbmdp.Size = new Size(280, 32);
             tbmdp.TabIndex = 3;
+            tbmdp.TextAlign = HorizontalAlignment.Center;
             // 
             // btinscri
             // 
@@ -157,10 +157,9 @@
             btinscri.FlatStyle = FlatStyle.Flat;
             btinscri.Font = new Font("Arial", 12F, FontStyle.Bold);
             btinscri.ForeColor = Color.White;
-            btinscri.Location = new Point(37, 141);
-            btinscri.Margin = new Padding(3, 2, 3, 2);
+            btinscri.Location = new Point(42, 188);
             btinscri.Name = "btinscri";
-            btinscri.Size = new Size(105, 26);
+            btinscri.Size = new Size(120, 35);
             btinscri.TabIndex = 5;
             btinscri.Text = "Inscription";
             btinscri.UseVisualStyleBackColor = false;
@@ -168,14 +167,13 @@
             // 
             // Connexion
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(40, 40, 40);
-            ClientSize = new Size(845, 441);
+            ClientSize = new Size(966, 588);
             Controls.Add(labelTitle);
             Controls.Add(panelLogin);
             FormBorderStyle = FormBorderStyle.FixedDialog;
-            Margin = new Padding(3, 2, 3, 2);
             Name = "Connexion";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Connexion";
