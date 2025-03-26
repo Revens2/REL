@@ -18,9 +18,10 @@ namespace REL
 
         private void btnValidation_Click(object sender, EventArgs e)
         {
+            cUtilisateur cUtilisateur = new cUtilisateur();
 
-            string username = tbusername.Text;
-            string password = tbmdp.Text;
+            cUtilisateur.Mail = tbusername.Text;
+            cUtilisateur.Password = tbmdp.Text;
 
             // remettre ça avant d'envoyer pour l'exam et modif les données utilisateur en base
             //if (string.IsNullOrWhiteSpace(username))
@@ -41,10 +42,10 @@ namespace REL
             //    tbmdp.Focus();
             //    return;
             //}
-            cUtilisateur monUser = new cUtilisateur();
+            
 
 
-            if (monUser.validLogin(username, password))
+            if (cUtilisateur.validLogin())
             {
                 MessageBox.Show("bv t co ");
 

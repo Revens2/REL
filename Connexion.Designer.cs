@@ -71,7 +71,7 @@
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.Location = new Point(37, 97);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(21, 21);
+            pictureBox1.Size = new Size(21, 23);
             pictureBox1.TabIndex = 7;
             pictureBox1.TabStop = false;
             // 
@@ -79,9 +79,9 @@
             // 
             imgaccount.BackColor = Color.White;
             imgaccount.Image = (Image)resources.GetObject("imgaccount.Image");
-            imgaccount.Location = new Point(38, 40);
+            imgaccount.Location = new Point(38, 41);
             imgaccount.Name = "imgaccount";
-            imgaccount.Size = new Size(29, 20);
+            imgaccount.Size = new Size(29, 25);
             imgaccount.TabIndex = 6;
             imgaccount.TabStop = false;
             // 
@@ -105,7 +105,7 @@
             tbusername.MinimumSize = new Size(100, 30);
             tbusername.Name = "tbusername";
             tbusername.PlaceholderText = "Username";
-            tbusername.Size = new Size(245, 26);
+            tbusername.Size = new Size(245, 30);
             tbusername.TabIndex = 1;
             tbusername.TextAlign = HorizontalAlignment.Center;
             // 
@@ -147,7 +147,7 @@
             tbmdp.Name = "tbmdp";
             tbmdp.PasswordChar = '*';
             tbmdp.PlaceholderText = "Passeword";
-            tbmdp.Size = new Size(245, 24);
+            tbmdp.Size = new Size(245, 26);
             tbmdp.TabIndex = 3;
             tbmdp.TextAlign = HorizontalAlignment.Center;
             // 
@@ -181,7 +181,6 @@
             Name = "Connexion";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Connexion";
-            Load += Connexion_Load;
             panelLogin.ResumeLayout(false);
             panelLogin.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

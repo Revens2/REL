@@ -5,7 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
+using Mysqlx.Session;
 using MySqlX.XDevAPI.Common;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace REL
 {
@@ -101,26 +103,46 @@ namespace REL
         }
 
 
-
-        public static DataTable SelectOneUser(cUtilisateur cUtilisateur)
+        #region cUtilisateur
+        public static DataTable SelectOneUser(int user_id)
         {
-            
-            string query = $"SELECT Nom, Prenom, Date_de_naissance, Numero, Email, Adresse, Zip,Ville FROM utilisateur WHERE Id_Utilisateur = {cUtilisateur.user_id};";
-            DataTable result = ExecuteSelectToDataTable(query);
-            return result;
+            return ExecuteSelectToDataTable($"SELECT Nom, Prenom, Date_de_naissance, Numero, Email, Adresse, Zip,Ville FROM utilisateur WHERE Id_Utilisateur = {user_id};");
+        }
+        public static MySqlDataReader SelectLogin(string username, string password)
+        {
+            return ExecuteSelect($"SELECT Id_Utilisateur FROM utilisateur WHERE Email = '{username}' AND Mot_de_passe = '{password}' ;");
         }
 
-       
+
+        public static DataTable SelectRole(int id_user)
+        {
+            return cBdd.ExecuteSelectToDataTable($"SELECT isAdmin, isService, isRh, IsInfo, IsPaie, IsReunion, IsVehicule FROM Role WHERE Id_Utilisateur = {id_user};");
+        }
+
+        public static int InsertNewUser(string Name, string Prenom, string dateDeNaissance, string uneAdresse, int unZip, string uneVille, int unNumero ,string unMail, string unPassword)
+        {
+            int isUser = 1;
+
+
+            string query = $"INSERT INTO utilisateur (Nom, Prenom, Date_de_naissance,  Adresse, Zip, Ville, Numero, Email, Mot_de_passe) " +
+                           $"VALUES ('{Name}', '{Prenom}', '{dateDeNaissance}','{uneAdresse}', '{unZip}', '{uneVille}', '{unNumero}', '{unMail}', '{unPassword}')";
+
+
+            int result = ExecuteQuery(query);
+
+            int lastid = ExecuteQuery2($"SELECT LAST_INSERT_ID() from utilisateur;");
+
+            ExecuteQuery($"INSERT INTO Role (Id_utilisateur, IsUser) VALUES ('{lastid}', '{isUser}')");
+
+            return result;
+        }
+        
 
 
 
 
 
-
-
-
-
-
+        #endregion
 
 
 

@@ -6,23 +6,46 @@ namespace REL
 {
     internal class cUtilisateur
     {
-        public static int user_id; // Variable statique privée
+        public static int user_id;
 
+        private string mail;
+
+        private string password;
+
+        private string name;
+
+        private string prenom;
+
+        private string dateDeNaissance;
+
+        private int numero;
+
+        private string adresse;
+
+        private int zip;
+
+        private string ville;
         public static int User_id
         {
             get { return user_id; }
             set { user_id = value; }
         }
-        private string name;
-        private string prenom;
-        private string dateDeNaissance;  
-        private int numero;     
-        private string mail;
-        private string password;
-        private string adresse;
-        private int zip;
-        private string ville;
-        public static bool isAdmin { get; private set; }
+        public string Mail
+        {
+            get { return mail; }
+            set { mail = value; }
+        }
+
+        public string Password
+        {
+            get { return password; }
+            set { password = value; }
+        }
+
+        public static bool isAdmin 
+        {
+            get; private set; 
+        }
         public static bool isRh { get; private set; }
         public static bool isInfo { get; private set; }
         public static bool isPaie { get; private set; }
@@ -30,39 +53,6 @@ namespace REL
         public static bool istypeService { get; private set; }
         public static bool istypeReunion { get; private set; }
         public static bool istypeVehicule { get; private set; }
-
-
-
-        // Constructeur vide
-        public cUtilisateur() { 
-        
-        }
-
-        // Constructeur complet
-        public cUtilisateur(int id_utilisateur)
-        {
-            
-            
-
-            DataTable dt = cBdd.SelectOneUser(cUtilisateur);
-
-            if (dt.Rows.Count > 0)
-            {
-                DataRow row = dt.Rows[0];
-
-                this.name = Convert.ToString(row["Nom"]);
-                this.prenom = Convert.ToString(row["Prenom"]);
-                this.dateDeNaissance = Convert.ToString(row["Date_de_naissance"]);
-                this.Numero = Convert.ToInt32(row["Numero"]);
-                this.mail = Convert.ToString(row["Email"]);
-                this.adresse = Convert.ToString(row["Adresse"]);
-                this.zip = Convert.ToInt32(row["Zip"]);
-                this.ville = Convert.ToString(row["Ville"]);
-            }
-
-        }
-
-        // Propriétés publiques (getters et setters)
 
         public string Name
         {
@@ -88,17 +78,7 @@ namespace REL
             set { numero = value; }
         }
 
-        public string Mail
-        {
-            get { return mail; }
-            set { mail = value; }
-        }
-
-        public string Password
-        {
-            get { return password; }
-            set { password = value; }
-        }
+       
 
         public string Adresse
         {
@@ -117,7 +97,34 @@ namespace REL
             get { return ville; }
             set { ville = value; }
         }
+        public cUtilisateur()
+        {
 
+        }
+
+        // Constructeur complet
+        public cUtilisateur(int id_utilisateur)
+        {
+
+
+
+            DataTable dt = cBdd.SelectOneUser(id_utilisateur);
+
+            if (dt.Rows.Count > 0)
+            {
+                DataRow row = dt.Rows[0];
+
+                this.name = Convert.ToString(row["Nom"]);
+                this.prenom = Convert.ToString(row["Prenom"]);
+                this.dateDeNaissance = Convert.ToString(row["Date_de_naissance"]);
+                this.Numero = Convert.ToInt32(row["Numero"]);
+                this.mail = Convert.ToString(row["Email"]);
+                this.adresse = Convert.ToString(row["Adresse"]);
+                this.zip = Convert.ToInt32(row["Zip"]);
+                this.ville = Convert.ToString(row["Ville"]);
+            }
+
+        }
         public string GetUserInfo()
         {
       
@@ -127,13 +134,12 @@ namespace REL
                    $"Email: {Mail}, Adresse: {Adresse}, {Ville}, {Zip}";
         }
 
-        public bool validLogin(string username, string password)
+        public bool validLogin()
         {
-            string query = $"SELECT Id_Utilisateur FROM utilisateur WHERE Email = '{username}' AND Mot_de_passe = '{password}'";
-
+            
             try
             {
-                MySqlDataReader reader = cBdd.ExecuteSelect(query);
+                MySqlDataReader reader = cBdd.SelectLogin(Mail, Password);
 
                 if (reader.HasRows)
                 {
@@ -146,7 +152,7 @@ namespace REL
                   
 
                     reader.Close();
-                    cUtilisateur.LoadUserRoles(cUtilisateur.user_id);
+                    cUtilisateur.LoadUserRoles(user_id);
                     return true;
                 }
                 else
@@ -163,25 +169,10 @@ namespace REL
             }
         }
 
-        public static int Validregister(string unName, string unPrenom, string dateDeNaissance, string unMail, string unPassword, string uneAdresse, string unZip, string uneVille, string unNumero)
+        public int Validregister()
         {
-            int isUser = 1;
-
-
-            string query = $"INSERT INTO utilisateur (Nom, Prenom, Date_de_naissance,  Adresse, Zip, Ville, Numero, Email, Mot_de_passe) " +
-                           $"VALUES ('{unName}', '{unPrenom}', '{dateDeNaissance}','{uneAdresse}', '{unZip}', '{uneVille}', '{unNumero}', '{unMail}', '{unPassword}')";
-
-
-            int result = cBdd.ExecuteQuery(query);
-
-            string query2 = $"SELECT LAST_INSERT_ID() from utilisateur;";
-            int lastid = cBdd.ExecuteQuery2(query2);
-
-            string query3 = $"INSERT INTO Role (Id_utilisateur, IsUser) " +
-                          $"VALUES ('{lastid}', '{isUser}')";
-
-            cBdd.ExecuteQuery(query3);
-            return result;
+            return cBdd.InsertNewUser(Name,Prenom, dateDeNaissance, Adresse, Zip, Ville, Numero, Mail, Password);
+            
         }
 
         public DataTable getAccount(int id_user)
@@ -191,14 +182,10 @@ namespace REL
             return cBdd.ExecuteSelectToDataTable(query);
         }
 
-        public static DataTable getRole(int id_user)
-        {
-            string query = $"SELECT isAdmin, isService, isRh, IsInfo, IsPaie, IsReunion, IsVehicule FROM Role WHERE Id_Utilisateur = {id_user};";
-            return cBdd.ExecuteSelectToDataTable(query); 
-        }
+        
         public static void LoadUserRoles(int id_user)
         {
-            DataTable dt = getRole(id_user);
+            DataTable dt = cBdd.SelectRole(id_user);
 
             if (dt.Rows.Count > 0) 
             {
