@@ -34,15 +34,17 @@ namespace REL
 
 
         // Constructeur vide
-        public cUtilisateur() { }
+        public cUtilisateur() { 
+        
+        }
 
         // Constructeur complet
         public cUtilisateur(int id_utilisateur)
         {
-            string query = $"SELECT Nom, Prenom, Date_de_naissance, Numero, Email, Adresse, Zip,Ville FROM utilisateur WHERE Id_Utilisateur = {id_utilisateur};";
+            
             
 
-            DataTable dt = cBdd.ExecuteSelectToDataTable(query);
+            DataTable dt = cBdd.SelectOneUser(cUtilisateur);
 
             if (dt.Rows.Count > 0)
             {

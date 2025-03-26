@@ -100,5 +100,33 @@ namespace REL
             return date.ToString("yyyy-MM-dd HH:mm:ss");
         }
 
+
+
+        public static DataTable SelectOneUser(cUtilisateur cUtilisateur)
+        {
+            
+            string query = $"SELECT Nom, Prenom, Date_de_naissance, Numero, Email, Adresse, Zip,Ville FROM utilisateur WHERE Id_Utilisateur = {cUtilisateur.user_id};";
+            DataTable result = ExecuteSelectToDataTable(query);
+            return result;
+        }
+
+       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }
