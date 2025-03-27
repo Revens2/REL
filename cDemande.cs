@@ -15,6 +15,17 @@ namespace REL
     internal class cDemande
     {
 
+        private string objet;
+        private string commentaire;
+        
+
+        private bool prioritaire;
+        DateTime duree_debut;
+        DateTime duree_fin;
+
+        private int statut;
+
+        private bool final;
 
         public static int id_demande;
 
@@ -41,13 +52,19 @@ namespace REL
             get { return isnewstatut; }
             set { isnewstatut = value; }
         }
-        private string Objet;
-        private string Commentaire;
 
-        private bool Prioritaire;
-        DateTime Duree_debut;
-        DateTime Duree_fin;
+        public int Statut
 
+        {
+            get { return statut; }
+            set { statut = value; }
+        }
+        public bool Final
+
+        {
+            get { return final; }
+            set { final = value; }
+        }
         public cDemande()
         {
 
@@ -55,11 +72,11 @@ namespace REL
         public cDemande(string unObjet, string unCommetaire, bool unPrioritaire, DateTime uneDuree_debut, DateTime UneDuree_fin)
         {
 
-            this.Objet = unObjet;
-            this.Commentaire = unCommetaire;
-            this.Prioritaire = unPrioritaire;
-            this.Duree_debut = uneDuree_debut;
-            this.Duree_fin = UneDuree_fin;
+            this.objet = unObjet;
+            this.commentaire = unCommetaire;
+            this.prioritaire = unPrioritaire;
+            this.duree_debut = uneDuree_debut;
+            this.duree_fin = UneDuree_fin;
 
         }
 
@@ -70,11 +87,11 @@ namespace REL
             
         }
 
-        public static DataTable listrequete(bool cbfinal)
+        public DataTable listrequete()
         {
             int type = cUtilisateur.GetAccounType();
             string statut = "d.statut = 1 or d.statut = 3 ";
-            if (cbfinal)
+            if (final)
             {
                 statut = "d.statut = 5";
             }
@@ -92,12 +109,10 @@ namespace REL
             return result;
         }
 
-        public DataTable listHistorique(int statut, int id_user)
+        public DataTable listHistorique()
         {
-
-            string query = $"select Objet_demande, type_demande, duree_debut, duree_fin from demande where statut = '{statut}' and id_utilisateur= '{id_user}' ;";
-            DataTable result = cBdd.ExecuteSelectToDataTable(query);
-            return result;
+            return cBdd.SelectHistorique(statut, cUtilisateur.user_id);
+            
         }
         public static DataTable listservice()
         {

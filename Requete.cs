@@ -31,7 +31,9 @@ namespace REL
         private void Bindlist()
         {
             gvrequest.Columns.Clear();
-            gvrequest.DataSource = cDemande.listrequete(cbfinal.Checked);
+            cDemande cDemande = new cDemande();
+            cDemande.Final = cBdd.CbConvert(cbfinal.Checked);
+            gvrequest.DataSource = cDemande.listrequete();
             gvrequest.Columns["id_demande"].Visible = false;
             if (cbfinal.Checked)
             {

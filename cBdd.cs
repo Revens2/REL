@@ -89,12 +89,21 @@ namespace REL
             return cmd.ExecuteReader();
         }
 
-        public static int CbConvert(bool cb)
+        public static int CbConvertInt(bool cb)
         {
             int result = 0;
             if (cb)
             {
                 result = 1;
+            }
+            return result;
+        }
+        public static bool CbConvertBool(int cb)
+        {
+            int result = false;
+            if (cb)
+            {
+                result = true;
             }
             return result;
         }
@@ -135,13 +144,6 @@ namespace REL
             return result;
         }
 
-        public static DataTable SelectListDemande(int id_user, int cbprioritaire)
-        {
-            return ExecuteSelectToDataTable($"select id_demande, Prioritaire, statut, type_demande, Objet_demande, Commentaire, Duree_debut," +
-                $" Duree_fin from demande where Id_Utilisateur= '{id_user}' and Prioritaire = '{cbprioritaire}';");
-
-
-        }
         
           public static int UpdateUser(string Name, string Prenom, string dateDeNaissance, string uneAdresse, int unZip, string uneVille, int unNumero, string unMail, int id_user)
         {
@@ -152,13 +154,27 @@ namespace REL
         }
 
 
+
         #endregion
 
 
+        #region cDemande
+
+        public static DataTable SelectListDemande(int id_user, int cbprioritaire)
+        {
+            return ExecuteSelectToDataTable($"select id_demande, Prioritaire, statut, type_demande, Objet_demande, Commentaire, Duree_debut," +
+                $" Duree_fin from demande where Id_Utilisateur= '{id_user}' and Prioritaire = '{cbprioritaire}';");
 
 
+        }
 
 
+        public static DataTable SelectHistorique(int statut, int id_user)
+        {
+            return ExecuteSelectToDataTable($"select Objet_demande, type_demande, duree_debut, duree_fin from demande where statut = '{statut}' and id_utilisateur= '{id_user}' ;");
 
+
+        }
+#endregion
     }
 }

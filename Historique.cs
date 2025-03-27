@@ -26,12 +26,12 @@ namespace REL
         private void Bindlist()
         {
             cDemande dem = new cDemande();
-            int statut = 6;
+            dem.Statut = 6;
             if (cbstatut.Checked)
             {
-                statut = 4;
+                dem.Statut = 4;
             }
-            gv_list.DataSource = dem.listHistorique(statut, cUtilisateur.user_id);
+            gv_list.DataSource = dem.listHistorique();
 
         }
 
@@ -49,18 +49,5 @@ namespace REL
             cUtilisateur.User_id = -1;
         }
 
-        private void btdemande_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            Demande dem = new Demande();
-            dem.ShowDialog();
-        }
-
-        private void btaccount_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            Account compte = new Account();
-            compte.ShowDialog();
-        }
     }
 }
