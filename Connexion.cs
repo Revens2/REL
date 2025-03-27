@@ -47,7 +47,7 @@ namespace REL
 
             if (cUtilisateur.validLogin())
             {
-                MessageBox.Show("bv t co ");
+                MessageBox.Show("Connexion réussi !");
 
                 this.Hide();
                 Demande page = new Demande();
@@ -55,17 +55,8 @@ namespace REL
             }
             else
             {
-                MessageBox.Show("gro naz");
+                MessageBox.Show("Connexion refusée !");
             }
-        }
-
-        private void tbusername_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void btisncri_Click(object sender, EventArgs e)

@@ -168,7 +168,6 @@
             lnname.Size = new Size(78, 35);
             lnname.TabIndex = 1;
             lnname.Text = "Nom";
-            lnname.Click += lbnewuser_Click;
             // 
             // lbadresse
             // 
@@ -333,7 +332,6 @@
             Name = "Inscription";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Page d'inscription";
-            Load += Inscription_Load;
             ResumeLayout(false);
             PerformLayout();
         }

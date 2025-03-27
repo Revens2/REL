@@ -223,12 +223,12 @@ namespace REL
 
         }
 
-        public static bool IsValidEmail(string email)
+        public bool IsValidEmail()
         {
             try
             {
-                var addr = new System.Net.Mail.MailAddress(email);
-                return addr.Address == email;
+                var addr = new System.Net.Mail.MailAddress(Mail);
+                return addr.Address == Mail;
             }
             catch
             {
@@ -236,7 +236,11 @@ namespace REL
             }
         }
 
+        public int MajUser()
+        {
+            return cBdd.UpdateUser(Name, Prenom, dateDeNaissance, Adresse, Zip, Ville, Numero, Mail, user_id);
 
+        }
     }
 
 

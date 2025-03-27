@@ -45,14 +45,14 @@ namespace REL
         }
 
         private void gv_list_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-{
-    ApplyStatusIcons();
-}
+        {
+            ApplyStatusIcons();
+        }
 
         public void Bindlist()
         {
             cDemande dem = new cDemande();
-            gv_list.DataSource = dem.listDemande(cUtilisateur.user_id, cBdd.CbConvert(cbprioritaire.Checked));
+            gv_list.DataSource = dem.listDemande(cBdd.CbConvert(cbprioritaire.Checked));
             gv_list.Columns["Prioritaire"].Visible = false;
             gv_list.Columns["id_demande"].Visible = false;
             gv_list.Columns["statut"].Visible = false;

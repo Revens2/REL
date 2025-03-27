@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using Mysqlx.Session;
 using MySqlX.XDevAPI.Common;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace REL
@@ -121,14 +123,10 @@ namespace REL
 
         public static int InsertNewUser(string Name, string Prenom, string dateDeNaissance, string uneAdresse, int unZip, string uneVille, int unNumero ,string unMail, string unPassword)
         {
+           
+            int result = ExecuteQuery($"INSERT INTO utilisateur (Nom, Prenom, Date_de_naissance,  Adresse, Zip, Ville, Numero, Email, Mot_de_passe) " +
+                           $"VALUES ('{Name}', '{Prenom}', '{dateDeNaissance}','{uneAdresse}', '{unZip}', '{uneVille}', '{unNumero}', '{unMail}', '{unPassword}')");
             int isUser = 1;
-
-
-            string query = $"INSERT INTO utilisateur (Nom, Prenom, Date_de_naissance,  Adresse, Zip, Ville, Numero, Email, Mot_de_passe) " +
-                           $"VALUES ('{Name}', '{Prenom}', '{dateDeNaissance}','{uneAdresse}', '{unZip}', '{uneVille}', '{unNumero}', '{unMail}', '{unPassword}')";
-
-
-            int result = ExecuteQuery(query);
 
             int lastid = ExecuteQuery2($"SELECT LAST_INSERT_ID() from utilisateur;");
 
@@ -136,10 +134,22 @@ namespace REL
 
             return result;
         }
+
+        public static DataTable SelectListDemande(int id_user, int cbprioritaire)
+        {
+            return ExecuteSelectToDataTable($"select id_demande, Prioritaire, statut, type_demande, Objet_demande, Commentaire, Duree_debut," +
+                $" Duree_fin from demande where Id_Utilisateur= '{id_user}' and Prioritaire = '{cbprioritaire}';");
+
+
+        }
         
+          public static int UpdateUser(string Name, string Prenom, string dateDeNaissance, string uneAdresse, int unZip, string uneVille, int unNumero, string unMail, int id_user)
+        {
 
+            return ExecuteQuery($"UPDATE utilisateur set Nom = '{Name}', Prenom = '{Prenom}', Date_de_naissance =  '{dateDeNaissance}',  Adresse = '{uneAdresse}', Zip = '{unZip}', " +
+                $"Ville = '{uneVille}', Numero = '{unNumero}', Email = '{unMail}' where Id_Utilisateur= '{id_user}';");
 
-
+        }
 
 
         #endregion

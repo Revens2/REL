@@ -64,11 +64,10 @@ namespace REL
         }
 
         #region List 
-        public DataTable listDemande(int id_user, int cbprioritaire)
+        public DataTable listDemande(int cbprioritaire)
         {
-            string query = $"select id_demande, Prioritaire, statut, type_demande, Objet_demande, Commentaire, Duree_debut, Duree_fin from demande where Id_Utilisateur= '{id_user}' and Prioritaire = '{cbprioritaire}';";
-            DataTable result = cBdd.ExecuteSelectToDataTable(query);
-            return result;
+            return cBdd.SelectListDemande(cUtilisateur.user_id, cbprioritaire);
+            
         }
 
         public static DataTable listrequete(bool cbfinal)

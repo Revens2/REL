@@ -51,7 +51,7 @@ namespace REL
                 tbmail.Focus();
                 return;
             }
-            if (!cUtilisateur.IsValidEmail(cUtilisateur.Mail))
+            if (!cUtilisateur.IsValidEmail())
             {
                 MessageBox.Show("Veuillez saisir une adresse email valide.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 tbmail.Focus();
@@ -102,7 +102,7 @@ namespace REL
             if (Convert.ToString(cUtilisateur.Zip).Length > 9999)
             {
                 MessageBox.Show("Le code postal  doit contenir exactement 5 caractères.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                tbpass.Focus();
+                tbzip.Focus();
                 return;
             }
 
@@ -128,7 +128,7 @@ namespace REL
             if (Convert.ToString(cUtilisateur.Numero).Length == 10)
             {
                 MessageBox.Show("Le numero doit contenir exactement 10 caractères.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                tbpass.Focus();
+                tbnumero.Focus();
                 return;
             }
 
@@ -145,19 +145,6 @@ namespace REL
             }
         }
 
- 
-
-
-        private void Inscription_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lbnewuser_Click(object sender, EventArgs e)
-        {
-
-        }
-  
 
         private void btreturn_Click_1(object sender, EventArgs e)
         {

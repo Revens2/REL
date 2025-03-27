@@ -61,7 +61,7 @@
             panelLogin.Location = new Point(248, 196);
             panelLogin.Margin = new Padding(3, 2, 3, 2);
             panelLogin.Name = "panelLogin";
-            panelLogin.Size = new Size(304, 170);
+            panelLogin.Size = new Size(304, 192);
             panelLogin.TabIndex = 1;
             // 
             // pictureBox1
