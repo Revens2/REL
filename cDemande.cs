@@ -297,39 +297,33 @@ namespace REL
 
         public static void Valide(int demande_id)
         {
-            string query = $"update demande set statut = '2'  where id_demande ='{demande_id}';";
-
-            cBdd.ExecuteQuery(query);
+            cBdd.ValideUpdate(demande_id);
 
         }
         public static void Attente(int demande_id, string mess_att)
         {
-            string query = $"update demande set statut = '3',motif_att = '{mess_att}' where id_demande ='{demande_id}';";
 
-            cBdd.ExecuteQuery(query);
-
+            cBdd.AttenteUpdate(demande_id, mess_att);
+            
         }
         public static void Delete(int demande_id, string mess_refu)
         {
-            string query = $"update demande set statut = '4', motif_refu = '{mess_refu}' where id_demande ='{demande_id}';";
 
-            cBdd.ExecuteQuery(query);
+            cBdd.DeleteUpdate(mess_refu, demande_id);
 
         }
 
         public static void Cloture(int demande_id, string mess_clo)
         {
-            string query = $"update demande set statut = '6', motif_clo = '{mess_clo}' where id_demande ='{demande_id}';";
 
-            cBdd.ExecuteQuery(query);
+            cBdd.ClotureUpdate(mess_clo, demande_id);
 
         }
 
         public static void ValideRDV(int demande_id)
         {
-            string query = $"update demande set statut = '5' where id_demande ='{demande_id}';";
 
-            cBdd.ExecuteQuery(query);
+            cBdd.ValideRDVUpdate(demande_id);
 
         }
 

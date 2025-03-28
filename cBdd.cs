@@ -248,7 +248,36 @@ namespace REL
 
         }
 
+        public static void ValideUpdate(int demande_id)
+        {
+            ExecuteQuery($"update demande set statut = '2'  where id_demande ='{demande_id}';");
 
+        }
+        public static void ValideRDVUpdate(int demande_id)
+        {
+            ExecuteQuery($"update demande set statut = '5' where id_demande ='{demande_id}';");
+
+        }
+
+        public static void AttenteUpdate(int demande_id, string mess_att)
+        {
+
+            ExecuteQuery($"update demande set statut = '3',motif_att = '{mess_att}' where id_demande ='{demande_id}';");
+
+        }
+        public static void DeleteUpdate(string mess_refu, int demande_id)
+        {
+
+            ExecuteQuery($"update demande set statut = '4', motif_refu = '{mess_refu}' where id_demande ='{demande_id}';");
+
+        }
+        public static void ClotureUpdate(string mess_clo, int demande_id)
+        {
+
+            ExecuteQuery($"update demande set statut = '6', motif_clo = '{mess_clo}' where id_demande ='{demande_id}';");
+
+        }
+        
 
 
         #endregion
