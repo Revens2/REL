@@ -216,9 +216,37 @@ namespace REL
         }
 
 
+        public static DataTable SelectBackDemande(int demande_id)
+        {
 
+            return ExecuteSelectToDataTable($"select objet_demande, Commentaire, type_demande, prioritaire, duree_debut, duree_fin from demande where id_demande = '{demande_id}';");
 
+        }
 
+        public static DataTable SelectBackCompleteDemande(int demande_id)
+        {
+
+            return ExecuteSelectToDataTable($" select type_demande, objet_demande, Commentaire, Prioritaire, duree_debut, duree_fin, motif_att  from demande d where Id_Demande =  '{demande_id}';");
+
+        }
+        public static DataTable SelectBackCompleteService(int demande_id)
+        {
+
+            return ExecuteSelectToDataTable($"select name_service as detailtype from services s join demande_services ds on s.id_service = ds.id_service where ds.id_demande = '{demande_id}';");
+
+        }
+        public static DataTable SelectBackCompleteReunion(int demande_id)
+        {
+
+            return ExecuteSelectToDataTable($"select Nom_salle as detailtype from reunion r join demande_reunion dr on r.id_reunion = dr.id_reunion where dr.id_demande = '{demande_id}';");
+
+        }
+        public static DataTable SelectBackCompleteVehicule(int demande_id)
+        {
+
+            return ExecuteSelectToDataTable($"select as detailtype modele from vehicule v join demande_vehicule dv on v.id_vehicule = dv.id_vehicule where dv.id_demande = '{demande_id}';");
+
+        }
 
 
 
