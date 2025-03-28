@@ -134,7 +134,7 @@ namespace REL
                    $"Email: {Mail}, Adresse: {Adresse}, {Ville}, {Zip}";
         }
 
-        public bool validLogin()
+        public bool ValidLogin()
         {
             
             try
@@ -175,11 +175,9 @@ namespace REL
             
         }
 
-        public DataTable getAccount(int id_user)
+        public DataTable GetAccount(int id_user)
         {
-
-            string query = $"select Nom, Prenom, date_de_naissance, Numero, Email, Adresse, Zip, Ville from Utilisateur where Id_Utilisateur = '{id_user}' ;";
-            return cBdd.ExecuteSelectToDataTable(query);
+            return cBdd.SelectAccount(id_user);
         }
 
         

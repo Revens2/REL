@@ -47,19 +47,19 @@ namespace REL
                 case 1:
                     gvserv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
                     gvserv.MultiSelect = false;
-                    DataTable dt = cDemande.listservice();
+                    DataTable dt = cDemande.ListService();
                     gvserv.DataSource = dt;
                     break;
                 case 2:
                     gvreu.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
                     gvreu.MultiSelect = false;
-                    DataTable dt2 = cDemande.listreunion();
+                    DataTable dt2 = cDemande.ListReunion();
                     gvreu.DataSource = dt2;
                     break;
                 case 3:
                     gvvehi.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
                     gvvehi.MultiSelect = false;
-                    DataTable dt3 = cDemande.listvehicule();
+                    DataTable dt3 = cDemande.ListVehicule();
                     gvvehi.DataSource = dt3;
                     break;
             }
@@ -153,7 +153,7 @@ namespace REL
                     }
                     break;
             }
-            cDemande.Demandesave(ddltype.SelectedIndex, tbobjet.Text, tbcom.Text, cBdd.CbConvert(cbprioritaire.Checked), cBdd.DateConvert(tbdatedebut.Value), cBdd.DateConvert(tbdateend.Value), cUtilisateur.user_id, super_id);
+            cDemande.DemandeSave(ddltype.SelectedIndex, tbobjet.Text, tbcom.Text, cBdd.CbConvertInt(cbprioritaire.Checked), cBdd.DateConvert(tbdatedebut.Value), cBdd.DateConvert(tbdateend.Value), cUtilisateur.user_id, super_id);
             Demande demande = new Demande();
 
             demande.Bindlist();
@@ -162,7 +162,7 @@ namespace REL
 
         private void Bindedit(int id)
         {
-            DataTable dt = cDemande.listbackdemande(id);
+            DataTable dt = cDemande.ListBackDemande(id);
             DataRow row = dt.Rows[0];
 
             ddltype.SelectedIndex = Convert.ToInt32(row["type_demande"]);

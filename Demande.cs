@@ -52,7 +52,7 @@ namespace REL
         public void Bindlist()
         {
             cDemande dem = new cDemande();
-            gv_list.DataSource = dem.listDemande(cBdd.CbConvert(cbprioritaire.Checked));
+            gv_list.DataSource = dem.listDemande(cBdd.CbConvertInt(cbprioritaire.Checked));
             gv_list.Columns["Prioritaire"].Visible = false;
             gv_list.Columns["id_demande"].Visible = false;
             gv_list.Columns["statut"].Visible = false;
@@ -156,7 +156,7 @@ namespace REL
             {
                 int selectedId = Convert.ToInt32(gv_list.Rows[e.RowIndex].Cells["Id_demande"].Value);
 
-                cDemande.deletedemande(selectedId);
+                cDemande.DeleteDemande(selectedId);
                 Bindlist();
 
             }

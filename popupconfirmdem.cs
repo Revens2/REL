@@ -19,7 +19,7 @@ namespace REL
         }
         private void Bindlist()
         {
-            DataTable dtdata = cDemande.listbackcompletedemande(cDemande.id_demande);
+            DataTable dtdata = cDemande.ListBackCompleteDemande(cDemande.id_demande);
             DataRow row = dtdata.Rows[0];
 
             lbtypedata.Text = row["type_demande"].ToString();
@@ -42,7 +42,7 @@ namespace REL
 
         private void btsave_Click(object sender, EventArgs e)
         {
-            cDemande.valideRDV(cDemande.id_demande);
+            cDemande.ValideRDV(cDemande.id_demande);
             cDemande.UpdateNotif(true);
             menucs menu = new menucs();
             menu.BindNotif();

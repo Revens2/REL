@@ -141,7 +141,7 @@ namespace REL
         private void BindList()
         {
             cUtilisateur user = new cUtilisateur();
-            DataTable dt = user.getAccount(cUtilisateur.user_id);
+            DataTable dt = user.GetAccount(cUtilisateur.user_id);
             DataRow row = dt.Rows[0];
 
             tbname.Text = row["Nom"].ToString();

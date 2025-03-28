@@ -45,7 +45,7 @@ namespace REL
             
 
 
-            if (cUtilisateur.validLogin())
+            if (cUtilisateur.ValidLogin())
             {
                 MessageBox.Show("Connexion réussi !");
 

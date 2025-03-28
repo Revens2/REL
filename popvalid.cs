@@ -58,29 +58,29 @@ namespace REL
 
 
                 case 1:
-                    cDemande.valide(cDemande.id_demande);
+                    cDemande.Valide(cDemande.id_demande);
                     cDemande.UpdateNotif(false);
                     break;
 
                 case 2:
 
-                    cDemande.attente(cDemande.id_demande, tbmess.Text);
+                    cDemande.Attente(cDemande.id_demande, tbmess.Text);
                     
                     break;
                 case 3:
 
-                    cDemande.delete(cDemande.id_demande, tbmess.Text);
+                    cDemande.Delete(cDemande.id_demande, tbmess.Text);
                     cDemande.UpdateHistoNotif(false);
 
                     break;
 
                 case 4:
-                    cDemande.cloture(cDemande.id_demande, tbmess.Text);
+                    cDemande.Cloture(cDemande.id_demande, tbmess.Text);
                     cDemande.UpdateHistoNotif(false);
                     break;
 
                 case 5:
-                    cDemande.valideRDV(cDemande.id_demande);
+                    cDemande.ValideRDV(cDemande.id_demande);
                     cDemande.UpdateNotif(true);
                     break;
             }

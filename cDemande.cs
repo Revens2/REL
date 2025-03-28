@@ -100,12 +100,8 @@ namespace REL
             {
                  type_demande = "";
             }
-            string query = $" select d.id_demande,d.statut, u.nom,u.prenom, d.Objet_demande, d.duree_debut, d.duree_fin " +
-             $"from demande d " +
-             $"join utilisateur u on u.Id_Utilisateur = d.Id_Utilisateur " +
-             $"where {type_demande} {statut} order by statut;";
 
-            DataTable result = cBdd.ExecuteSelectToDataTable(query);
+            DataTable result = cBdd.SelectRequete(type_demande, statut);
             return result;
         }
 
@@ -114,34 +110,28 @@ namespace REL
             return cBdd.SelectHistorique(statut, cUtilisateur.user_id);
             
         }
-        public static DataTable listservice()
+        public static DataTable ListService()
         {
 
-            string query = "select id_service, name_service from services;";
+            return cBdd.SelectService();
 
-            DataTable result = cBdd.ExecuteSelectToDataTable(query);
-            return result;
         }
 
-        public static DataTable listreunion()
+        public static DataTable ListReunion()
         {
 
-            string query = "select id_reunion, Nom_salle ,nb_place, numero from reunion;";
+            return cBdd.SelectReunion();
 
-            DataTable result = cBdd.ExecuteSelectToDataTable(query);
-            return result;
         }
 
-        public static DataTable listvehicule()
+        public static DataTable ListVehicule()
         {
 
-            string query = "select id_vehicule, marque, modele,nb_place from vehicule;";
+            return cBdd.SelectVehicule();
 
-            DataTable result = cBdd.ExecuteSelectToDataTable(query);
-            return result;
         }
 
-        public static DataTable listbackdemande(int demande_id)
+        public static DataTable ListBackDemande(int demande_id)
         {
 
             string query = $"select objet_demande, Commentaire, type_demande, prioritaire, duree_debut, duree_fin from demande where id_demande = '{demande_id}';";
@@ -151,7 +141,7 @@ namespace REL
 
         }
 
-        public static DataTable listbackcompletedemande(int demande_id)
+        public static DataTable ListBackCompleteDemande(int demande_id)
         {
            
             string query = $" select type_demande, objet_demande, Commentaire, Prioritaire, duree_debut, duree_fin, motif_att  from demande d where Id_Demande =  '{demande_id}';";
@@ -189,7 +179,7 @@ namespace REL
 
 
         #region Save
-        public static void Demandesave(int untype_demande, string unObjet, string unCommetaire, int unPrioritaire, string uneDuree_debut, string UneDuree_fin, int id_user, int super_id)
+        public static void DemandeSave(int untype_demande, string unObjet, string unCommetaire, int unPrioritaire, string uneDuree_debut, string UneDuree_fin, int id_user, int super_id)
         {
             int statut = 1;
             int AdminNotif = 1;
@@ -204,19 +194,19 @@ namespace REL
             {
                 case 1:
                     string query2 = $"insert into demande_services (id_service, Id_demande) " +
-                           $" values('{super_id}','{lastid()}');";
+                           $" values('{super_id}','{Lastid()}');";
 
                     cBdd.ExecuteQuery(query2);
                     break;
                 case 2:
                     string query3 = $"insert into demande_reunion (id_reunion, Id_demande) " +
-                         $" values('{super_id}','{lastid()}');";
+                         $" values('{super_id}','{Lastid()}');";
 
                     cBdd.ExecuteQuery(query3);
                     break;
                 case 3:
                     string query4 = $"insert into demande_vehicule (id_vehicule, Id_demande) " +
-                         $" values('{super_id}','{lastid()}');";
+                         $" values('{super_id}','{Lastid()}');";
 
                     cBdd.ExecuteQuery(query4);
                     break;
@@ -314,21 +304,21 @@ namespace REL
         #region Statut
 
 
-        public static void valide(int demande_id)
+        public static void Valide(int demande_id)
         {
             string query = $"update demande set statut = '2'  where id_demande ='{demande_id}';";
 
             cBdd.ExecuteQuery(query);
 
         }
-        public static void attente(int demande_id, string mess_att)
+        public static void Attente(int demande_id, string mess_att)
         {
             string query = $"update demande set statut = '3',motif_att = '{mess_att}' where id_demande ='{demande_id}';";
 
             cBdd.ExecuteQuery(query);
 
         }
-        public static void delete(int demande_id, string mess_refu)
+        public static void Delete(int demande_id, string mess_refu)
         {
             string query = $"update demande set statut = '4', motif_refu = '{mess_refu}' where id_demande ='{demande_id}';";
 
@@ -336,7 +326,7 @@ namespace REL
 
         }
 
-        public static void cloture(int demande_id, string mess_clo)
+        public static void Cloture(int demande_id, string mess_clo)
         {
             string query = $"update demande set statut = '6', motif_clo = '{mess_clo}' where id_demande ='{demande_id}';";
 
@@ -344,7 +334,7 @@ namespace REL
 
         }
 
-        public static void valideRDV(int demande_id)
+        public static void ValideRDV(int demande_id)
         {
             string query = $"update demande set statut = '5' where id_demande ='{demande_id}';";
 
@@ -355,7 +345,7 @@ namespace REL
 
 
         #endregion
-        public static int lastid()
+        public static int Lastid()
         {
 
             string query = "select max(id_demande) as last_id from demande ;";
@@ -367,7 +357,7 @@ namespace REL
         }
         
 
-        public static void updatedemande(int id_demande, int untype_demande, string unObjet, string unCommetaire, int unPrioritaire, string uneDuree_debut, string UneDuree_fin, int id_user)
+        public static void UpdateDemande(int id_demande, int untype_demande, string unObjet, string unCommetaire, int unPrioritaire, string uneDuree_debut, string UneDuree_fin, int id_user)
         {
             int statut = 1;
 
@@ -382,7 +372,7 @@ namespace REL
 
 
    
-        public static void deletedemande(int demande_id)
+        public static void DeleteDemande(int demande_id)
         {
 
 

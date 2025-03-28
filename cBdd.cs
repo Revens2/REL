@@ -100,8 +100,8 @@ namespace REL
         }
         public static bool CbConvertBool(int cb)
         {
-            int result = false;
-            if (cb)
+            bool result = false;
+            if (cb==1)
             {
                 result = true;
             }
@@ -154,6 +154,12 @@ namespace REL
         }
 
 
+        public static DataTable SelectAccount(int id_user)
+        {
+            return cBdd.ExecuteSelectToDataTable($"select Nom, Prenom, date_de_naissance, Numero, Email, Adresse, Zip, Ville from Utilisateur where Id_Utilisateur = '{id_user}' ;");
+        }
+
+
 
         #endregion
 
@@ -175,6 +181,49 @@ namespace REL
 
 
         }
-#endregion
+
+        public static DataTable SelectRequete(string type_demande, string statut)
+        {
+            string query = $" select d.id_demande,d.statut, u.nom,u.prenom, d.Objet_demande, d.duree_debut, d.duree_fin " +
+             $"from demande d " +
+             $"join utilisateur u on u.Id_Utilisateur = d.Id_Utilisateur " +
+             $"where {type_demande} {statut} order by statut;";
+
+            return cBdd.ExecuteSelectToDataTable(query);
+            
+        
+
+        }
+
+        public static DataTable SelectService()
+        {
+
+            return ExecuteSelectToDataTable("select id_service, name_service from services;");
+          
+        }
+        public static DataTable SelectReunion()
+        {
+
+            return ExecuteSelectToDataTable("select id_reunion, Nom_salle ,nb_place, numero from reunion;");
+
+        }
+
+        public static DataTable SelectVehicule()
+        {
+
+            return ExecuteSelectToDataTable("select id_vehicule, marque, modele,nb_place from vehicule;");
+
+        }
+
+
+
+
+
+
+
+
+
+        #endregion
+
     }
 }
