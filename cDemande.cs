@@ -174,32 +174,20 @@ namespace REL
         {
             int statut = 1;
             int AdminNotif = 1;
-
-            string query = $"INSERT INTO demande (type_demande , Objet_demande , Commentaire, Prioritaire,  Duree_debut, Duree_fin, statut, Id_Utilisateur, Adminnotif) " +
-                           $"VALUES ('{untype_demande}', '{unObjet}', '{unCommetaire}', '{unPrioritaire}','{uneDuree_debut}', '{UneDuree_fin}', '{statut}', '{id_user}', '{AdminNotif}');";
-
-
-            cBdd.ExecuteQuery(query);
+            
+            cBdd.InsertDemandeSave(untype_demande, unObjet, unCommetaire, unPrioritaire, uneDuree_debut, UneDuree_fin, id_user, statut, AdminNotif);
 
             switch (untype_demande)
             {
                 case 1:
-                    string query2 = $"insert into demande_services (id_service, Id_demande) " +
-                           $" values('{super_id}','{Lastid()}');";
-
-                    cBdd.ExecuteQuery(query2);
+ 
+                    cBdd.InsertServiceSave(super_id);
                     break;
                 case 2:
-                    string query3 = $"insert into demande_reunion (id_reunion, Id_demande) " +
-                         $" values('{super_id}','{Lastid()}');";
-
-                    cBdd.ExecuteQuery(query3);
+                    cBdd.InsertServiceSave(super_id);
                     break;
                 case 3:
-                    string query4 = $"insert into demande_vehicule (id_vehicule, Id_demande) " +
-                         $" values('{super_id}','{Lastid()}');";
-
-                    cBdd.ExecuteQuery(query4);
+                    cBdd.InsertServiceSave(super_id);
                     break;
             }
 
@@ -214,23 +202,14 @@ namespace REL
             if (SwitchNotif)
             {
 
-                string query1 = $"update demande set Adminnotif = '1' where id_demande ='{cDemande.id_demande}';";
+                cBdd.UpdateAdminNotif();
 
-                cBdd.ExecuteQuery(query1);
-
-                string query2 = $"update demande set Usernotif = '0' where id_demande ='{cDemande.id_demande}' ;";
-
-                cBdd.ExecuteQuery(query2);
             }
             else
             {
-                string query1 = $"update demande set Adminnotif = '0' where id_demande ='{cDemande.id_demande}';";
 
-                cBdd.ExecuteQuery(query1);
+                cBdd.UpdateUserNotif();
 
-                string query2 = $"update demande set Usernotif = '1' where id_demande ='{cDemande.id_demande}';";
-
-                cBdd.ExecuteQuery(query2);
             }
 
         }
@@ -243,7 +222,7 @@ namespace REL
                 string query1 = $"update demande set Histonotif = '1' where id_demande ='{cDemande.id_demande}';";
 
                 cBdd.ExecuteQuery(query1);
-
+                 
             }
             else
             {
@@ -252,13 +231,7 @@ namespace REL
                 cBdd.ExecuteQuery(query1);
 
             }
-            string query2 = $"update demande set Adminnotif = '0' where id_demande ='{cDemande.id_demande}';";
-
-            cBdd.ExecuteQuery(query2);
-            string query3 = $"update demande set Usernotif = '0' where id_demande ='{cDemande.id_demande}' ;";
-
-            cBdd.ExecuteQuery(query3);
-
+            cBdd.UpdateNoNotif();
         }
 
         public static int NotifGestion()
@@ -330,17 +303,7 @@ namespace REL
 
 
         #endregion
-        public static int Lastid()
-        {
 
-            string query = "select max(id_demande) as last_id from demande ;";
-            int result = cBdd.ExecuteQuery2(query);
-            id_demande = Convert.ToInt32(result);
-
-
-            return id_demande;
-        }
-        
 
         public static void UpdateDemande(int id_demande, int untype_demande, string unObjet, string unCommetaire, int unPrioritaire, string uneDuree_debut, string UneDuree_fin, int id_user)
         {
@@ -360,33 +323,25 @@ namespace REL
         public static void DeleteDemande(int demande_id)
         {
 
-
-            string query = $"select type_demande from demande where id_demande = '{demande_id}';";
-
-
-            int type = cBdd.ExecuteQuery(query);
+            int type = cBdd.SelectTypeDemande(demande_id);
 
             switch (type)
             {
                 case 1:
-                    string query2 = $"delete from demande_services where id_demande ='{demande_id}';";
 
-                    cBdd.ExecuteQuery(query2);
+                    cBdd.DeleteDemandeServices(demande_id);
                     break;
                 case 2:
-                    string query3 = $"delete from demande_reunion where id_demande ='{demande_id}';";
-
-                    cBdd.ExecuteQuery(query3);
+                    
+                    cBdd.DeleteDemandeReunion(demande_id);
                     break;
                 case 3:
-                    string query4 = $"delete from demande_vehicule where id_demande ='{demande_id}';";
-
-                    cBdd.ExecuteQuery(query4);
+                   
+                    cBdd.DeleteDemandeVehicule(demande_id);
                     break;
             }
-            string query5 = $"delete from demande where id_demande ='{demande_id}';";
 
-            cBdd.ExecuteQuery(query5);
+            cBdd.DeleteDemande(demande_id);
         }
 
         //public static string popupvalidinfo()

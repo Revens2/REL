@@ -26,7 +26,7 @@ namespace REL
             cUtilisateur.Mail = tbmail.Text.Trim();
             cUtilisateur.Password = tbpass.Text.Trim();
             cUtilisateur.Adresse = tbadresse.Text.Trim();
-            cUtilisateur.Zip = Convert.ToInt16(tbzip.Text.Trim());
+            cUtilisateur.Zip = Convert.ToInt32(tbzip.Text.Trim());
             cUtilisateur.Ville = tbville.Text.Trim();
             cUtilisateur.Numero = Convert.ToInt32(tbnumero.Text.Trim());
             cUtilisateur.DateDeNaissance = tbdate.Value.ToString("yyyy-MM-dd");

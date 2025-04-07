@@ -101,7 +101,7 @@ namespace REL
         public static bool CbConvertBool(int cb)
         {
             bool result = false;
-            if (cb==1)
+            if (cb == 1)
             {
                 result = true;
             }
@@ -127,12 +127,12 @@ namespace REL
 
         public static DataTable SelectRole(int id_user)
         {
-            return cBdd.ExecuteSelectToDataTable($"SELECT isAdmin, isService, isRh, IsInfo, IsPaie, IsReunion, IsVehicule FROM Role WHERE Id_Utilisateur = {id_user};");
+            return ExecuteSelectToDataTable($"SELECT isAdmin, isService, isRh, IsInfo, IsPaie, IsReunion, IsVehicule FROM Role WHERE Id_Utilisateur = {id_user};");
         }
 
-        public static int InsertNewUser(string Name, string Prenom, string dateDeNaissance, string uneAdresse, int unZip, string uneVille, int unNumero ,string unMail, string unPassword)
+        public static int InsertNewUser(string Name, string Prenom, string dateDeNaissance, string uneAdresse, int unZip, string uneVille, int unNumero, string unMail, string unPassword)
         {
-           
+
             int result = ExecuteQuery($"INSERT INTO utilisateur (Nom, Prenom, Date_de_naissance,  Adresse, Zip, Ville, Numero, Email, Mot_de_passe) " +
                            $"VALUES ('{Name}', '{Prenom}', '{dateDeNaissance}','{uneAdresse}', '{unZip}', '{uneVille}', '{unNumero}', '{unMail}', '{unPassword}')");
             int isUser = 1;
@@ -144,8 +144,8 @@ namespace REL
             return result;
         }
 
-        
-          public static int UpdateUser(string Name, string Prenom, string dateDeNaissance, string uneAdresse, int unZip, string uneVille, int unNumero, string unMail, int id_user)
+
+        public static int UpdateUser(string Name, string Prenom, string dateDeNaissance, string uneAdresse, int unZip, string uneVille, int unNumero, string unMail, int id_user)
         {
 
             return ExecuteQuery($"UPDATE utilisateur set Nom = '{Name}', Prenom = '{Prenom}', Date_de_naissance =  '{dateDeNaissance}',  Adresse = '{uneAdresse}', Zip = '{unZip}', " +
@@ -156,7 +156,7 @@ namespace REL
 
         public static DataTable SelectAccount(int id_user)
         {
-            return cBdd.ExecuteSelectToDataTable($"select Nom, Prenom, date_de_naissance, Numero, Email, Adresse, Zip, Ville from Utilisateur where Id_Utilisateur = '{id_user}' ;");
+            return ExecuteSelectToDataTable($"select Nom, Prenom, date_de_naissance, Numero, Email, Adresse, Zip, Ville from Utilisateur where Id_Utilisateur = '{id_user}' ;");
         }
 
 
@@ -189,9 +189,9 @@ namespace REL
              $"join utilisateur u on u.Id_Utilisateur = d.Id_Utilisateur " +
              $"where {type_demande} {statut} order by statut;";
 
-            return cBdd.ExecuteSelectToDataTable(query);
-            
-        
+            return ExecuteSelectToDataTable(query);
+
+
 
         }
 
@@ -199,7 +199,7 @@ namespace REL
         {
 
             return ExecuteSelectToDataTable("select id_service, name_service from services;");
-          
+
         }
         public static DataTable SelectReunion()
         {
@@ -244,7 +244,7 @@ namespace REL
         public static DataTable SelectBackCompleteVehicule(int demande_id)
         {
 
-            return ExecuteSelectToDataTable($"select as detailtype modele from vehicule v join demande_vehicule dv on v.id_vehicule = dv.id_vehicule where dv.id_demande = '{demande_id}';");
+            return ExecuteSelectToDataTable($"select modele as detailtype  from vehicule v join demande_vehicule dv on v.id_vehicule = dv.id_vehicule where dv.id_demande = '{demande_id}';");
 
         }
 
@@ -277,10 +277,129 @@ namespace REL
             ExecuteQuery($"update demande set statut = '6', motif_clo = '{mess_clo}' where id_demande ='{demande_id}';");
 
         }
-        
+
+        public static void InsertDemandeSave(int untype_demande, string unObjet, string unCommetaire, int unPrioritaire, string uneDuree_debut, string UneDuree_fin, int id_user, int statut, int AdminNotif)
+        {
+
+            ExecuteQuery($"INSERT INTO demande (type_demande , Objet_demande , Commentaire, Prioritaire,  Duree_debut, Duree_fin, statut, " +
+                         $"Id_Utilisateur, Adminnotif) VALUES ('{untype_demande}', '{unObjet}', '{unCommetaire}', '{unPrioritaire}','{uneDuree_debut}'," +
+                         $"'{UneDuree_fin}', '{statut}', '{id_user}', '{AdminNotif}');");
+
+        }
+
+        public static void InsertServiceSave(int super_id)
+        {
+
+            ExecuteQuery($"INSERT INTO demande_services (id_service, Id_demande) " +
+                           $" values('{super_id}','{LastidDemande()}');");
+
+        }
+
+        public static void InsertReunionSave(int super_id)
+        {
+
+            ExecuteQuery($"INSERT INTO demande_reunion (id_reunion, Id_demande) " +
+                         $" values('{super_id}','{LastidDemande()}');");
+
+        }
+
+        public static void InsertVehiculeSave(int super_id)
+        {
+
+            ExecuteQuery($"INSERT INTO demande_vehicule (id_vehicule, Id_demande) " +
+                         $" values('{super_id}','{LastidDemande()}');");
+
+        }
+
+
+
+        public static int LastidDemande()
+        {
+
+            return Convert.ToInt32(ExecuteQuery2("select max(id_demande) as last_id from demande ;"));
+
+        }
+
+        public static void UpdateAdminNotif()
+        {
+
+            ExecuteQuery($"update demande set Adminnotif = '1' where id_demande ='{cDemande.id_demande}';");
+
+
+            ExecuteQuery($"update demande set Usernotif = '0' where id_demande ='{cDemande.id_demande}' ;");
+
+        }
+
+        public static void UpdateUserNotif()
+        {
+
+            ExecuteQuery($"update demande set Adminnotif = '0' where id_demande ='{cDemande.id_demande}';");
+
+
+            ExecuteQuery($"update demande set Usernotif = '1' where id_demande ='{cDemande.id_demande}' ;");
+
+        }
+
+        public static int SelectTypeDemande(int demande_id)
+        {
+
+            return ExecuteQuery($"select type_demande from demande where id_demande = '{demande_id}';");
+
+        }
+
+        public static void DeleteDemandeServices(int demande_id)
+        {
+
+            ExecuteQuery($"delete from demande_services where id_demande ='{demande_id}' ;");
+        }
+
+
+        public static void DeleteDemandeReunion(int demande_id)
+        {
+
+            ExecuteQuery($"delete from demande_reunion where id_demande ='{demande_id}';");
+        }
+
+
+          public static void DeleteDemandeVehicule(int demande_id)
+        {
+
+            ExecuteQuery($"delete from demande_services where id_demande ='{demande_id}';");
+        }
+
+
+        public static void DeleteDemande(int demande_id)
+        {
+
+            ExecuteQuery($"delete from demande where id_demande ='{demande_id}';");
+        }
+
+
+        public static void UpdateNoNotif()
+        {
+
+            ExecuteQuery($"update demande set Adminnotif = '0' where id_demande ='{cDemande.id_demande}';");
+
+
+            ExecuteQuery($"update demande set Usernotif = '0' where id_demande ='{cDemande.id_demande}' ;");
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         #endregion
+
 
     }
 }

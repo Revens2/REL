@@ -44,10 +44,7 @@ namespace REL
             gv_list.Columns.Add(btnDelete);
         }
 
-        private void gv_list_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
-            ApplyStatusIcons();
-        }
+
 
         public void Bindlist()
         {
@@ -80,7 +77,10 @@ namespace REL
             }
         }
 
-            
+        private void gv_list_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            ApplyStatusIcons();
+        }
 
         private void ApplyStatusIcons()
         {

@@ -42,7 +42,7 @@ namespace REL
             //    tbmdp.Focus();
             //    return;
             //}
-            
+
 
 
             if (cUtilisateur.ValidLogin())
@@ -67,7 +67,6 @@ namespace REL
 
         }
 
-      
     }
 }
 
