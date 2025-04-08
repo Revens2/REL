@@ -219,16 +219,13 @@ namespace REL
             if (on)
             {
 
-                string query1 = $"update demande set Histonotif = '1' where id_demande ='{cDemande.id_demande}';";
-
-                cBdd.ExecuteQuery(query1);
+                cBdd.OnNotifHisto();
                  
             }
             else
             {
-                string query1 = $"update demande set Histonotif = '0' where id_utilisateur ='{cUtilisateur.user_id}';";
 
-                cBdd.ExecuteQuery(query1);
+                cBdd.OffNotifHisto();
 
             }
             cBdd.UpdateNoNotif();
@@ -237,30 +234,18 @@ namespace REL
         public static int NotifGestion()
         {
             int type = cUtilisateur.GetAccounType();
-            string query = $"select count(Adminnotif) from demande where Adminnotif = 1 and type_demande = '{type}';";
 
-            int result = cBdd.ExecuteQuery2(query);
-
-            return result;
+            return cBdd.CountNotifGestion(type);
         }
 
         public static int NotifDemande()
         {
-            string query = $"select count(Usernotif) from demande where Usernotif = 1 and id_utilisateur = '{cUtilisateur.user_id}';";
-
-            int result = cBdd.ExecuteQuery2(query);
-
-            return result;
+            return cBdd.CountNotifDemande();
         }
 
         public static int NotifHistorique()
         {
-            int type = cUtilisateur.GetAccounType();
-            string query = $"select count(Histonotif) from demande where Histonotif = 1 and id_utilisateur = '{cUtilisateur.user_id}';";
-
-            int result = cBdd.ExecuteQuery2(query);
-
-            return result;
+            return cBdd.CountNotifHisto();
         }
 
         #endregion
@@ -303,22 +288,6 @@ namespace REL
 
 
         #endregion
-
-
-        public static void UpdateDemande(int id_demande, int untype_demande, string unObjet, string unCommetaire, int unPrioritaire, string uneDuree_debut, string UneDuree_fin, int id_user)
-        {
-            int statut = 1;
-
-
-            string query = $"update demande set type_demande = '{untype_demande}' , Objet_demande = '{unObjet}',, Commentaire=  '{unCommetaire}', Prioritaire= '{unPrioritaire}',  Duree_debut= '{uneDuree_debut}', Duree_fin = '{UneDuree_fin}', statut='{statut}', where id_demande = '{id_demande}';";
-
-            cBdd.ExecuteQuery(query);
-
-
-
-        }
-
-
    
         public static void DeleteDemande(int demande_id)
         {

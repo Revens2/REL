@@ -46,7 +46,7 @@ namespace REL
             Connexion conn = new Connexion();
             conn.ShowDialog();
             cUtilisateur user = new cUtilisateur();
-            cUtilisateur.User_id = -1;
+            cUtilisateur.user_id = -1;
         }
 
     }

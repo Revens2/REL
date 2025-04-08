@@ -384,11 +384,40 @@ namespace REL
             ExecuteQuery($"update demande set Usernotif = '0' where id_demande ='{cDemande.id_demande}' ;");
 
         }
+        public static void OnNotifHisto()
+        {
+
+            ExecuteQuery($"update demande set Histonotif = '1' where id_demande ='{cDemande.id_demande}';");
+
+        }
 
 
+        public static void OffNotifHisto()
+        {
 
+            ExecuteQuery($"update demande set Histonotif = '0' where id_utilisateur ='{cUtilisateur.user_id}';");
 
+        }
 
+        public static int CountNotifGestion(int type)
+        {
+
+            return ExecuteQuery2($"select count(Adminnotif) from demande where Adminnotif = 1 and type_demande = '{type}';");
+
+        }
+        public static int CountNotifDemande()
+        {
+
+            return ExecuteQuery2($"select count(Usernotif) from demande where Usernotif = 1 and id_utilisateur = '{cUtilisateur.user_id}';");
+
+        }
+
+        public static int CountNotifHisto()
+        {
+
+            return ExecuteQuery2($"select count(Histonotif) from demande where Histonotif = 1 and id_utilisateur = '{cUtilisateur.user_id}';");
+
+        }
 
 
 
