@@ -14,11 +14,13 @@ namespace REL
     public partial class Account : Form
     {
         private menucs menu;
-        public Account()
+        private int globaluserid = 0;
+        public Account(int userid)
         {
+            globaluserid = userid;
             InitializeComponent();
             BindList();
-            menu = new menucs();
+            menu = new menucs(globaluserid);
             menu.Dock = DockStyle.Top;
             this.Controls.Add(menu);
         }
@@ -140,8 +142,8 @@ namespace REL
         }
         private void BindList()
         {
-            cUtilisateur user = new cUtilisateur();
-            DataTable dt = user.GetAccount(cUtilisateur.user_id);
+            cUtilisateur user = new cUtilisateur(globaluserid);
+            DataTable dt = user.GetAccount();
             DataRow row = dt.Rows[0];
 
             tbname.Text = row["Nom"].ToString();

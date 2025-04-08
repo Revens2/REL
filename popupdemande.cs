@@ -15,8 +15,10 @@ namespace REL
 {
     public partial class popupdemande : Form
     {
-        public popupdemande()
+        private int globaluserid = 0;
+        public popupdemande(int userid)
         {
+            globaluserid = userid;
             InitializeComponent();
             tbdatedebut.Value = DateTime.Now;
             tbdateend.Value = DateTime.Now;
@@ -153,8 +155,8 @@ namespace REL
                     }
                     break;
             }
-            cDemande.DemandeSave(ddltype.SelectedIndex, tbobjet.Text, tbcom.Text, cBdd.CbConvertInt(cbprioritaire.Checked), cBdd.DateConvert(tbdatedebut.Value), cBdd.DateConvert(tbdateend.Value), cUtilisateur.user_id, super_id);
-            Demande demande = new Demande();
+            cDemande.DemandeSave(ddltype.SelectedIndex, tbobjet.Text, tbcom.Text, cBdd.CbConvertInt(cbprioritaire.Checked), cBdd.DateConvert(tbdatedebut.Value), cBdd.DateConvert(tbdateend.Value), globaluserid, super_id);
+            Demande demande = new Demande(globaluserid);
 
             demande.Bindlist();
             this.Close();
@@ -177,7 +179,7 @@ namespace REL
 
         private void btvalid_Click(object sender, EventArgs e)
         {
-            popvalid popup = new popvalid(1);
+            popvalid popup = new popvalid(globaluserid, 1);
             popup.ShowDialog();
 
             if (cDemande.isnewstatut)
@@ -190,7 +192,7 @@ namespace REL
         private void btattente_Click(object sender, EventArgs e)
         {
 
-            popvalid popup = new popvalid(2);
+            popvalid popup = new popvalid(globaluserid, 2);
             popup.ShowDialog();
             if (cDemande.isnewstatut)
             {
@@ -203,7 +205,7 @@ namespace REL
         private void btdelete_Click(object sender, EventArgs e)
         {
 
-            popvalid popup = new popvalid(3);
+            popvalid popup = new popvalid(globaluserid,3);
             popup.ShowDialog();
             if (cDemande.isnewstatut)
             {

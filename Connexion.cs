@@ -50,7 +50,7 @@ namespace REL
                 MessageBox.Show("Connexion réussi !");
 
                 this.Hide();
-                Demande page = new Demande();
+                Demande page = new Demande(cUtilisateur.User_id);
                 page.ShowDialog();
             }
             else

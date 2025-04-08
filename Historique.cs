@@ -14,14 +14,16 @@ namespace REL
     public partial class Historique : Form
     {
         private menucs menu;
-        public Historique()
+        private int globaluserid = 0;
+        public Historique(int userid)
         {
+            globaluserid = userid;
             InitializeComponent();
             Bindlist();
-            menu = new menucs();
+            menu = new menucs(userid);
             menu.Dock = DockStyle.Top;
             this.Controls.Add(menu);
-            cDemande.UpdateHistoNotif(false);
+            cDemande.UpdateHistoNotif(false, globaluserid);
         }
         private void Bindlist()
         {
@@ -31,7 +33,7 @@ namespace REL
             {
                 dem.Statut = 4;
             }
-            gv_list.DataSource = dem.listHistorique();
+            gv_list.DataSource = dem.listHistorique(globaluserid);
 
         }
 
@@ -40,14 +42,6 @@ namespace REL
             Bindlist();
         }
 
-        private void btlogout_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            Connexion conn = new Connexion();
-            conn.ShowDialog();
-            cUtilisateur user = new cUtilisateur();
-            cUtilisateur.user_id = -1;
-        }
 
     }
 }

@@ -4,6 +4,8 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using iTextSharp.text.pdf.parser.clipper;
+using Microsoft.VisualBasic.ApplicationServices;
 using MySql.Data.MySqlClient;
 using Mysqlx.Crud;
 using Mysqlx.Session;
@@ -81,14 +83,15 @@ namespace REL
         }
 
         #region List 
-        public DataTable listDemande(int cbprioritaire)
+        public DataTable listDemande(int user_id, int cbprioritaire)
         {
-            return cBdd.SelectListDemande(cUtilisateur.user_id, cbprioritaire);
+            return cBdd.SelectListDemande(user_id, cbprioritaire);
             
         }
 
-        public DataTable listrequete()
+        public DataTable listrequete(int userid)
         {
+            cUtilisateur cUtilisateur = new cUtilisateur(userid);
             int type = cUtilisateur.GetAccounType();
             string statut = "d.statut = 1 or d.statut = 3 ";
             if (final)
@@ -105,9 +108,9 @@ namespace REL
             return result;
         }
 
-        public DataTable listHistorique()
+        public DataTable listHistorique(int userid)
         {
-            return cBdd.SelectHistorique(statut, cUtilisateur.user_id);
+            return cBdd.SelectHistorique(statut, userid);
             
         }
         public static DataTable ListService()
@@ -214,7 +217,7 @@ namespace REL
 
         }
 
-        public static void UpdateHistoNotif(bool on)
+        public static void UpdateHistoNotif(bool on, int userid)
         {
             if (on)
             {
@@ -225,27 +228,28 @@ namespace REL
             else
             {
 
-                cBdd.OffNotifHisto();
+                cBdd.OffNotifHisto(userid);
 
             }
             cBdd.UpdateNoNotif();
         }
 
-        public static int NotifGestion()
+        public static int NotifGestion(int userid)
         {
+            cUtilisateur cUtilisateur = new cUtilisateur(userid);
             int type = cUtilisateur.GetAccounType();
 
             return cBdd.CountNotifGestion(type);
         }
 
-        public static int NotifDemande()
+        public static int NotifDemande(int userid)
         {
-            return cBdd.CountNotifDemande();
+            return cBdd.CountNotifDemande(userid);
         }
 
-        public static int NotifHistorique()
+        public static int NotifHistorique(int userid)
         {
-            return cBdd.CountNotifHisto();
+            return cBdd.CountNotifHisto(userid);
         }
 
         #endregion

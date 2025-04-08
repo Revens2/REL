@@ -19,14 +19,21 @@ namespace REL
     {
         private menucs menu;
         private Dictionary<string, DrawingImage> statusIcons;
-        public Demande()
+        private int globaluserid = 0;
+        public Demande(int userid)
         {
             InitializeComponent();
-            gv_list.DataBindingComplete += gv_list_DataBindingComplete;
-            Bindlist();
-            menu = new menucs();
+
+            globaluserid = userid;
+
+            menu = new menucs(globaluserid);
             menu.Dock = DockStyle.Top;
             this.Controls.Add(menu);
+
+            
+            gv_list.DataBindingComplete += gv_list_DataBindingComplete;
+            Bindlist();
+           
             DataGridViewButtonColumn btnEdit = new DataGridViewButtonColumn();
             btnEdit.HeaderText = "Action";
             btnEdit.Name = "btnEdit";
@@ -49,7 +56,7 @@ namespace REL
         public void Bindlist()
         {
             cDemande dem = new cDemande();
-            gv_list.DataSource = dem.listDemande(cBdd.CbConvertInt(cbprioritaire.Checked));
+            gv_list.DataSource = dem.listDemande(globaluserid, cBdd.CbConvertInt(cbprioritaire.Checked));
             gv_list.Columns["Prioritaire"].Visible = false;
             gv_list.Columns["id_demande"].Visible = false;
             gv_list.Columns["statut"].Visible = false;
@@ -124,7 +131,7 @@ namespace REL
         private void btadd_Click(object sender, EventArgs e)
         {
             cDemande.id_demande = 0;
-            popupdemande popup = new popupdemande();
+            popupdemande popup = new popupdemande(globaluserid);
             popup.StartPosition = FormStartPosition.CenterParent;
             popup.Show();
             Bindlist();
@@ -146,7 +153,7 @@ namespace REL
                 int selectedId = Convert.ToInt32(gv_list.Rows[e.RowIndex].Cells["Id_demande"].Value);
 
                 cDemande.id_demande = selectedId;
-                popupdemande popup = new popupdemande();
+                popupdemande popup = new popupdemande(globaluserid);
                 popup.ShowDialog();
 
 
@@ -172,7 +179,7 @@ namespace REL
                 {
                     cDemande.id_demande = Convert.ToInt32(row.Cells["id_demande"].Value);
 
-                    popupconfirmdem popup = new popupconfirmdem();
+                    popupconfirmdem popup = new popupconfirmdem(globaluserid);
                     popup.ShowDialog();
                     Bindlist();
                 }

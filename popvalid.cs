@@ -13,7 +13,8 @@ namespace REL
     public partial class popvalid : Form
     {
         private int type_valid;
-        public popvalid(int type_valid)
+        private int globaluserid = 0;
+        public popvalid(int userid, int type_valid)
         {
 
             InitializeComponent();
@@ -70,13 +71,13 @@ namespace REL
                 case 3:
 
                     cDemande.Delete(cDemande.id_demande, tbmess.Text);
-                    cDemande.UpdateHistoNotif(false);
+                    cDemande.UpdateHistoNotif(false, globaluserid);
 
                     break;
 
                 case 4:
                     cDemande.Cloture(cDemande.id_demande, tbmess.Text);
-                    cDemande.UpdateHistoNotif(false);
+                    cDemande.UpdateHistoNotif(false, globaluserid);
                     break;
 
                 case 5:
@@ -84,9 +85,9 @@ namespace REL
                     cDemande.UpdateNotif(true);
                     break;
             }
-            menucs menu = new menucs();
+            menucs menu = new menucs(globaluserid);
             menu.BindNotif();
-            Requete requete = new Requete();
+            Requete requete = new Requete(globaluserid);
             requete.Invalidate();
             requete.Update();
             cDemande.isnewstatut = true;

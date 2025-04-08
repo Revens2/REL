@@ -12,21 +12,25 @@ namespace REL
 {
     public partial class menucs : UserControl
     {
-        public menucs()
+        private int globaluserid = 0;
+        public menucs(int userid)
         {
             InitializeComponent();
+
+            globaluserid = userid;
+            cUtilisateur cUtilisateur = new cUtilisateur(globaluserid);
             btrequete.Visible = (cUtilisateur.isAdmin || cUtilisateur.istypeService || cUtilisateur.isRh || cUtilisateur.isInfo || cUtilisateur.isPaie || cUtilisateur.istypeReunion || cUtilisateur.istypeVehicule);
-            cUtilisateur user = new cUtilisateur(cUtilisateur.User_id);
-            lbinfo.Text = $"{user.Name} {user.Prenom}";
+
+            lbinfo.Text = $"{cUtilisateur.Name} {cUtilisateur.Prenom}";
             BindNotif();
         }
 
 
         public void BindNotif()
         {
-            lbnotifdemande.Text = Convert.ToString(cDemande.NotifDemande());
-            lbnotifgestion.Text = Convert.ToString(cDemande.NotifGestion());
-            lbnotifhisto.Text = Convert.ToString(cDemande.NotifHistorique()); 
+            lbnotifdemande.Text = Convert.ToString(cDemande.NotifDemande(globaluserid));
+            lbnotifgestion.Text = Convert.ToString(cDemande.NotifGestion(globaluserid));
+            lbnotifhisto.Text = Convert.ToString(cDemande.NotifHistorique(globaluserid)); 
             if (lbnotifdemande.Text == "0")
             {
                 lbnotifdemande.Visible = false;
@@ -58,14 +62,14 @@ namespace REL
         private void btHistorique_Click(object sender, EventArgs e)
         {
             this.FindForm().Hide();
-            Historique page = new Historique();
+            Historique page = new Historique(globaluserid);
             page.ShowDialog();
         }
 
         private void btaccount_Click(object sender, EventArgs e)
         {
             this.FindForm().Hide();
-            Account compte = new Account();
+            Account compte = new Account(globaluserid);
             compte.ShowDialog();
         }
 
@@ -74,21 +78,19 @@ namespace REL
             this.FindForm().Hide();
             Connexion conn = new Connexion();
             conn.ShowDialog();
-            cUtilisateur user = new cUtilisateur();
-            cUtilisateur.User_id = -1;
         }
 
         private void btrequete_Click(object sender, EventArgs e)
         {
             this.FindForm().Hide();
-            Requete request = new Requete();
+            Requete request = new Requete(globaluserid);
             request.ShowDialog();
         }
 
         private void btdemande_Click(object sender, EventArgs e)
         {
             this.FindForm().Hide();
-            Demande dem = new Demande();
+            Demande dem = new Demande(globaluserid);
             dem.ShowDialog();
         }
     }

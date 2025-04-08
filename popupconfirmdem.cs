@@ -12,8 +12,10 @@ namespace REL
 {
     public partial class popupconfirmdem : Form
     {
-        public popupconfirmdem()
+        private int globaluserid = 0;
+        public popupconfirmdem(int userid)
         {
+            globaluserid = userid;
             InitializeComponent();
             Bindlist();
         }
@@ -44,9 +46,9 @@ namespace REL
         {
             cDemande.ValideRDV(cDemande.id_demande);
             cDemande.UpdateNotif(true);
-            menucs menu = new menucs();
+            menucs menu = new menucs(globaluserid);
             menu.BindNotif();
-            Requete requete = new Requete();
+            Requete requete = new Requete(globaluserid);
             requete.Invalidate();
             requete.Update();
             this.Close();

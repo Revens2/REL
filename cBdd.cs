@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.VisualBasic.ApplicationServices;
 using MySql.Data.MySqlClient;
 using Mysqlx.Session;
 using MySqlX.XDevAPI.Common;
@@ -392,10 +393,10 @@ namespace REL
         }
 
 
-        public static void OffNotifHisto()
+        public static void OffNotifHisto(int userid)
         {
 
-            ExecuteQuery($"update demande set Histonotif = '0' where id_utilisateur ='{cUtilisateur.user_id}';");
+            ExecuteQuery($"update demande set Histonotif = '0' where id_utilisateur ='{userid}';");
 
         }
 
@@ -405,17 +406,17 @@ namespace REL
             return ExecuteQuery2($"select count(Adminnotif) from demande where Adminnotif = 1 and type_demande = '{type}';");
 
         }
-        public static int CountNotifDemande()
+        public static int CountNotifDemande(int userid)
         {
 
-            return ExecuteQuery2($"select count(Usernotif) from demande where Usernotif = 1 and id_utilisateur = '{cUtilisateur.user_id}';");
+            return ExecuteQuery2($"select count(Usernotif) from demande where Usernotif = 1 and id_utilisateur = '{userid}';");
 
         }
 
-        public static int CountNotifHisto()
+        public static int CountNotifHisto(int userid)
         {
 
-            return ExecuteQuery2($"select count(Histonotif) from demande where Histonotif = 1 and id_utilisateur = '{cUtilisateur.user_id}';");
+            return ExecuteQuery2($"select count(Histonotif) from demande where Histonotif = 1 and id_utilisateur = '{userid}';");
 
         }
 

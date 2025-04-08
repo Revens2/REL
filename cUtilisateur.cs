@@ -42,17 +42,17 @@ namespace REL
             set { password = value; }
         }
 
-        public static bool isAdmin 
+        public  bool isAdmin 
         {
             get; private set; 
         }
-        public static bool isRh { get; private set; }
-        public static bool isInfo { get; private set; }
-        public static bool isPaie { get; private set; }
+        public  bool isRh { get; private set; }
+        public  bool isInfo { get; private set; }
+        public  bool isPaie { get; private set; }
 
-        public static bool istypeService { get; private set; }
-        public static bool istypeReunion { get; private set; }
-        public static bool istypeVehicule { get; private set; }
+        public  bool istypeService { get; private set; }
+        public  bool istypeReunion { get; private set; }
+        public  bool istypeVehicule { get; private set; }
 
         public string Name
         {
@@ -105,7 +105,7 @@ namespace REL
         // Constructeur complet
         public cUtilisateur(int id_utilisateur)
         {
-
+            user_id = id_utilisateur;
 
 
             DataTable dt = cBdd.SelectOneUser(id_utilisateur);
@@ -123,7 +123,7 @@ namespace REL
                 this.zip = Convert.ToInt32(row["Zip"]);
                 this.ville = Convert.ToString(row["Ville"]);
             }
-
+            LoadUserRoles();
         }
         public string GetUserInfo()
         {
@@ -152,7 +152,8 @@ namespace REL
                   
 
                     reader.Close();
-                    cUtilisateur.LoadUserRoles();
+                    cUtilisateur user = new cUtilisateur(user_id);
+                    user.LoadUserRoles();
                     return true;
                 }
                 else
@@ -199,20 +200,20 @@ namespace REL
             }
         }
 
-        public static int GetAccounType()
+        public int GetAccounType()
         {
 
             int type = 0;
-            if (cUtilisateur.istypeService)
+            if (istypeService)
             {
                 type = 1;
 
             }
-            else if (cUtilisateur.istypeReunion)
+            else if (istypeReunion)
             {
                 type = 2;
             }
-            else if (cUtilisateur.istypeVehicule)
+            else if (istypeVehicule)
             {
                 type = 3;
             }

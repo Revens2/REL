@@ -16,10 +16,12 @@ namespace REL
     public partial class Requete : Form
     {
         private menucs menu;
-        public Requete()
+        private int globaluserid = 0;
+        public Requete(int userid)
         {
+            globaluserid = userid;
             InitializeComponent();
-            menu = new menucs();
+            menu = new menucs(globaluserid);
             menu.Dock = DockStyle.Top;
             this.Controls.Add(menu);
             gvrequest.DataBindingComplete += gvrequest_DataBindingComplete;     
@@ -33,7 +35,7 @@ namespace REL
             gvrequest.Columns.Clear();
             cDemande cDemande = new cDemande();
             cDemande.Final = cbfinal.Checked;
-            gvrequest.DataSource = cDemande.listrequete();
+            gvrequest.DataSource = cDemande.listrequete(globaluserid);
             gvrequest.Columns["id_demande"].Visible = false;
             if (cbfinal.Checked)
             {
@@ -67,7 +69,7 @@ namespace REL
                 {
                     int selectedId = Convert.ToInt32(gvrequest.Rows[e.RowIndex].Cells["Id_demande"].Value);
                     cDemande.id_demande = selectedId;
-                    popvalid popup = new popvalid(4);
+                    popvalid popup = new popvalid(globaluserid, 4);
                     popup.ShowDialog();
 
                 }
@@ -81,7 +83,7 @@ namespace REL
 
                     cDemande.isrequest = true;
                     cDemande.id_demande = selectedId;
-                    popupdemande popup = new popupdemande();
+                    popupdemande popup = new popupdemande(globaluserid);
                     popup.ShowDialog();
 
                 }
