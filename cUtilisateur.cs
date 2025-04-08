@@ -6,7 +6,7 @@ namespace REL
 {
     internal class cUtilisateur
     {
-        public static int user_id;
+        private int user_id;
 
         private string mail;
 
@@ -25,7 +25,7 @@ namespace REL
         private int zip;
 
         private string ville;
-        public static int User_id
+        public int User_id
         {
             get { return user_id; }
             set { user_id = value; }
@@ -152,7 +152,7 @@ namespace REL
                   
 
                     reader.Close();
-                    cUtilisateur.LoadUserRoles(user_id);
+                    cUtilisateur.LoadUserRoles();
                     return true;
                 }
                 else
@@ -175,15 +175,15 @@ namespace REL
             
         }
 
-        public DataTable GetAccount(int id_user)
+        public DataTable GetAccount()
         {
-            return cBdd.SelectAccount(id_user);
+            return cBdd.SelectAccount(user_id);
         }
 
         
-        public static void LoadUserRoles(int id_user)
+        public void LoadUserRoles()
         {
-            DataTable dt = cBdd.SelectRole(id_user);
+            DataTable dt = cBdd.SelectRole(user_id);
 
             if (dt.Rows.Count > 0) 
             {
