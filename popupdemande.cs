@@ -186,10 +186,12 @@ namespace REL
         private void btvalid_Click(object sender, EventArgs e)
         {
             cDemande cDemande = new cDemande(globaldemandeid);
+            int oldstatut = cDemande.Statut;
             popvalid popup = new popvalid(globaluserid, 1, globaldemandeid);
             popup.ShowDialog();
 
-            if (cDemande.Isnewstatut)
+            cDemande newcDemande = new cDemande(globaldemandeid);
+            if (oldstatut != newcDemande.Statut)
             {
                 this.Close();
 
@@ -214,9 +216,11 @@ namespace REL
         private void btdelete_Click(object sender, EventArgs e)
         {
             cDemande cDemande = new cDemande(globaldemandeid);
+            int oldstatut = cDemande.Statut;
             popvalid popup = new popvalid(globaluserid,3, globaldemandeid);
             popup.ShowDialog();
-            if (cDemande.Isnewstatut)
+            cDemande newcDemande = new cDemande(globaldemandeid);
+            if (oldstatut != newcDemande.Statut)
             {
                 cDemande.UpdateNotif(true);
                 this.Close();

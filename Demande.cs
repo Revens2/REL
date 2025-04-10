@@ -26,11 +26,9 @@ namespace REL
 
             globaluserid = userid;
 
-            menu = new menucs(globaluserid);
-            menu.Dock = DockStyle.Top;
-            this.Controls.Add(menu);
+            BindMenu();
 
-            
+
             gv_list.DataBindingComplete += gv_list_DataBindingComplete;
             Bindlist();
            
@@ -83,7 +81,15 @@ namespace REL
                 btvalidate.Visible = false;
             }
         }
+        public void BindMenu()
+        {
+            menu = new menucs(globaluserid);
+            menu.Dock = DockStyle.Top;
+            this.Controls.Add(menu);
+        }
 
+
+            
         private void gv_list_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             ApplyStatusIcons();

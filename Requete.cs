@@ -21,9 +21,7 @@ namespace REL
         {
             globaluserid = userid;
             InitializeComponent();
-            menu = new menucs(globaluserid);
-            menu.Dock = DockStyle.Top;
-            this.Controls.Add(menu);
+            BindMenu();
             gvrequest.DataBindingComplete += gvrequest_DataBindingComplete;     
             Bindlist();
            
@@ -60,6 +58,12 @@ namespace REL
             }
 
         }
+        public void BindMenu()
+        {
+            menu = new menucs(globaluserid);
+            menu.Dock = DockStyle.Top;
+            this.Controls.Add(menu);
+        }
 
         private void gvrequest_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -71,6 +75,7 @@ namespace REL
                     cDemande cDemande = new cDemande(selectedId);
                     popvalid popup = new popvalid(globaluserid, 4, selectedId);
                     popup.ShowDialog();
+                   
 
                 }
             }
@@ -85,7 +90,7 @@ namespace REL
                     cDemande cDemande = new cDemande(selectedId);
                     popupdemande popup = new popupdemande(globaluserid, selectedId, true);
                     popup.ShowDialog();
-
+                    
                 }
             }
         
