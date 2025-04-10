@@ -12,19 +12,23 @@ namespace REL
 {
     public partial class popvalid : Form
     {
-        private int type_valid;
+        private int globaltype_valid = 0;
         private int globaluserid = 0;
-        public popvalid(int userid, int type_valid)
+        private int globaldemandeid = 0;
+        public popvalid(int userid, int type_valid, int demandeid)
         {
 
             InitializeComponent();
-            BindList(type_valid);
-            this.type_valid = type_valid;
+            
+            globaluserid = userid;
+            globaltype_valid = type_valid;
+            globaldemandeid = demandeid;
+            BindList();
         }
 
-        private void BindList(int type_valid)
+        private void BindList()
         {
-            switch (type_valid)
+            switch (globaltype_valid)
             {
 
                 case 1:
@@ -54,34 +58,35 @@ namespace REL
 
         private void btsave_Click(object sender, EventArgs e)
         {
-            switch (type_valid)
+            cDemande cDemande = new cDemande(globaldemandeid);
+            switch (globaltype_valid)
             {
 
 
                 case 1:
-                    cDemande.Valide(cDemande.id_demande);
+                    cDemande.Valide();
                     cDemande.UpdateNotif(false);
                     break;
 
                 case 2:
 
-                    cDemande.Attente(cDemande.id_demande, tbmess.Text);
+                    cDemande.Attente(tbmess.Text);
                     
                     break;
                 case 3:
 
-                    cDemande.Delete(cDemande.id_demande, tbmess.Text);
+                    cDemande.Delete(tbmess.Text);
                     cDemande.UpdateHistoNotif(false, globaluserid);
 
                     break;
 
                 case 4:
-                    cDemande.Cloture(cDemande.id_demande, tbmess.Text);
+                    cDemande.Cloture(tbmess.Text);
                     cDemande.UpdateHistoNotif(false, globaluserid);
                     break;
 
                 case 5:
-                    cDemande.ValideRDV(cDemande.id_demande);
+                    cDemande.ValideRDV();
                     cDemande.UpdateNotif(true);
                     break;
             }
@@ -90,13 +95,14 @@ namespace REL
             Requete requete = new Requete(globaluserid);
             requete.Invalidate();
             requete.Update();
-            cDemande.isnewstatut = true;
+            cDemande.Isnewstatut = true;
             this.Close();
         }
 
         private void btcancel_Click(object sender, EventArgs e)
         {
-            cDemande.isnewstatut = false;
+            cDemande cDemande = new cDemande(globaldemandeid);
+            cDemande.Isnewstatut = false;
             this.Close();
 
         }

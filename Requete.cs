@@ -68,8 +68,8 @@ namespace REL
                 if (e.ColumnIndex == gvrequest.Columns["Btnclo"].Index && e.RowIndex >= 0)
                 {
                     int selectedId = Convert.ToInt32(gvrequest.Rows[e.RowIndex].Cells["Id_demande"].Value);
-                    cDemande.id_demande = selectedId;
-                    popvalid popup = new popvalid(globaluserid, 4);
+                    cDemande cDemande = new cDemande(selectedId);
+                    popvalid popup = new popvalid(globaluserid, 4, selectedId);
                     popup.ShowDialog();
 
                 }
@@ -81,9 +81,9 @@ namespace REL
                 {
                     int selectedId = Convert.ToInt32(gvrequest.Rows[e.RowIndex].Cells["Id_demande"].Value);
 
-                    cDemande.isrequest = true;
-                    cDemande.id_demande = selectedId;
-                    popupdemande popup = new popupdemande(globaluserid);
+                   
+                    cDemande cDemande = new cDemande(selectedId);
+                    popupdemande popup = new popupdemande(globaluserid, selectedId, true);
                     popup.ShowDialog();
 
                 }

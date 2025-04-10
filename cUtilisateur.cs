@@ -108,7 +108,7 @@ namespace REL
             user_id = id_utilisateur;
 
 
-            DataTable dt = cBdd.SelectOneUser(id_utilisateur);
+            DataTable dt = cBdd.SelectOneUser(user_id);
 
             if (dt.Rows.Count > 0)
             {
@@ -135,6 +135,8 @@ namespace REL
         }
 
         public bool ValidLogin()
+        
+        
         {
             
             try
@@ -240,6 +242,8 @@ namespace REL
             return cBdd.UpdateUser(Name, Prenom, dateDeNaissance, Adresse, Zip, Ville, Numero, Mail, user_id);
 
         }
+
+
     }
 
 

@@ -16,9 +16,11 @@ namespace REL
     public partial class popupdemande : Form
     {
         private int globaluserid = 0;
-        public popupdemande(int userid)
+        private int globaldemandeid = 0;
+        public popupdemande(int userid, int demandeid, bool Isrequest)
         {
             globaluserid = userid;
+            globaldemandeid = demandeid; 
             InitializeComponent();
             tbdatedebut.Value = DateTime.Now;
             tbdateend.Value = DateTime.Now;
@@ -29,11 +31,11 @@ namespace REL
             ddltype.SelectedIndex = 0;
 
             pnlrequest.Visible = false;
-
-            if (cDemande.id_demande != 0)
+            cDemande cDemande = new cDemande(globaldemandeid);
+            if (globaldemandeid != 0)
             {
-                Bindedit(cDemande.id_demande);
-                if (cDemande.isrequest)
+                Bindedit(globaldemandeid);
+                if (Isrequest)
                 {
                     pnlrequest.Visible = true;
 
@@ -44,6 +46,7 @@ namespace REL
         private void Bindlist()
         {
 
+            cDemande cDemande = new cDemande(globaldemandeid);
             switch (ddltype.SelectedIndex)
             {
                 case 1:
@@ -92,6 +95,7 @@ namespace REL
         private void btsave_Click(object sender, EventArgs e)
         {
 
+            cDemande cDemande = new cDemande(globaldemandeid);
             if (ddltype.SelectedIndex == 0)
             {
                 MessageBox.Show("Veuillez selectionner le type de la demande.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -164,7 +168,9 @@ namespace REL
 
         private void Bindedit(int id)
         {
-            DataTable dt = cDemande.ListBackDemande(id);
+
+            cDemande cDemande = new cDemande(globaldemandeid);
+            DataTable dt = cDemande.ListBackDemande();
             DataRow row = dt.Rows[0];
 
             ddltype.SelectedIndex = Convert.ToInt32(row["type_demande"]);
@@ -179,10 +185,11 @@ namespace REL
 
         private void btvalid_Click(object sender, EventArgs e)
         {
-            popvalid popup = new popvalid(globaluserid, 1);
+            cDemande cDemande = new cDemande(globaldemandeid);
+            popvalid popup = new popvalid(globaluserid, 1, globaldemandeid);
             popup.ShowDialog();
 
-            if (cDemande.isnewstatut)
+            if (cDemande.Isnewstatut)
             {
                 this.Close();
 
@@ -191,10 +198,12 @@ namespace REL
 
         private void btattente_Click(object sender, EventArgs e)
         {
-
-            popvalid popup = new popvalid(globaluserid, 2);
+            cDemande cDemande = new cDemande(globaldemandeid);
+            int oldstatut = cDemande.Statut;
+            popvalid popup = new popvalid(globaluserid, 2, globaldemandeid);
             popup.ShowDialog();
-            if (cDemande.isnewstatut)
+            cDemande newcDemande = new cDemande(globaldemandeid);
+            if (oldstatut != newcDemande.Statut)
             {
                 cDemande.UpdateNotif(true);
                 this.Close();
@@ -204,10 +213,10 @@ namespace REL
 
         private void btdelete_Click(object sender, EventArgs e)
         {
-
-            popvalid popup = new popvalid(globaluserid,3);
+            cDemande cDemande = new cDemande(globaldemandeid);
+            popvalid popup = new popvalid(globaluserid,3, globaldemandeid);
             popup.ShowDialog();
-            if (cDemande.isnewstatut)
+            if (cDemande.Isnewstatut)
             {
                 cDemande.UpdateNotif(true);
                 this.Close();

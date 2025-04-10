@@ -167,6 +167,14 @@ namespace REL
 
         #region cDemande
 
+        public static DataTable SelectOnedemande(int demandeid)
+        {
+            return ExecuteSelectToDataTable($"select Objet_demande, Commentaire, Prioritaire, statut, Duree_debut," +
+                $" Duree_fin from demande where Id_Demande= '{demandeid}' ");
+
+
+        }
+        
         public static DataTable SelectListDemande(int id_user, int cbprioritaire)
         {
             return ExecuteSelectToDataTable($"select id_demande, Prioritaire, statut, type_demande, Objet_demande, Commentaire, Duree_debut," +
@@ -321,23 +329,23 @@ namespace REL
 
         }
 
-        public static void UpdateAdminNotif()
+        public static void UpdateAdminNotif(int demandeid)
         {
 
-            ExecuteQuery($"update demande set Adminnotif = '1' where id_demande ='{cDemande.id_demande}';");
+            ExecuteQuery($"update demande set Adminnotif = '1' where id_demande ='{demandeid}';");
 
 
-            ExecuteQuery($"update demande set Usernotif = '0' where id_demande ='{cDemande.id_demande}' ;");
+            ExecuteQuery($"update demande set Usernotif = '0' where id_demande ='{demandeid}' ;");
 
         }
 
-        public static void UpdateUserNotif()
+        public static void UpdateUserNotif(int demandeid)
         {
 
-            ExecuteQuery($"update demande set Adminnotif = '0' where id_demande ='{cDemande.id_demande}';");
+            ExecuteQuery($"update demande set Adminnotif = '0' where id_demande ='{demandeid}';");
 
 
-            ExecuteQuery($"update demande set Usernotif = '1' where id_demande ='{cDemande.id_demande}' ;");
+            ExecuteQuery($"update demande set Usernotif = '1' where id_demande ='{demandeid}' ;");
 
         }
 
@@ -376,19 +384,19 @@ namespace REL
         }
 
 
-        public static void UpdateNoNotif()
+        public static void UpdateNoNotif(int demande_id)
         {
 
-            ExecuteQuery($"update demande set Adminnotif = '0' where id_demande ='{cDemande.id_demande}';");
+            ExecuteQuery($"update demande set Adminnotif = '0' where id_demande ='{demande_id}';");
 
 
-            ExecuteQuery($"update demande set Usernotif = '0' where id_demande ='{cDemande.id_demande}' ;");
+            ExecuteQuery($"update demande set Usernotif = '0' where id_demande ='{demande_id}' ;");
 
         }
-        public static void OnNotifHisto()
+        public static void OnNotifHisto(int demande_id)
         {
 
-            ExecuteQuery($"update demande set Histonotif = '1' where id_demande ='{cDemande.id_demande}';");
+            ExecuteQuery($"update demande set Histonotif = '1' where id_demande ='{demande_id}';");
 
         }
 

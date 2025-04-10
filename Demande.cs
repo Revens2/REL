@@ -130,8 +130,7 @@ namespace REL
 
         private void btadd_Click(object sender, EventArgs e)
         {
-            cDemande.id_demande = 0;
-            popupdemande popup = new popupdemande(globaluserid);
+            popupdemande popup = new popupdemande(globaluserid,0,false);
             popup.StartPosition = FormStartPosition.CenterParent;
             popup.Show();
             Bindlist();
@@ -152,8 +151,7 @@ namespace REL
             {
                 int selectedId = Convert.ToInt32(gv_list.Rows[e.RowIndex].Cells["Id_demande"].Value);
 
-                cDemande.id_demande = selectedId;
-                popupdemande popup = new popupdemande(globaluserid);
+                popupdemande popup = new popupdemande(globaluserid, selectedId, false);
                 popup.ShowDialog();
 
 
@@ -162,7 +160,7 @@ namespace REL
             if (e.ColumnIndex == gv_list.Columns["btnDelete"].Index && e.RowIndex >= 0)
             {
                 int selectedId = Convert.ToInt32(gv_list.Rows[e.RowIndex].Cells["Id_demande"].Value);
-
+                cDemande cDemande = new cDemande(selectedId);
                 cDemande.DeleteDemande(selectedId);
                 Bindlist();
 
@@ -177,9 +175,10 @@ namespace REL
                 if (row.Cells["statut"].Value != null && row.Cells["statut"].Value.ToString() == "2")
 
                 {
-                    cDemande.id_demande = Convert.ToInt32(row.Cells["id_demande"].Value);
+                    cDemande cDemande = new cDemande(Convert.ToInt32(row.Cells["Id_demande"].Value));
 
-                    popupconfirmdem popup = new popupconfirmdem(globaluserid);
+
+                    popupconfirmdem popup = new popupconfirmdem(globaluserid, cDemande.Id_demande);
                     popup.ShowDialog();
                     Bindlist();
                 }

@@ -13,15 +13,18 @@ namespace REL
     public partial class popupconfirmdem : Form
     {
         private int globaluserid = 0;
-        public popupconfirmdem(int userid)
+        private int globaldemandeid = 0;
+        public popupconfirmdem(int userid, int demandeid)
         {
             globaluserid = userid;
+            globaldemandeid = demandeid;
             InitializeComponent();
             Bindlist();
         }
         private void Bindlist()
         {
-            DataTable dtdata = cDemande.ListBackCompleteDemande(cDemande.id_demande);
+            cDemande cDemande = new cDemande(globaldemandeid);
+            DataTable dtdata = cDemande.ListBackCompleteDemande();
             DataRow row = dtdata.Rows[0];
 
             lbtypedata.Text = row["type_demande"].ToString();
@@ -37,14 +40,14 @@ namespace REL
 
         private void btcancel_Click(object sender, EventArgs e)
         {
-            cDemande.id_demande = 0;
             this.Close();
 
         }
 
         private void btsave_Click(object sender, EventArgs e)
         {
-            cDemande.ValideRDV(cDemande.id_demande);
+            cDemande cDemande = new cDemande(globaldemandeid);
+            cDemande.ValideRDV();
             cDemande.UpdateNotif(true);
             menucs menu = new menucs(globaluserid);
             menu.BindNotif();

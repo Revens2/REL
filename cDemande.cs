@@ -16,39 +16,62 @@ namespace REL
 {
     internal class cDemande
     {
+        private int id_demande;
 
         private string objet;
+
         private string commentaire;
-        
 
         private bool prioritaire;
-        DateTime duree_debut;
-        DateTime duree_fin;
+
+        private DateTime duree_debut;
+
+        private DateTime duree_fin;
 
         private int statut;
 
         private bool final;
 
-        public static int id_demande;
-
-        public static int Id_demande
+        private bool isnewstatut;
+        public  int Id_demande
 
         {
             get { return id_demande; }
             set { id_demande = value; }
         }
 
-        public static bool isrequest;
-
-        public static bool Isrequest
-
+        public string Objet
         {
-            get { return isrequest; }
-            set { isrequest = value; }
+            get { return objet; }
+            set { objet = value; }
         }
 
-        public static bool isnewstatut;
-        public static bool Isnewstatut
+        public string Commentaire
+        {
+            get { return commentaire; }
+            set { commentaire = value; }
+        }
+
+        public bool Prioritaire
+        {
+            get { return prioritaire; }
+            set { prioritaire = value; }
+        }
+
+        public DateTime Duree_debut
+        {
+            get { return duree_debut; }
+            set { duree_debut = value; }
+        }
+
+        public DateTime Duree_fin
+        {
+            get { return duree_fin; }
+            set { duree_fin = value; }
+        }
+
+       
+        public bool Isnewstatut
 
         {
             get { return isnewstatut; }
@@ -71,14 +94,30 @@ namespace REL
         {
 
         }
-        public cDemande(string unObjet, string unCommetaire, bool unPrioritaire, DateTime uneDuree_debut, DateTime UneDuree_fin)
+        public cDemande(int Demandeid)
         {
+           
+            id_demande = Demandeid;
 
-            this.objet = unObjet;
-            this.commentaire = unCommetaire;
-            this.prioritaire = unPrioritaire;
-            this.duree_debut = uneDuree_debut;
-            this.duree_fin = UneDuree_fin;
+            if (id_demande > 0)
+            {
+                DataTable dt = cBdd.SelectOnedemande(id_demande);
+
+                if (dt.Rows.Count > 0)
+                {
+                    DataRow row = dt.Rows[0];
+
+                    this.objet = Convert.ToString(row["Objet_demande"]);
+                    this.commentaire = Convert.ToString(row["Commentaire"]);
+                    this.Prioritaire = Convert.ToBoolean(row["Prioritaire"]);
+                    this.duree_debut = Convert.ToDateTime(row["Duree_debut"]);
+                    this.duree_fin = Convert.ToDateTime(row["Duree_fin"]);
+                    this.statut = Convert.ToInt32(row["statut"]);
+
+                }
+            }
+
+            
 
         }
 
@@ -113,37 +152,37 @@ namespace REL
             return cBdd.SelectHistorique(statut, userid);
             
         }
-        public static DataTable ListService()
+        public  DataTable ListService()
         {
 
             return cBdd.SelectService();
 
         }
 
-        public static DataTable ListReunion()
+        public  DataTable ListReunion()
         {
 
             return cBdd.SelectReunion();
 
         }
 
-        public static DataTable ListVehicule()
+        public  DataTable ListVehicule()
         {
 
             return cBdd.SelectVehicule();
 
         }
 
-        public static DataTable ListBackDemande(int demande_id)
+        public  DataTable ListBackDemande()
         {
 
-            return cBdd.SelectBackDemande(demande_id);
+            return cBdd.SelectBackDemande(id_demande);
 
         }
 
-        public static DataTable ListBackCompleteDemande(int demande_id)
+        public  DataTable ListBackCompleteDemande()
         {
-            DataTable dt = cBdd.SelectBackCompleteDemande(demande_id);
+            DataTable dt = cBdd.SelectBackCompleteDemande(id_demande);
             dt.Columns.Add("detailtype", typeof(string));
             DataTable dtDetail= null;
             if (dt.Rows.Count > 0)
@@ -154,13 +193,13 @@ namespace REL
                 switch (type)
                 {
                     case 1:
-                        dtDetail = cBdd.SelectBackCompleteService(demande_id);
+                        dtDetail = cBdd.SelectBackCompleteService(id_demande);
                         break;
                     case 2:
-                        dtDetail = cBdd.SelectBackCompleteReunion(demande_id);
+                        dtDetail = cBdd.SelectBackCompleteReunion(id_demande);
                         break;
                     case 3:
-                        dtDetail = cBdd.SelectBackCompleteVehicule(demande_id);
+                        dtDetail = cBdd.SelectBackCompleteVehicule(id_demande);
                         break;
                 }
                 dt.Rows[0]["detailtype"] = dtDetail.Rows[0]["detailtype"].ToString();
@@ -173,7 +212,7 @@ namespace REL
 
 
         #region Save
-        public static void DemandeSave(int untype_demande, string unObjet, string unCommetaire, int unPrioritaire, string uneDuree_debut, string UneDuree_fin, int id_user, int super_id)
+        public void DemandeSave(int untype_demande, string unObjet, string unCommetaire, int unPrioritaire, string uneDuree_debut, string UneDuree_fin, int id_user, int super_id)
         {
             int statut = 1;
             int AdminNotif = 1;
@@ -200,29 +239,29 @@ namespace REL
 
         #region Notif
 
-        public static void UpdateNotif(bool SwitchNotif)
+        public void UpdateNotif(bool SwitchNotif)
         {
             if (SwitchNotif)
             {
 
-                cBdd.UpdateAdminNotif();
+                cBdd.UpdateAdminNotif(id_demande);
 
             }
             else
             {
 
-                cBdd.UpdateUserNotif();
+                cBdd.UpdateUserNotif(id_demande);
 
             }
 
         }
 
-        public static void UpdateHistoNotif(bool on, int userid)
+        public void UpdateHistoNotif(bool on, int userid)
         {
             if (on)
             {
 
-                cBdd.OnNotifHisto();
+                cBdd.OnNotifHisto(id_demande);
                  
             }
             else
@@ -231,10 +270,10 @@ namespace REL
                 cBdd.OffNotifHisto(userid);
 
             }
-            cBdd.UpdateNoNotif();
+            cBdd.UpdateNoNotif(id_demande);
         }
 
-        public static int NotifGestion(int userid)
+        public int NotifGestion(int userid)
         {
             cUtilisateur cUtilisateur = new cUtilisateur(userid);
             int type = cUtilisateur.GetAccounType();
@@ -242,12 +281,12 @@ namespace REL
             return cBdd.CountNotifGestion(type);
         }
 
-        public static int NotifDemande(int userid)
+        public int NotifDemande(int userid)
         {
             return cBdd.CountNotifDemande(userid);
         }
 
-        public static int NotifHistorique(int userid)
+        public int NotifHistorique(int userid)
         {
             return cBdd.CountNotifHisto(userid);
         }
@@ -257,35 +296,35 @@ namespace REL
         #region Statut
 
 
-        public static void Valide(int demande_id)
+        public void Valide()
         {
-            cBdd.ValideUpdate(demande_id);
+            cBdd.ValideUpdate(id_demande);
 
         }
-        public static void Attente(int demande_id, string mess_att)
+        public void Attente(string mess_att)
         {
 
-            cBdd.AttenteUpdate(demande_id, mess_att);
+            cBdd.AttenteUpdate(id_demande, mess_att);
             
         }
-        public static void Delete(int demande_id, string mess_refu)
+        public void Delete(string mess_refu)
         {
 
-            cBdd.DeleteUpdate(mess_refu, demande_id);
+            cBdd.DeleteUpdate(mess_refu, id_demande);
 
         }
 
-        public static void Cloture(int demande_id, string mess_clo)
+        public void Cloture(string mess_clo)
         {
 
-            cBdd.ClotureUpdate(mess_clo, demande_id);
+            cBdd.ClotureUpdate(mess_clo, id_demande);
 
         }
 
-        public static void ValideRDV(int demande_id)
+        public void ValideRDV()
         {
 
-            cBdd.ValideRDVUpdate(demande_id);
+            cBdd.ValideRDVUpdate(id_demande);
 
         }
 
@@ -293,7 +332,7 @@ namespace REL
 
         #endregion
    
-        public static void DeleteDemande(int demande_id)
+        public void DeleteDemande(int demande_id)
         {
 
             int type = cBdd.SelectTypeDemande(demande_id);
@@ -317,7 +356,7 @@ namespace REL
             cBdd.DeleteDemande(demande_id);
         }
 
-        //public static string popupvalidinfo()
+        //public string popupvalidinfo()
         //{
 
         //    string query = "select objet_demande from demande;";

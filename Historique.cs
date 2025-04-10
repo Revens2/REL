@@ -23,6 +23,7 @@ namespace REL
             menu = new menucs(userid);
             menu.Dock = DockStyle.Top;
             this.Controls.Add(menu);
+            cDemande cDemande = new cDemande();
             cDemande.UpdateHistoNotif(false, globaluserid);
         }
         private void Bindlist()

@@ -28,6 +28,7 @@ namespace REL
 
         public void BindNotif()
         {
+            cDemande cDemande = new cDemande(); 
             lbnotifdemande.Text = Convert.ToString(cDemande.NotifDemande(globaluserid));
             lbnotifgestion.Text = Convert.ToString(cDemande.NotifGestion(globaluserid));
             lbnotifhisto.Text = Convert.ToString(cDemande.NotifHistorique(globaluserid)); 
